@@ -1,0 +1,1348 @@
+ERR1664643;1;102;PRJEB15555;SAMEA4473397;LSHTM;SRMTB25;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664653;1;102;PRJEB15555;SAMEA4473407;LSHTM;SRMTB35;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664663;1;102;PRJEB15555;SAMEA4473417;LSHTM;SRMTB45;nan;null;null;null;null;null;null;null;null;null;null
+SRR3544718;1;102;PRJNA318002;SAMN05001060;BI;Mycobacterium tuberculosis G-018C_6;2015;Georgia;missing;null;null;null;null;missing;missing;missing;G-018C_6
+SRR3544727;1;102;PRJNA318002;SAMN05001042;BI;Mycobacterium tuberculosis G-032_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-032_1
+SRR3544732;1;102;PRJNA318002;SAMN05001039;BI;Mycobacterium tuberculosis G-014S_1_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-014S_1_1
+SRR3544739;1;102;PRJNA318002;SAMN05001058;BI;Mycobacterium tuberculosis G-018H_3;2015;Georgia;missing;null;null;null;null;missing;missing;missing;G-018H_3
+SRR3544741;1;102;PRJNA318002;SAMN05001057;BI;Mycobacterium tuberculosis G-018I_2;2015;Georgia;missing;null;null;null;null;missing;missing;missing;G-018I_2
+SRR3743203;1;102;PRJNA318002;SAMN05209827;BI;Mycobacterium tuberculosis G-018N_5;2015;Georgia;missing;null;null;null;null;missing;missing;missing;G-018N_5
+SRR3743369;1;102;PRJNA318002;SAMN04633279;BI;Mycobacterium tuberculosis Moldova_14660;2015-07-15 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_14660
+SRR3743378;1;102;PRJNA318002;SAMN04633290;BI;Mycobacterium tuberculosis Moldova_1059;2015-01-19 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_1059
+SRR3743381;1;102;PRJNA318002;SAMN04633348;BI;Mycobacterium tuberculosis Moldova_22253;2015-11-15 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_22253
+SRR3743382;1;102;PRJNA318002;SAMN04633276;BI;Mycobacterium tuberculosis Moldova_10197;13-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_10197
+SRR3743383;1;102;PRJNA318002;SAMN04633293;BI;Mycobacterium tuberculosis Moldova_19353;2015-09-30 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_19353
+SRR3743385;1;102;PRJNA318002;SAMN04633329;BI;Mycobacterium tuberculosis Moldova_11314;28-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_11314
+SRR3743389;1;102;PRJNA318002;SAMN04633285;BI;Mycobacterium tuberculosis Moldova_14381;2015-07-14 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_14381
+SRR3743394;1;102;PRJNA318002;SAMN04633269;BI;Mycobacterium tuberculosis Moldova_7725;2015-04-08 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_7725
+SRR3743398;1;102;PRJNA318002;SAMN04633356;BI;Mycobacterium tuberculosis Moldova_5230;09-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_5230
+SRR3743402;1;102;PRJNA318002;SAMN04633295;BI;Mycobacterium tuberculosis Moldova_2582;2015-02-04 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_2582
+SRR3743403;1;102;PRJNA318002;SAMN04633275;BI;Mycobacterium tuberculosis Moldova_16266;2015-08-11 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_16266
+SRR3743405;1;102;PRJNA318002;SAMN04633339;BI;Mycobacterium tuberculosis Moldova_21445;2015-11-04 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_21445
+SRR3743408;1;102;PRJNA318002;SAMN04633280;BI;Mycobacterium tuberculosis Moldova_16757;2015-08-17 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_16757
+SRR3743412;1;102;PRJNA318002;SAMN04633312;BI;Mycobacterium tuberculosis Moldova_24564;20-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_24564
+SRR3743416;1;102;PRJNA318002;SAMN04633322;BI;Mycobacterium tuberculosis Moldova_5079;10-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_5079
+SRR3743449;1;102;PRJNA318002;SAMN04633292;BI;Mycobacterium tuberculosis Moldova_5900;16-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_5900
+SRR3743459;1;102;PRJNA318002;SAMN04633283;BI;Mycobacterium tuberculosis Moldova_10775;20-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_10775
+SRR3743460;1;102;PRJNA318002;SAMN04633343;BI;Mycobacterium tuberculosis Moldova_21950;2015-11-11 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_21950
+SRR3743461;1;102;PRJNA318002;SAMN04633302;BI;Mycobacterium tuberculosis Moldova_14713;2015-07-17 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_14713
+SRR3743462;1;102;PRJNA318002;SAMN04633286;BI;Mycobacterium tuberculosis Moldova_13152;2015-06-23 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_13152
+SRR3743479;1;102;PRJNA318002;SAMN04633274;BI;Mycobacterium tuberculosis Moldova_11678;2015-06-02 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_11678
+SRR3743480;1;102;PRJNA318002;SAMN04633294;BI;Mycobacterium tuberculosis Moldova_19029;2015-09-24 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_19029
+SRR3743484;1;102;PRJNA318002;SAMN04633310;BI;Mycobacterium tuberculosis Moldova_11473;2015-06-01 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_11473
+SRR3743486;1;102;PRJNA318002;SAMN04633304;BI;Mycobacterium tuberculosis Moldova_17146;2015-08-25 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17146
+SRR3743491;1;102;PRJNA318002;SAMN04633349;BI;Mycobacterium tuberculosis Moldova_22473;2015-11-19 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_22473
+SRR3743498;1;102;PRJNA318002;SAMN04633320;BI;Mycobacterium tuberculosis Moldova_2063;2015-01-30 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_2063
+SRR5152897;1;102;PRJNA318002;SAMN06209896;BI;Mycobacterium tuberculosis 15-008957;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008957
+SRR5152898;1;102;PRJNA318002;SAMN06209918;BI;Mycobacterium tuberculosis 16-000792;2016;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;16-000792
+SRR5152905;1;102;PRJNA318002;SAMN06209907;BI;Mycobacterium tuberculosis 15-003446;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-003446
+SRR5152914;1;102;PRJNA318002;SAMN06209899;BI;Mycobacterium tuberculosis 15-006407;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-006407
+SRR5152923;1;102;PRJNA318002;SAMN06209930;BI;Mycobacterium tuberculosis 15-005552;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-005552
+SRR5152937;1;102;PRJNA318002;SAMN06209911;BI;Mycobacterium tuberculosis 15-009019;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009019
+SRR5152956;1;102;PRJNA318002;SAMN06209938;BI;Mycobacterium tuberculosis 15-004340;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-004340
+SRR5152959;1;102;PRJNA318002;SAMN06209898;BI;Mycobacterium tuberculosis 15-005819;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-005819
+SRR5153087;1;102;PRJNA318002;SAMN06209892;BI;Mycobacterium tuberculosis 15-012966;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012966
+SRR5153092;1;102;PRJNA318002;SAMN06209941;BI;Mycobacterium tuberculosis 15-008981;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008981
+SRR5153208;1;102;PRJNA318002;SAMN06209954;BI;Mycobacterium tuberculosis 15-009846;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009846
+SRR5153222;1;102;PRJNA318002;SAMN05789021;BI;Mycobacterium tuberculosis  G-105;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-105
+SRR5153225;1;102;PRJNA318002;SAMN05789023;BI;Mycobacterium tuberculosis  G-107;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-107
+SRR5153226;1;102;PRJNA318002;SAMN05789033;BI;Mycobacterium tuberculosis  G-117;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-117
+SRR5153227;1;102;PRJNA318002;SAMN05789017;BI;Mycobacterium tuberculosis  G-102;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-102
+SRR5153245;1;102;PRJNA318002;SAMN05789040;BI;Mycobacterium tuberculosis  G-053;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-053
+SRR5153253;1;102;PRJNA318002;SAMN05789042;BI;Mycobacterium tuberculosis  G-055;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-055
+SRR5153254;1;102;PRJNA318002;SAMN05789046;BI;Mycobacterium tuberculosis  G-058;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-058
+SRR5153268;1;102;PRJNA318002;SAMN05789049;BI;Mycobacterium tuberculosis  G-061;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-061
+SRR5153275;1;102;PRJNA318002;SAMN05789043;BI;Mycobacterium tuberculosis  G-056;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-056
+SRR5153276;1;102;PRJNA318002;SAMN05789057;BI;Mycobacterium tuberculosis  G-032_S_1;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-032_S_1
+SRR5153279;1;102;PRJNA318002;SAMN05789061;BI;Mycobacterium tuberculosis  G-071;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-071
+SRR5153314;1;102;PRJNA318002;SAMN05789083;BI;Mycobacterium tuberculosis  G-092;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-092
+SRR5153327;1;102;PRJNA318002;SAMN05789088;BI;Mycobacterium tuberculosis  G-097;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-097
+SRR5153330;1;102;PRJNA318002;SAMN05789092;BI;Mycobacterium tuberculosis  G-127;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-127
+SRR5153331;1;102;PRJNA318002;SAMN05789095;BI;Mycobacterium tuberculosis  G-124;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-124
+SRR5153333;1;102;PRJNA318002;SAMN05789072;BI;Mycobacterium tuberculosis  G-081;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-081
+SRR5153509;1;102;PRJNA318002;SAMN05789100;BI;Mycobacterium tuberculosis  G-140;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-140
+SRR5153600;1;102;PRJNA318002;SAMN06209973;BI;Mycobacterium tuberculosis complex 15-013336;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013336
+SRR5153601;1;102;PRJNA318002;SAMN05789107;BI;Mycobacterium tuberculosis  G-039-C;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-039-C
+SRR5153603;1;102;PRJNA318002;SAMN06209961;BI;Mycobacterium tuberculosis complex 15-017447;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017447
+SRR5153611;1;102;PRJNA318002;SAMN05789109;BI;Mycobacterium tuberculosis  G-039-N;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-039-N
+SRR5153614;1;102;PRJNA318002;SAMN05789108;BI;Mycobacterium tuberculosis  G-039-I;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-039-I
+SRR5153619;1;102;PRJNA318002;SAMN05789106;BI;Mycobacterium tuberculosis  G-039-E;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-039-E
+SRR5153621;1;102;PRJNA318002;SAMN05789110;BI;Mycobacterium tuberculosis  G-039-H;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-039-H
+SRR5153709;1;102;PRJNA318002;SAMN06209979;BI;Mycobacterium tuberculosis complex 15-013319;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013319
+SRR5153712;1;102;PRJNA318002;SAMN06209983;BI;Mycobacterium tuberculosis complex 16-000319;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-000319
+SRR5153718;1;102;PRJNA318002;SAMN06209992;BI;Mycobacterium tuberculosis complex 16-003175;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-003175
+SRR5153720;1;102;PRJNA318002;SAMN06209989;BI;Mycobacterium tuberculosis complex 15-013696;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013696
+SRR5153722;1;102;PRJNA318002;SAMN06209991;BI;Mycobacterium tuberculosis complex 15-015398;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-015398
+SRR5153821;1;102;PRJNA318002;SAMN06210007;BI;Mycobacterium tuberculosis complex 15408;2015;Moldova;null;null;null;null;null;null;null;missing;15408
+SRR5153824;1;102;PRJNA318002;SAMN06210010;BI;Mycobacterium tuberculosis complex 15287;2015;Moldova;null;null;null;null;null;null;null;missing;15287
+SRR5153825;1;102;PRJNA318002;SAMN06209995;BI;Mycobacterium tuberculosis complex 15-013728;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013728
+SRR5153827;1;102;PRJNA318002;SAMN06210006;BI;Mycobacterium tuberculosis complex 18122;2015;Moldova;null;null;null;null;null;null;null;missing;18122
+SRR5153828;1;102;PRJNA318002;SAMN06210018;BI;Mycobacterium tuberculosis complex 12637;2015;Moldova;null;null;null;null;null;null;null;missing;12637
+SRR5153832;1;102;PRJNA318002;SAMN06210019;BI;Mycobacterium tuberculosis complex 20030;2015;Moldova;null;null;null;null;null;null;null;missing;20030
+SRR5153846;1;102;PRJNA318002;SAMN06210038;BI;Mycobacterium tuberculosis complex 435;2009;Moldova;null;null;null;null;null;null;null;missing;435
+SRR5153849;1;102;PRJNA318002;SAMN06210034;BI;Mycobacterium tuberculosis complex 16237;2015;Moldova;null;null;null;null;null;null;null;missing;16237
+SRR5153854;1;102;PRJNA318002;SAMN06210024;BI;Mycobacterium tuberculosis complex 13166;2016;Moldova;null;null;null;null;null;null;null;missing;13166
+SRR5153855;1;102;PRJNA318002;SAMN06210044;BI;Mycobacterium tuberculosis complex 12465;2015;Moldova;null;null;null;null;null;null;null;missing;12465
+SRR5153860;1;102;PRJNA318002;SAMN06210037;BI;Mycobacterium tuberculosis complex 22812;2015;Moldova;null;null;null;null;null;null;null;missing;22812
+SRR5153865;1;102;PRJNA318002;SAMN06210042;BI;Mycobacterium tuberculosis complex 18922;2015;Moldova;null;null;null;null;null;null;null;missing;18922
+SRR5153877;1;102;PRJNA318002;SAMN06210059;BI;Mycobacterium tuberculosis complex 19217;2015;Moldova;null;null;null;null;null;null;null;missing;19217
+SRR5153878;1;102;PRJNA318002;SAMN06210062;BI;Mycobacterium tuberculosis complex 16467;2015;Moldova;null;null;null;null;null;null;null;missing;16467
+SRR5153882;1;102;PRJNA318002;SAMN06210063;BI;Mycobacterium tuberculosis complex 22083;2015;Moldova;null;null;null;null;null;null;null;missing;22083
+SRR5153885;1;102;PRJNA318002;SAMN06210065;BI;Mycobacterium tuberculosis complex 13252;2015;Moldova;null;null;null;null;null;null;null;missing;13252
+SRR5153887;1;102;PRJNA318002;SAMN06210066;BI;Mycobacterium tuberculosis complex 19266;2015;Moldova;null;null;null;null;null;null;null;missing;19266
+SRR5153902;1;102;PRJNA318002;SAMN06210076;BI;Mycobacterium tuberculosis complex 14040;2015;Moldova;null;null;null;null;null;null;null;missing;14040
+SRR5153906;1;102;PRJNA318002;SAMN06210070;BI;Mycobacterium tuberculosis complex 12299;2015;Moldova;null;null;null;null;null;null;null;missing;12299
+SRR5153910;1;102;PRJNA318002;SAMN06210075;BI;Mycobacterium tuberculosis complex 10981;2016;Moldova;null;null;null;null;null;null;null;missing;10981
+SRR5153915;1;102;PRJNA318002;SAMN06210084;BI;Mycobacterium tuberculosis complex 19495;2015;Moldova;null;null;null;null;null;null;null;missing;19495
+SRR5153917;1;102;PRJNA318002;SAMN06210085;BI;Mycobacterium tuberculosis complex 13346;2016;Moldova;null;null;null;null;null;null;null;missing;13346
+SRR5153921;1;102;PRJNA318002;SAMN06210086;BI;Mycobacterium tuberculosis complex 13597;2016;Moldova;null;null;null;null;null;null;null;missing;13597
+SRR5163781;1;102;PRJNA318002;SAMN06210099;BI;Mycobacterium tuberculosis complex 11224;2016;Moldova;null;null;null;null;null;null;null;missing;11224
+SRR4035489;2;79;PRJNA323744;SAMN05575655;null;P21-Lung1-C1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-C1;null
+SRR4035490;2;79;PRJNA323744;SAMN05575656;null;P21-Lung1-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-C2;null
+SRR4035491;2;79;PRJNA323744;SAMN05575657;null;P21-Lung1-C3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-C3;null
+SRR4035492;2;79;PRJNA323744;SAMN05575658;null;P21-Lung1-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-C4;null
+SRR4035493;2;79;PRJNA323744;SAMN05575659;null;P21-Lung1-C5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-C5;null
+SRR4035494;2;79;PRJNA323744;SAMN05575660;null;P21-Lung2-A1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-A1;null
+SRR4035495;2;79;PRJNA323744;SAMN05575661;null;P21-Lung2-A2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-A2;null
+SRR4035496;2;79;PRJNA323744;SAMN05575662;null;P21-Lung2-A3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-A3;null
+SRR4035497;2;79;PRJNA323744;SAMN05575663;null;P21-Lung2-A4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-A4;null
+SRR4035498;2;79;PRJNA323744;SAMN05575664;null;P21-Lung2-A5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-A5;null
+SRR4035500;2;79;PRJNA323744;SAMN05575665;null;P21-Lung2-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-B1;null
+SRR4035501;2;79;PRJNA323744;SAMN05575666;null;P21-Lung2-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-B2;null
+SRR4035502;2;79;PRJNA323744;SAMN05575667;null;P21-Lung2-B3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-B3;null
+SRR4035503;2;79;PRJNA323744;SAMN05575668;null;P21-Lung2-B5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-B5;null
+SRR4035504;2;79;PRJNA323744;SAMN05575669;null;P21-Lung2-C1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-C1;null
+SRR4035505;2;79;PRJNA323744;SAMN05575670;null;P21-Lung2-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-C2;null
+SRR4035506;2;79;PRJNA323744;SAMN05575671;null;P21-Lung2-C3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-C3;null
+SRR4035507;2;79;PRJNA323744;SAMN05575672;null;P21-Lung2-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-C4;null
+SRR4035508;2;79;PRJNA323744;SAMN05575673;null;P21-Lung2-C5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung2-C5;null
+SRR4035509;2;79;PRJNA323744;SAMN05575674;null;P21-Lung3-A1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-A1;null
+SRR4035511;2;79;PRJNA323744;SAMN05575675;null;P21-Lung3-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-B1;null
+SRR4035512;2;79;PRJNA323744;SAMN05575676;null;P21-Lung3-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-B2;null
+SRR4035513;2;79;PRJNA323744;SAMN05575677;null;P21-Lung3-B3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-B3;null
+SRR4035514;2;79;PRJNA323744;SAMN05575678;null;P21-Lung3-B4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-B4;null
+SRR4035515;2;79;PRJNA323744;SAMN05575679;null;P21-Lung3-B5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-B5;null
+SRR4035516;2;79;PRJNA323744;SAMN05575680;null;P21-Lung3-C1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-C1;null
+SRR4035517;2;79;PRJNA323744;SAMN05575681;null;P21-Lung3-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-C2;null
+SRR4035518;2;79;PRJNA323744;SAMN05575682;null;P21-Lung3-C3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-C3;null
+SRR4035519;2;79;PRJNA323744;SAMN05575683;null;P21-Lung3-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-C4;null
+SRR4035520;2;79;PRJNA323744;SAMN05575684;null;P21-Lung3-C5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung3-C5;null
+SRR4035522;2;79;PRJNA323744;SAMN05575685;null;P21-Lung4-A3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-A3;null
+SRR4035523;2;79;PRJNA323744;SAMN05575686;null;P21-Lung4-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-B1;null
+SRR4035524;2;79;PRJNA323744;SAMN05575687;null;P21-Lung4-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-B2;null
+SRR4035525;2;79;PRJNA323744;SAMN05575688;null;P21-Lung4-B3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-B3;null
+SRR4035526;2;79;PRJNA323744;SAMN05575689;null;P21-Lung4-B4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-B4;null
+SRR4035527;2;79;PRJNA323744;SAMN05575690;null;P21-Lung4-B5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-B5;null
+SRR4035528;2;79;PRJNA323744;SAMN05575691;null;P21-Lung4-C1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-C1;null
+SRR4035529;2;79;PRJNA323744;SAMN05575692;null;P21-Lung4-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-C2;null
+SRR4035530;2;79;PRJNA323744;SAMN05575693;null;P21-Lung4-C3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-C3;null
+SRR4035531;2;79;PRJNA323744;SAMN05575694;null;P21-Lung4-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_left_lung;female;P21;P21-Lung4-C4;null
+SRR4035535;2;79;PRJNA323744;SAMN05575697;null;P21-Lung5-A2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-A2;null
+SRR4035536;2;79;PRJNA323744;SAMN05575698;null;P21-Lung5-A3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-A3;null
+SRR4035537;2;79;PRJNA323744;SAMN05575699;null;P21-Lung5-A4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-A4;null
+SRR4035538;2;79;PRJNA323744;SAMN05575700;null;P21-Lung5-A5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-A5;null
+SRR4035539;2;79;PRJNA323744;SAMN05575701;null;P21-Lung5-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-B1;null
+SRR4035540;2;79;PRJNA323744;SAMN05575702;null;P21-Lung5-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-B2;null
+SRR4035541;2;79;PRJNA323744;SAMN05575703;null;P21-Lung5-B4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-B4;null
+SRR4035544;2;79;PRJNA323744;SAMN05575705;null;P21-Lung5-C1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-C1;null
+SRR4035545;2;79;PRJNA323744;SAMN05575706;null;P21-Lung5-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-C2;null
+SRR4035546;2;79;PRJNA323744;SAMN05575707;null;P21-Lung5-C3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-C3;null
+SRR4035547;2;79;PRJNA323744;SAMN05575708;null;P21-Lung5-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Middle_right_lung;female;P21;P21-Lung5-C4;null
+SRR4035548;2;79;PRJNA323744;SAMN05575709;null;P21-Lung6-A2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-A2;null
+SRR4035550;2;79;PRJNA323744;SAMN05575711;null;P21-Lung6-A5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-A5;null
+SRR4035551;2;79;PRJNA323744;SAMN05575712;null;P21-Lung6-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-B1;null
+SRR4035552;2;79;PRJNA323744;SAMN05575713;null;P21-Lung6-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-B2;null
+SRR4035553;2;79;PRJNA323744;SAMN05575714;null;P21-Lung6-B3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-B3;null
+SRR4035555;2;79;PRJNA323744;SAMN05575715;null;P21-Lung6-B5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-B5;null
+SRR4035556;2;79;PRJNA323744;SAMN05575716;null;P21-Lung6-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-C2;null
+SRR4035558;2;79;PRJNA323744;SAMN05575718;null;P21-Lung6-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Bottom_right_lung;female;P21;P21-Lung6-C4;null
+SRR4036006;2;79;PRJNA323744;SAMN05575644;null;P21-Eta-A1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Endotracheal_aspirate;female;P21;P21-Eta-A1;null
+SRR4036008;2;79;PRJNA323744;SAMN05575645;null;P21-Eta-A3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Endotracheal_aspirate;female;P21;P21-Eta-A3;null
+SRR4036009;2;79;PRJNA323744;SAMN05575646;null;P21-Eta-A4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Endotracheal_aspirate;female;P21;P21-Eta-A4;null
+SRR4036010;2;79;PRJNA323744;SAMN05575720;null;P21-Liver-A1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-A1;null
+SRR4036011;2;79;PRJNA323744;SAMN05575721;null;P21-Liver-A3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-A3;null
+SRR4036012;2;79;PRJNA323744;SAMN05575722;null;P21-Liver-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-B1;null
+SRR4036013;2;79;PRJNA323744;SAMN05575723;null;P21-Liver-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-B2;null
+SRR4036014;2;79;PRJNA323744;SAMN05575724;null;P21-Liver-B3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-B3;null
+SRR4036015;2;79;PRJNA323744;SAMN05575725;null;P21-Liver-B4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-B4;null
+SRR4036016;2;79;PRJNA323744;SAMN05575726;null;P21-Liver-B5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-B5;null
+SRR4036017;2;79;PRJNA323744;SAMN05575727;null;P21-Liver-C2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-C2;null
+SRR4036019;2;79;PRJNA323744;SAMN05575728;null;P21-Liver-C4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-C4;null
+SRR4036020;2;79;PRJNA323744;SAMN05575729;null;P21-Liver-C5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Liver;female;P21;P21-Liver-C5;null
+SRR4036021;2;79;PRJNA323744;SAMN05575647;null;P21-Lung1-A1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-A1;null
+SRR4036022;2;79;PRJNA323744;SAMN05575648;null;P21-Lung1-A2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-A2;null
+SRR4036023;2;79;PRJNA323744;SAMN05575649;null;P21-Lung1-A3;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-A3;null
+SRR4036024;2;79;PRJNA323744;SAMN05575650;null;P21-Lung1-A4;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-A4;null
+SRR4036026;2;79;PRJNA323744;SAMN05575652;null;P21-Lung1-B1;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-B1;null
+SRR4036027;2;79;PRJNA323744;SAMN05575653;null;P21-Lung1-B2;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-B2;null
+SRR4036028;2;79;PRJNA323744;SAMN05575654;null;P21-Lung1-B5;2013-06-01 0:00:00;South Africa: Kwazulu-Natal;1965;No;Positive;Yes;Top_right_lung;female;P21;P21-Lung1-B5;null
+SRR4033152;3;54;PRJNA323744;SAMN05575229;null;P16-Eta-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-A1;null
+SRR4033153;3;54;PRJNA323744;SAMN05575230;null;P16-Eta-A2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-A2;null
+SRR4033154;3;54;PRJNA323744;SAMN05575231;null;P16-Eta-A3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-A3;null
+SRR4033155;3;54;PRJNA323744;SAMN05575232;null;P16-Eta-A5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-A5;null
+SRR4033157;3;54;PRJNA323744;SAMN05575233;null;P16-Eta-B2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-B2;null
+SRR4033158;3;54;PRJNA323744;SAMN05575234;null;P16-Eta-C1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-C1;null
+SRR4033159;3;54;PRJNA323744;SAMN05575235;null;P16-Eta-C3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-C3;null
+SRR4033160;3;54;PRJNA323744;SAMN05575236;null;P16-Eta-C4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Endotracheal_aspirate;male;P16;P16-Eta-C4;null
+SRR4033161;3;54;PRJNA323744;SAMN05575276;null;P16-Liver-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Liver;male;P16;P16-Liver-A1;null
+SRR4033163;3;54;PRJNA323744;SAMN05575277;null;P16-Liver-A2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Liver;male;P16;P16-Liver-A2;null
+SRR4033164;3;54;PRJNA323744;SAMN05575278;null;P16-Liver-A3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Liver;male;P16;P16-Liver-A3;null
+SRR4033165;3;54;PRJNA323744;SAMN05575279;null;P16-Liver-B1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Liver;male;P16;P16-Liver-B1;null
+SRR4033166;3;54;PRJNA323744;SAMN05575280;null;P16-Liver-B2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Liver;male;P16;P16-Liver-B2;null
+SRR4033167;3;54;PRJNA323744;SAMN05575281;null;P16-Liver-B3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Liver;male;P16;P16-Liver-B3;null
+SRR4033169;3;54;PRJNA323744;SAMN05575237;null;P16-Lung1-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-A1;null
+SRR4033170;3;54;PRJNA323744;SAMN05575238;null;P16-Lung1-A2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-A2;null
+SRR4033171;3;54;PRJNA323744;SAMN05575239;null;P16-Lung1-A3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-A3;null
+SRR4033172;3;54;PRJNA323744;SAMN05575240;null;P16-Lung1-A5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-A5;null
+SRR4033173;3;54;PRJNA323744;SAMN05575241;null;P16-Lung1-B1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-B1;null
+SRR4033174;3;54;PRJNA323744;SAMN05575242;null;P16-Lung1-B2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-B2;null
+SRR4033175;3;54;PRJNA323744;SAMN05575243;null;P16-Lung1-B4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-B4;null
+SRR4033176;3;54;PRJNA323744;SAMN05575244;null;P16-Lung1-B5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-B5;null
+SRR4033177;3;54;PRJNA323744;SAMN05575245;null;P16-Lung1-C1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-C1;null
+SRR4033178;3;54;PRJNA323744;SAMN05575246;null;P16-Lung1-C3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-C3;null
+SRR4033180;3;54;PRJNA323744;SAMN05575247;null;P16-Lung1-C4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-C4;null
+SRR4033181;3;54;PRJNA323744;SAMN05575248;null;P16-Lung1-C5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_right_lung;male;P16;P16-Lung1-C5;null
+SRR4033182;3;54;PRJNA323744;SAMN05575249;null;P16-Lung2-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-A1;null
+SRR4033183;3;54;PRJNA323744;SAMN05575250;null;P16-Lung2-A2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-A2;null
+SRR4033184;3;54;PRJNA323744;SAMN05575251;null;P16-Lung2-A3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-A3;null
+SRR4033185;3;54;PRJNA323744;SAMN05575252;null;P16-Lung2-A4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-A4;null
+SRR4033186;3;54;PRJNA323744;SAMN05575253;null;P16-Lung2-A5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-A5;null
+SRR4033187;3;54;PRJNA323744;SAMN05575254;null;P16-Lung2-B2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-B2;null
+SRR4033188;3;54;PRJNA323744;SAMN05575255;null;P16-Lung2-B3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung2-B3;null
+SRR4033189;3;54;PRJNA323744;SAMN05575256;null;P16-Lung4-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-A1;null
+SRR4033191;3;54;PRJNA323744;SAMN05575257;null;P16-Lung4-A2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-A2;null
+SRR4033192;3;54;PRJNA323744;SAMN05575258;null;P16-Lung4-B1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-B1;null
+SRR4033193;3;54;PRJNA323744;SAMN05575259;null;P16-Lung4-B2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-B2;null
+SRR4033194;3;54;PRJNA323744;SAMN05575260;null;P16-Lung4-B3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-B3;null
+SRR4033195;3;54;PRJNA323744;SAMN05575261;null;P16-Lung4-B4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-B4;null
+SRR4033196;3;54;PRJNA323744;SAMN05575262;null;P16-Lung4-C1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Top_left_lung;male;P16;P16-Lung4-C1;null
+SRR4033197;3;54;PRJNA323744;SAMN05575263;null;P16-Lung5-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-A1;null
+SRR4033198;3;54;PRJNA323744;SAMN05575264;null;P16-Lung5-A2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-A2;null
+SRR4033199;3;54;PRJNA323744;SAMN05575265;null;P16-Lung5-A3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-A3;null
+SRR4033201;3;54;PRJNA323744;SAMN05575266;null;P16-Lung5-A4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-A4;null
+SRR4033204;3;54;PRJNA323744;SAMN05575267;null;P16-Lung5-A5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-A5;null
+SRR4033205;3;54;PRJNA323744;SAMN05575268;null;P16-Lung5-B1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-B1;null
+SRR4033206;3;54;PRJNA323744;SAMN05575269;null;P16-Lung5-B2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-B2;null
+SRR4033207;3;54;PRJNA323744;SAMN05575270;null;P16-Lung5-B3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-B3;null
+SRR4033208;3;54;PRJNA323744;SAMN05575271;null;P16-Lung5-B4;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-B4;null
+SRR4033209;3;54;PRJNA323744;SAMN05575272;null;P16-Lung5-C1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-C1;null
+SRR4033210;3;54;PRJNA323744;SAMN05575273;null;P16-Lung5-C2;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-C2;null
+SRR4033211;3;54;PRJNA323744;SAMN05575274;null;P16-Lung5-C3;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-C3;null
+SRR4033212;3;54;PRJNA323744;SAMN05575275;null;P16-Lung5-C5;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Middle_right_lung;male;P16;P16-Lung5-C5;null
+SRR4033213;3;54;PRJNA323744;SAMN05575282;null;P16-Spleen-A1;May-2013;South Africa: Kwazulu-Natal;1980;No;Positive;Yes;Spleen;male;P16;P16-Spleen-A1;null
+ERR1633796;4;33;PRJEB15382;SAMEA4441446;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP990;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873395;4;33;PRJEB14199;SAMEA95452168;UNIVERSITY OF CAPE TOWN;M_15_A673_9073_F1_Mycobacterium_AACCGAG_L003;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873397;4;33;PRJEB14199;SAMEA95453668;UNIVERSITY OF CAPE TOWN;M_15_A676_10010_F1_Mycobacterium_AAGGTAC_L003;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873421;4;33;PRJEB14199;SAMEA95471668;UNIVERSITY OF CAPE TOWN;M_15_A711_F2_R15950_GCTCGGT_L004;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873422;4;33;PRJEB14199;SAMEA95472418;UNIVERSITY OF CAPE TOWN;M_15_A712_F2_R14816_GGAGAAC_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873426;4;33;PRJEB14199;SAMEA95475418;UNIVERSITY OF CAPE TOWN;M_15_A720_F2_R4775_TCCGTCT_L004;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873429;4;33;PRJEB14199;SAMEA95477668;UNIVERSITY OF CAPE TOWN;M_15_A724_F2_R11689_TGGCTTC_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873430;4;33;PRJEB14199;SAMEA95478418;UNIVERSITY OF CAPE TOWN;M_15_A725_F2_R15539_TGGTGGT_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873436;4;33;PRJEB14199;SAMEA95482918;UNIVERSITY OF CAPE TOWN;M_tuberculosis__R11121_LFO46Pool106_3312__L6_AACGTGAT_L006;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873468;4;33;PRJEB14199;SAMEA95434918;UNIVERSITY OF CAPE TOWN;R13121;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873480;4;33;PRJEB14199;SAMEA95503168;UNIVERSITY OF CAPE TOWN;R15949_LFO46Pool105_3311__L5_GGTGCGAA_L005;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873486;4;33;PRJEB14199;SAMEA95504668;UNIVERSITY OF CAPE TOWN;R16787_pool_282__L2_ATCCTGTA_L002;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873490;4;33;PRJEB14199;SAMEA95507668;UNIVERSITY OF CAPE TOWN;R17203_pool_282__L2_GACTAGTA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873494;4;33;PRJEB14199;SAMEA95510668;UNIVERSITY OF CAPE TOWN;R17879_pool_282__L2_CAGCGTTA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873496;4;33;PRJEB14199;SAMEA95512168;UNIVERSITY OF CAPE TOWN;R18045_pool_283__L3_AGCACCTC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873498;4;33;PRJEB14199;SAMEA95513668;UNIVERSITY OF CAPE TOWN;R18138_pool_282__L2_CATACCAA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873503;4;33;PRJEB14199;SAMEA95517418;UNIVERSITY OF CAPE TOWN;R18476_pool_282__L2_CCGAAGTA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873504;4;33;PRJEB14199;SAMEA95443168;UNIVERSITY OF CAPE TOWN;R18529;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873507;4;33;PRJEB14199;SAMEA95519668;UNIVERSITY OF CAPE TOWN;R18920_pool_282__L2_CGACTGGA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873510;4;33;PRJEB14199;SAMEA95521168;UNIVERSITY OF CAPE TOWN;R19048_pool_283__L3_CACCTTAC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873514;4;33;PRJEB14199;SAMEA95444668;UNIVERSITY OF CAPE TOWN;R19266;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873520;4;33;PRJEB14199;SAMEA95446918;UNIVERSITY OF CAPE TOWN;R19816;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873521;4;33;PRJEB14199;SAMEA95410168;UNIVERSITY OF CAPE TOWN;R4312;2008;Cape town, South Africa;null;null;null;null;null;null;null;mycobacterium tuberculosis;null
+ERR1873523;4;33;PRJEB14199;SAMEA95410918;UNIVERSITY OF CAPE TOWN;R4465;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873525;4;33;PRJEB14199;SAMEA95527168;UNIVERSITY OF CAPE TOWN;R4489_LFO46Pool105_3311__L5_AAACATCG_L005;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873529;4;33;PRJEB14199;SAMEA95529418;UNIVERSITY OF CAPE TOWN;R4801_LFO46Pool106_3312__L6_AGGCTAAC_L006;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873533;4;33;PRJEB14199;SAMEA95530918;UNIVERSITY OF CAPE TOWN;R4863_LFO46Pool105_3311__L5_CAGATCTG_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873536;4;33;PRJEB14199;SAMEA95531668;UNIVERSITY OF CAPE TOWN;R5317_LFO46Pool105_3311__L5_CGCTGATC_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873538;4;33;PRJEB14199;SAMEA95533168;UNIVERSITY OF CAPE TOWN;R5354_LFO46Pool105_3311__L5_ACAAGCTA_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873541;4;33;PRJEB14199;SAMEA95416918;UNIVERSITY OF CAPE TOWN;R5908;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873542;4;33;PRJEB14199;SAMEA95417668;UNIVERSITY OF CAPE TOWN;R5954;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873547;4;33;PRJEB14199;SAMEA95535418;UNIVERSITY OF CAPE TOWN;R6768_LFO46Pool106_3312__L6_CCATCCTC_L006;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873553;4;33;PRJEB14199;SAMEA95539168;UNIVERSITY OF CAPE TOWN;R8247_LFO46Pool105_3311__L5_GAATCTGA_L005;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1633956;5;30;PRJEB15382;SAMEA4441606;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP1150;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1633964;5;30;PRJEB15382;SAMEA4441614;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP1158;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873390;5;30;PRJEB14199;SAMEA95448418;UNIVERSITY OF CAPE TOWN;M_15_A665_5917_F1_Mycobacterium_ACATTGG_L003;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873399;5;30;PRJEB14199;SAMEA95455168;UNIVERSITY OF CAPE TOWN;M_15_A678_10282_F1_Mycobacterium_ACAGCAG_L003;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873403;5;30;PRJEB14199;SAMEA95458168;UNIVERSITY OF CAPE TOWN;M_15_A685_13614_F1_Mycobacterium_AGTCACT_L003;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873412;5;30;PRJEB14199;SAMEA95464918;UNIVERSITY OF CAPE TOWN;M_15_A699_F2_R19963_CGACTGG_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873413;5;30;PRJEB14199;SAMEA95465668;UNIVERSITY OF CAPE TOWN;M_15_A700_F2_R13911_CGCATAC_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873414;5;30;PRJEB14199;SAMEA95466418;UNIVERSITY OF CAPE TOWN;M_15_A701_F2_R13403_CTCAATG_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873415;5;30;PRJEB14199;SAMEA95467168;UNIVERSITY OF CAPE TOWN;M_15_A703_F2_R20236_CTGGCAT_L004;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873416;5;30;PRJEB14199;SAMEA95467918;UNIVERSITY OF CAPE TOWN;M_15_A704_F2_R16888_GAATCTG_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873423;5;30;PRJEB14199;SAMEA95473168;UNIVERSITY OF CAPE TOWN;M_15_A715_F2_R18095_GTCGTAG_L004;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873431;5;30;PRJEB14199;SAMEA95479168;UNIVERSITY OF CAPE TOWN;M_15_A726_F2_R14770_TTCACGC_L004;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873450;5;30;PRJEB14199;SAMEA95491168;UNIVERSITY OF CAPE TOWN;R10819_LFO46Pool105_3311__L5_GCCACATA_L005;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873451;5;30;PRJEB14199;SAMEA95429668;UNIVERSITY OF CAPE TOWN;R10854;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873455;5;30;PRJEB14199;SAMEA95494168;UNIVERSITY OF CAPE TOWN;R10951_pool_283__L3_TAGGATGA_L003;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873457;5;30;PRJEB14199;SAMEA95494918;UNIVERSITY OF CAPE TOWN;R11138_pool_283__L3_TATCAGCA_L003;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873469;5;30;PRJEB14199;SAMEA95435668;UNIVERSITY OF CAPE TOWN;R13123;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873471;5;30;PRJEB14199;SAMEA95437168;UNIVERSITY OF CAPE TOWN;R13342;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873478;5;30;PRJEB14199;SAMEA95502418;UNIVERSITY OF CAPE TOWN;R15692_LFO46Pool106_3312__L6_AACTCACC_L006;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873479;5;30;PRJEB14199;SAMEA95439418;UNIVERSITY OF CAPE TOWN;R15871;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873481;5;30;PRJEB14199;SAMEA95440168;UNIVERSITY OF CAPE TOWN;R16462;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873484;5;30;PRJEB14199;SAMEA95442418;UNIVERSITY OF CAPE TOWN;R16642;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873487;5;30;PRJEB14199;SAMEA95505418;UNIVERSITY OF CAPE TOWN;R16869_pool_282__L2_ATTGAGGA_L002;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873491;5;30;PRJEB14199;SAMEA95508418;UNIVERSITY OF CAPE TOWN;R17207_pool_282__L2_CAATGGAA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873499;5;30;PRJEB14199;SAMEA95514418;UNIVERSITY OF CAPE TOWN;R18174_pool_283__L3_AGGCTAAC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873501;5;30;PRJEB14199;SAMEA95515918;UNIVERSITY OF CAPE TOWN;R18343_pool_282__L2_CCAGTTCA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873537;5;30;PRJEB14199;SAMEA95532418;UNIVERSITY OF CAPE TOWN;R5318_LFO46Pool106_3312__L6_ATAGCGAC_L006;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873558;5;30;PRJEB14199;SAMEA95422918;UNIVERSITY OF CAPE TOWN;R9362;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873559;5;30;PRJEB14199;SAMEA95423668;UNIVERSITY OF CAPE TOWN;R9437;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873402;6;27;PRJEB14199;SAMEA95457418;UNIVERSITY OF CAPE TOWN;M_15_A684_13608_F1_Mycobacterium_AGCAGGA_L003;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873407;6;27;PRJEB14199;SAMEA95461168;UNIVERSITY OF CAPE TOWN;M_15_A692_15574_F1_Mycobacterium_CAGCGTT_L003;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873408;6;27;PRJEB14199;SAMEA95461918;UNIVERSITY OF CAPE TOWN;M_15_A695_F2_R18607_CCGAAGT_L004;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873434;6;27;PRJEB14199;SAMEA95481418;UNIVERSITY OF CAPE TOWN;M_15_A729_F2_R9964_AAGGACA_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873439;6;27;PRJEB14199;SAMEA95485168;UNIVERSITY OF CAPE TOWN;M_tuberculosis__R13673_LFO46Pool105_3311__L5_GCTCGGTA_L005;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873440;6;27;PRJEB14199;SAMEA95485918;UNIVERSITY OF CAPE TOWN;M_tuberculosis__R13723_LFO46Pool105_3311__L5_CCAGTTCA_L005;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873452;6;27;PRJEB14199;SAMEA95491918;UNIVERSITY OF CAPE TOWN;R10867_pool_283__L3_GTGTTCTA_L003;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873453;6;27;PRJEB14199;SAMEA95492668;UNIVERSITY OF CAPE TOWN;R10873_LFO46Pool105_3311__L5_GCGAGTAA_L005;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873454;6;27;PRJEB14199;SAMEA95493418;UNIVERSITY OF CAPE TOWN;R10921_LFO46Pool105_3311__L5_GCTAACGA_L005;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873456;6;27;PRJEB14199;SAMEA95430418;UNIVERSITY OF CAPE TOWN;R11044;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873467;6;27;PRJEB14199;SAMEA95434168;UNIVERSITY OF CAPE TOWN;R13071;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873472;6;27;PRJEB14199;SAMEA95437918;UNIVERSITY OF CAPE TOWN;R13560;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873473;6;27;PRJEB14199;SAMEA95499418;UNIVERSITY OF CAPE TOWN;R13570_LFO46Pool105_3311__L5_CATACCAA_L005;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873489;6;27;PRJEB14199;SAMEA95506918;UNIVERSITY OF CAPE TOWN;R17181_pool_282__L2_CAACCACA_L002;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873493;6;27;PRJEB14199;SAMEA95509918;UNIVERSITY OF CAPE TOWN;R17661_pool_283__L3_ACAGATTC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873500;6;27;PRJEB14199;SAMEA95515168;UNIVERSITY OF CAPE TOWN;R18243_pool_283__L3_ATAGCGAC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873502;6;27;PRJEB14199;SAMEA95516668;UNIVERSITY OF CAPE TOWN;R18455_pool_283__L3_ATCATTCC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873515;6;27;PRJEB14199;SAMEA95524168;UNIVERSITY OF CAPE TOWN;R19290_pool_282__L2_CTGGCATA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873516;6;27;PRJEB14199;SAMEA95445418;UNIVERSITY OF CAPE TOWN;R19351;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873519;6;27;PRJEB14199;SAMEA95525668;UNIVERSITY OF CAPE TOWN;R19631_pool_282__L2_GAGCTGAA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873524;6;27;PRJEB14199;SAMEA95411668;UNIVERSITY OF CAPE TOWN;R4488;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873526;6;27;PRJEB14199;SAMEA95412418;UNIVERSITY OF CAPE TOWN;R4577;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873528;6;27;PRJEB14199;SAMEA95528668;UNIVERSITY OF CAPE TOWN;R4731_LFO46Pool105_3311__L5_AGTGGTCA_L005;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873530;6;27;PRJEB14199;SAMEA95413168;UNIVERSITY OF CAPE TOWN;R4817;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873539;6;27;PRJEB14199;SAMEA95416168;UNIVERSITY OF CAPE TOWN;R5490;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873548;6;27;PRJEB14199;SAMEA95536168;UNIVERSITY OF CAPE TOWN;R6881_LFO46Pool105_3311__L5_AACGCTTA_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873551;6;27;PRJEB14199;SAMEA95420668;UNIVERSITY OF CAPE TOWN;R8081;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1227527;7;18;PRJEB12515;SAMEA3558124;LSHTM;mtb16;nan;null;null;null;null;null;null;null;null;null;null
+ERR1227529;7;18;PRJEB12515;SAMEA3558126;LSHTM;mtb18;nan;null;null;null;null;null;null;null;null;null;null
+ERR1227530;7;18;PRJEB12515;SAMEA3558127;LSHTM;mtb19;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664619;7;18;PRJEB15555;SAMEA4473373;LSHTM;SRMTB1;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664629;7;18;PRJEB15555;SAMEA4473383;LSHTM;SRMTB11;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664630;7;18;PRJEB15555;SAMEA4473384;LSHTM;SRMTB12;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664631;7;18;PRJEB15555;SAMEA4473385;LSHTM;SRMTB13;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664632;7;18;PRJEB15555;SAMEA4473386;LSHTM;SRMTB14;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664633;7;18;PRJEB15555;SAMEA4473387;LSHTM;SRMTB15;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664634;7;18;PRJEB15555;SAMEA4473388;LSHTM;SRMTB16;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664641;7;18;PRJEB15555;SAMEA4473395;LSHTM;SRMTB23;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664644;7;18;PRJEB15555;SAMEA4473398;LSHTM;SRMTB26;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664649;7;18;PRJEB15555;SAMEA4473403;LSHTM;SRMTB31;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664651;7;18;PRJEB15555;SAMEA4473405;LSHTM;SRMTB33;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664654;7;18;PRJEB15555;SAMEA4473408;LSHTM;SRMTB36;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664659;7;18;PRJEB15555;SAMEA4473413;LSHTM;SRMTB41;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664661;7;18;PRJEB15555;SAMEA4473415;LSHTM;SRMTB43;nan;null;null;null;null;null;null;null;null;null;null
+ERR1815554;7;18;PRJEB19271;SAMEA72490168;FACULDADE DE FARMCIA DA UNIVERSIDADE DE LISBOA, LI;MTB_PT4;nan;null;null;null;null;null;null;null;null;null;null
+SRR3544730;8;18;PRJNA318002;SAMN05001047;BI;Mycobacterium tuberculosis G-029_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-029_1
+SRR3544737;8;18;PRJNA318002;SAMN05001046;BI;Mycobacterium tuberculosis G-035_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-035_1
+SRR5152918;8;18;PRJNA318002;SAMN06209924;BI;Mycobacterium tuberculosis 14-013568;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;14-013568
+SRR5152922;8;18;PRJNA318002;SAMN06209897;BI;Mycobacterium tuberculosis 15-008396;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008396
+SRR5153079;8;18;PRJNA318002;SAMN06209943;BI;Mycobacterium tuberculosis 15-000459;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-000459
+SRR5153081;8;18;PRJNA318002;SAMN06209939;BI;Mycobacterium tuberculosis 15-004678;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-004678
+SRR5153206;8;18;PRJNA318002;SAMN06209952;BI;Mycobacterium tuberculosis 15-008792;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008792
+SRR5153221;8;18;PRJNA318002;SAMN05789019;BI;Mycobacterium tuberculosis  G-69;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-69
+SRR5153224;8;18;PRJNA318002;SAMN05789028;BI;Mycobacterium tuberculosis  G-112;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-112
+SRR5153232;8;18;PRJNA318002;SAMN05789020;BI;Mycobacterium tuberculosis  G-104;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-104
+SRR5153237;8;18;PRJNA318002;SAMN05789034;BI;Mycobacterium tuberculosis  G-118;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-118
+SRR5153256;8;18;PRJNA318002;SAMN05789056;BI;Mycobacterium tuberculosis  G-068;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-068
+SRR5153259;8;18;PRJNA318002;SAMN05789041;BI;Mycobacterium tuberculosis  G-054;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-054
+SRR5153263;8;18;PRJNA318002;SAMN05789039;BI;Mycobacterium tuberculosis  G-052;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-052
+SRR5153265;8;18;PRJNA318002;SAMN05789059;BI;Mycobacterium tuberculosis  G-069;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-069
+SRR5153424;8;18;PRJNA318002;SAMN05789096;BI;Mycobacterium tuberculosis  G-126;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-126
+SRR5535892;9;16;PRJNA300846;SAMN06251257;BI;G07483;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G07483
+SRR5535907;9;16;PRJNA300846;SAMN06251260;BI;G08375;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08375
+SRR5535908;9;16;PRJNA300846;SAMN06251264;BI;G08387;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08387
+SRR5535909;9;16;PRJNA300846;SAMN06251258;BI;G07484;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G07484
+SRR5535910;9;16;PRJNA300846;SAMN06251262;BI;G08368;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08368
+SRR5535911;9;16;PRJNA300846;SAMN06251259;BI;G07485;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G07485
+SRR5535912;9;16;PRJNA300846;SAMN06251270;BI;G08384;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08384
+SRR5535913;9;16;PRJNA300846;SAMN06251268;BI;G08385;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08385
+SRR5535914;9;16;PRJNA300846;SAMN06251272;BI;G08377;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08377
+SRR5535915;9;16;PRJNA300846;SAMN06251266;BI;G08381;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08381
+SRR5535916;9;16;PRJNA300846;SAMN06251275;BI;G08382;missing;Botswana;missing;null;null;null;null;missing;missing;missing;G08382
+SRR5535917;9;16;PRJNA300846;SAMN06251263;BI;G08379;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08379
+SRR5535918;9;16;PRJNA300846;SAMN06251271;BI;G08380;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08380
+SRR5535920;9;16;PRJNA300846;SAMN06251267;BI;G08369;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08369
+SRR5535922;9;16;PRJNA300846;SAMN06251273;BI;G08376;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08376
+SRR5535931;9;16;PRJNA300846;SAMN06251274;BI;G08374;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08374
+ERR1227528;10;15;PRJEB12515;SAMEA3558125;LSHTM;mtb17;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664621;10;15;PRJEB15555;SAMEA4473375;LSHTM;SRMTB3;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664635;10;15;PRJEB15555;SAMEA4473389;LSHTM;SRMTB17;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664636;10;15;PRJEB15555;SAMEA4473390;LSHTM;SRMTB18;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664637;10;15;PRJEB15555;SAMEA4473391;LSHTM;SRMTB19;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664638;10;15;PRJEB15555;SAMEA4473392;LSHTM;SRMTB20;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664639;10;15;PRJEB15555;SAMEA4473393;LSHTM;SRMTB21;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664640;10;15;PRJEB15555;SAMEA4473394;LSHTM;SRMTB22;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664642;10;15;PRJEB15555;SAMEA4473396;LSHTM;SRMTB24;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664646;10;15;PRJEB15555;SAMEA4473400;LSHTM;SRMTB28;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664650;10;15;PRJEB15555;SAMEA4473404;LSHTM;SRMTB32;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664652;10;15;PRJEB15555;SAMEA4473406;LSHTM;SRMTB34;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664660;10;15;PRJEB15555;SAMEA4473414;LSHTM;SRMTB42;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664662;10;15;PRJEB15555;SAMEA4473416;LSHTM;SRMTB44;nan;null;null;null;null;null;null;null;null;null;null
+ERR1815555;10;15;PRJEB19271;SAMEA72490918;FACULDADE DE FARMCIA DA UNIVERSIDADE DE LISBOA, LI;MTB_PT5;nan;null;null;null;null;null;null;null;null;null;null
+SRR4037639;11;12;PRJNA323744;SAMN05576302;null;P28-Eta-A3;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Endotracheal_aspirate;male;P28;P28-Eta-A3;null
+SRR4037641;11;12;PRJNA323744;SAMN05576304;null;P28-Eta-A5;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Endotracheal_aspirate;male;P28;P28-Eta-A5;null
+SRR4037648;11;12;PRJNA323744;SAMN05576310;null;P28-Eta-C2;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Endotracheal_aspirate;male;P28;P28-Eta-C2;null
+SRR4037661;11;12;PRJNA323744;SAMN05576395;null;P28-Liver-B4;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Liver;male;P28;P28-Liver-B4;null
+SRR4037665;11;12;PRJNA323744;SAMN05576398;null;P28-Liver-C2;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Liver;male;P28;P28-Liver-C2;null
+SRR4037667;11;12;PRJNA323744;SAMN05576400;null;P28-Liver-C4;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Liver;male;P28;P28-Liver-C4;null
+SRR4037729;11;12;PRJNA323744;SAMN05576368;null;P28-Lung5-B5;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Middle_right_lung;male;P28;P28-Lung5-B5;null
+SRR4037751;11;12;PRJNA323744;SAMN05576403;null;P28-Spleen-A3;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Spleen;male;P28;P28-Spleen-A3;null
+SRR4037752;11;12;PRJNA323744;SAMN05576404;null;P28-Spleen-A4;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Spleen;male;P28;P28-Spleen-A4;null
+SRR4037754;11;12;PRJNA323744;SAMN05576405;null;P28-Spleen-A5;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Spleen;male;P28;P28-Spleen-A5;null
+SRR4037755;11;12;PRJNA323744;SAMN05576406;null;P28-Spleen-B1;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Spleen;male;P28;P28-Spleen-B1;null
+SRR4037757;11;12;PRJNA323744;SAMN05576408;null;P28-Spleen-B3;2013-08-01 0:00:00;South Africa: Kwazulu-Natal;1974;Yes;Positive;Yes;Spleen;male;P28;P28-Spleen-B3;null
+ERR1161623;12;9;PRJEB11990;SAMEA3696298;RADBOUDUMC;EEA200905189;2009;null;null;null;null;null;null;null;null;EEA200903055;Beijing
+ERR1161624;12;9;PRJEB11990;SAMEA3696299;RADBOUDUMC;EEA200905581;2009;null;null;null;null;null;null;null;null;EEA200903055;Beijing
+ERR1544431;13;9;PRJEB14806;SAMEA4079234;SCAID;Mtb187_2_30_16;2014;Kazakhstan;null;null;null;null;null;null;null;2_30_16;null
+ERR1544432;13;9;PRJEB14806;SAMEA4079235;SCAID;Mtb187_2_45_30;2014;Kazakhstan;null;null;null;null;null;null;null;2_45_30;null
+ERR1544435;13;9;PRJEB14806;SAMEA4079238;SCAID;Mtb187_3_60_51;2014;Kazakhstan;null;null;null;null;null;null;null;3_60_51;null
+ERR1544436;13;9;PRJEB14806;SAMEA4079239;SCAID;Mtb187_4_30_75;2014;Kazakhstan;null;null;null;null;null;null;null;4_60_75;null
+ERR1544437;13;9;PRJEB14806;SAMEA4079240;SCAID;Mtb187_4_60_76;2014;Kazakhstan;null;null;null;null;null;null;null;4_60_76;null
+ERR1544438;13;9;PRJEB14806;SAMEA4079241;SCAID;Mtb187_4_60_77;2014;Kazakhstan;null;null;null;null;null;null;null;4_60_77;null
+ERR1544439;13;9;PRJEB14806;SAMEA4079242;SCAID;Mtb187_5_30_104;2014;Kazakhstan;null;null;null;null;null;null;null;5_30_104;null
+ERR1544440;13;9;PRJEB14806;SAMEA4079243;SCAID;Mtb187_5_60_81.1;2014;Kazakhstan;null;null;null;null;null;null;null;5_60_81.1;null
+ERR1544441;13;9;PRJEB14806;SAMEA4079244;SCAID;Mtb187_5_60_81.2;2014;Kazakhstan;null;null;null;null;null;null;null;5_60_81.2;null
+SRR4034747;14;9;PRJNA323744;SAMN05575074;null;P9-Eta;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Endotracheal_aspirate;male;P9;P9-Eta;null
+SRR4034749;14;9;PRJNA323744;SAMN05575081;null;P9-Liver;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Liver;male;P9;P9-Liver;null
+SRR4034750;14;9;PRJNA323744;SAMN05575075;null;P9-Lung1;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Top_right_lung;male;P9;P9-Lung1;null
+SRR4034751;14;9;PRJNA323744;SAMN05575076;null;P9-Lung2;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Middle_right_lung;male;P9;P9-Lung2;null
+SRR4034752;14;9;PRJNA323744;SAMN05575077;null;P9-Lung3;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Bottom_right_lung;male;P9;P9-Lung3;null
+SRR4034753;14;9;PRJNA323744;SAMN05575078;null;P9-Lung4;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Top_left_lung;male;P9;P9-Lung4;null
+SRR4034754;14;9;PRJNA323744;SAMN05575079;null;P9-Lung5;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Middle_right_lung;male;P9;P9-Lung5;null
+SRR4034755;14;9;PRJNA323744;SAMN05575080;null;P9-Lung6;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Bottom_right_lung;male;P9;P9-Lung6;null
+SRR4034756;14;9;PRJNA323744;SAMN05575073;null;P9-Lymph;Oct-2012;South Africa: Kwazulu-Natal;1978;No;Positive;Yes;Lymph_node;male;P9;P9-Lymph;null
+SRR3205958;15;8;PRJNA314415;SAMN04534870;null;DS16220 (WBB259);2007-11-09 0:00:00;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR3205959;15;8;PRJNA314415;SAMN04534871;null;DS16780 (WBB260);2008-01-19 0:00:00;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR5114017;15;8;PRJNA357530;SAMN06142916;null;DS 30971;2012-04-04 0:00:00;Thailand: Ratchaburi;null;null;null;null;null;null;null;not applicable;SIT 523
+SRR5114018;15;8;PRJNA357530;SAMN06142915;null;DS 29366;06-Oct-2011;Thailand: Supanburi;null;null;null;null;null;null;null;not applicable;SIT 523
+SRR5114019;15;8;PRJNA357530;SAMN06142912;null;DS 16220;2007-09-26 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;SIT 523
+SRR5114020;15;8;PRJNA357530;SAMN06142914;null;DS 19109;15-Oct-2008;Thailand: Chachoengsao;null;null;null;null;null;null;null;not applicable;SIT 523
+SRR5114021;15;8;PRJNA357530;SAMN06142917;null;DS 32449;2012-09-26 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;SIT 523
+SRR5114022;15;8;PRJNA357530;SAMN06142913;null;DS 17841;03-May-2008;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;SIT 523
+ERR1664623;16;8;PRJEB15555;SAMEA4473377;LSHTM;SRMTB5;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664624;16;8;PRJEB15555;SAMEA4473378;LSHTM;SRMTB6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664625;16;8;PRJEB15555;SAMEA4473379;LSHTM;SRMTB7;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664626;16;8;PRJEB15555;SAMEA4473380;LSHTM;SRMTB8;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664627;16;8;PRJEB15555;SAMEA4473381;LSHTM;SRMTB9;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664628;16;8;PRJEB15555;SAMEA4473382;LSHTM;SRMTB10;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664648;16;8;PRJEB15555;SAMEA4473402;LSHTM;SRMTB30;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664658;16;8;PRJEB15555;SAMEA4473412;LSHTM;SRMTB40;nan;null;null;null;null;null;null;null;null;null;null
+SRR4033237;17;8;PRJNA323744;SAMN05575096;null;P12-Eta;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Endotracheal_aspirate;female;P12;P12-Eta;null
+SRR4033248;17;8;PRJNA323744;SAMN05575097;null;P12-Lung1;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Top_right_lung;female;P12;P12-Lung1;null
+SRR4033260;17;8;PRJNA323744;SAMN05575098;null;P12-Lung2;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Middle_right_lung;female;P12;P12-Lung2;null
+SRR4033271;17;8;PRJNA323744;SAMN05575099;null;P12-Lung3;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Bottom_right_lung;female;P12;P12-Lung3;null
+SRR4033283;17;8;PRJNA323744;SAMN05575100;null;P12-Lung4;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Top_left_lung;female;P12;P12-Lung4;null
+SRR4033294;17;8;PRJNA323744;SAMN05575101;null;P12-Lung5;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Middle_right_lung;female;P12;P12-Lung5;null
+SRR4033305;17;8;PRJNA323744;SAMN05575102;null;P12-SerousFluid;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Serous_Fluid;female;P12;P12-SerousFluid;null
+SRR4033318;17;8;PRJNA323744;SAMN05575103;null;P12-Spleen;Dec-2012;South Africa: Kwazulu-Natal;1985;Yes;Positive;Yes;Spleen;female;P12;P12-Spleen;null
+SRR3743404;18;7;PRJNA318002;SAMN04633323;BI;Mycobacterium tuberculosis Moldova_9505;06-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_9505
+SRR3743488;18;7;PRJNA318002;SAMN04633354;BI;Mycobacterium tuberculosis Moldova_21796;2015-11-11 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_21796
+SRR5153834;18;7;PRJNA318002;SAMN06210012;BI;Mycobacterium tuberculosis complex 10260;2016;Moldova;null;null;null;null;null;null;null;missing;10260
+SRR5153841;18;7;PRJNA318002;SAMN06210033;BI;Mycobacterium tuberculosis complex 13165;2015;Moldova;null;null;null;null;null;null;null;missing;13165
+SRR5153853;18;7;PRJNA318002;SAMN06210032;BI;Mycobacterium tuberculosis complex 21389;2015;Moldova;null;null;null;null;null;null;null;missing;21389
+SRR5153923;18;7;PRJNA318002;SAMN06210098;BI;Mycobacterium tuberculosis complex 20197;2015;Moldova;null;null;null;null;null;null;null;missing;20197
+SRR5153926;18;7;PRJNA318002;SAMN06210095;BI;Mycobacterium tuberculosis complex 15312;2015;Moldova;null;null;null;null;null;null;null;missing;15312
+ERR1367667;19;6;PRJEB12179;SAMEA3715662;UNIVERSITY OF BASEL;G02421;nan;Switzerland;null;null;null;null;null;null;null;null;null
+SRR5184975;19;6;PRJNA361483;SAMN06234195;null;DS 16221;2007-09-26 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;ST 10
+SRR5184981;19;6;PRJNA361483;SAMN06234189;null;DS 9862;2005-04-19 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;ST 10
+SRR5184982;19;6;PRJNA361483;SAMN06234188;null;DS 9429;2005-02-16 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;ST 10
+SRR5184983;19;6;PRJNA361483;SAMN06234187;null;DS 9291;2005-01-28 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;ST 10
+SRR5184988;19;6;PRJNA361483;SAMN06234182;null;DS 6156;2003-11-26 0:00:00;Thailand: Kanchanaburi;null;null;null;null;null;null;null;not applicable;ST 10
+SRR2993037;20;6;PRJNA305488;SAMN04334803;null;4542;nan;Russia;null;null;null;null;null;null;null;NA;4542
+SRR2993039;20;6;PRJNA305488;SAMN04334802;null;8279;nan;Russia;null;null;null;null;null;null;null;NA;8279
+SRR5152943;20;6;PRJNA318002;SAMN06209867;BI;Mycobacterium tuberculosis 15-018511;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-018511
+SRR5153134;20;6;PRJNA318002;SAMN06209947;BI;Mycobacterium tuberculosis 15-013411;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-013411
+SRR5153707;20;6;PRJNA318002;SAMN06209982;BI;Mycobacterium tuberculosis complex 15-013317;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013317
+SRR5153708;20;6;PRJNA318002;SAMN06209977;BI;Mycobacterium tuberculosis complex 15-016117;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-016117
+SRR3544716;21;6;PRJNA318002;SAMN05001034;BI;Mycobacterium tuberculosis G-021S_1_1;2014-06-12 0:00:00;Georgia;missing;null;null;null;null;missing;missing;missing;G-021S_1_1
+SRR3544747;21;6;PRJNA318002;SAMN05001056;BI;Mycobacterium tuberculosis G-021_2;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-021_2
+SRR5152941;21;6;PRJNA318002;SAMN06209909;BI;Mycobacterium tuberculosis 15-005770;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-005770
+SRR5153261;21;6;PRJNA318002;SAMN05789051;BI;Mycobacterium tuberculosis  G-063;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-063
+SRR5153308;21;6;PRJNA318002;SAMN05789066;BI;Mycobacterium tuberculosis  G-076;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-076
+SRR3544728;22;5;PRJNA318002;SAMN05001054;BI;Mycobacterium tuberculosis G-031S_1_1;2013;Georgia;missing;null;null;null;null;missing;missing;missing;G-031S_1_1
+SRR5152895;22;5;PRJNA318002;SAMN06209931;BI;Mycobacterium tuberculosis 15-009701;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009701
+SRR5153312;22;5;PRJNA318002;SAMN05789070;BI;Mycobacterium tuberculosis  G-038_S-1;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-038_S-1
+SRR3732582;23;5;PRJNA300846;SAMN04522039;BI;G05118;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05118
+SRR3732594;23;5;PRJNA300846;SAMN04522069;BI;G05137;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05137
+SRR3732641;23;5;PRJNA300846;SAMN04522085;BI;G05156;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05156
+SRR3732650;23;5;PRJNA300846;SAMN04522073;BI;G05143;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05143
+SRR3732651;23;5;PRJNA300846;SAMN04522059;BI;G05126;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05126
+SRR3742658;24;5;PRJNA327294;SAMN05328093;null;D1;2010-11-09 0:00:00;China: east of BEIJING;31;null;null;null;null;male;null;D1;null
+SRR3742659;24;5;PRJNA327294;SAMN05328094;null;D2;2011-07-05 0:00:00;China: east of BEIJING;31;null;null;null;null;male;null;D2;null
+SRR3742660;24;5;PRJNA327294;SAMN05328095;null;D3;2011-12-29 0:00:00;China: east of BEIJING;31;null;null;null;null;male;null;D3;null
+SRR3742661;24;5;PRJNA327294;SAMN05328096;null;D4;2012-07-19 0:00:00;China: east of BEIJING;31;null;null;null;null;male;null;D4;null
+SRR3742662;24;5;PRJNA327294;SAMN05328097;null;D5;2012-11-12 0:00:00;China: east of BEIJING;31;null;null;null;null;male;null;D5;null
+SRR3743400;25;5;PRJNA318002;SAMN04633325;BI;Mycobacterium tuberculosis Moldova_10933;25-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_10933
+SRR5153816;25;5;PRJNA318002;SAMN06210008;BI;Mycobacterium tuberculosis complex 19909;2015;Moldova;null;null;null;null;null;null;null;missing;19909
+SRR5153852;25;5;PRJNA318002;SAMN06210029;BI;Mycobacterium tuberculosis complex 20204;2015;Moldova;null;null;null;null;null;null;null;missing;20204
+SRR5153919;25;5;PRJNA318002;SAMN06210091;BI;Mycobacterium tuberculosis complex 17184;2015;Moldova;null;null;null;null;null;null;null;missing;17184
+SRR5153925;25;5;PRJNA318002;SAMN06210093;BI;Mycobacterium tuberculosis complex 5828;2009;Moldova;null;null;null;null;null;null;null;missing;5828
+SRR4034386;26;5;PRJNA323744;SAMN05575037;null;P4-Eta;2012-09-01 0:00:00;South Africa: Kwazulu-Natal;1993;Yes;Positive;Yes;Endotracheal_aspirate;female;P4;P4-Eta;null
+SRR4034387;26;5;PRJNA323744;SAMN05575038;null;P4-Lung1;2012-09-01 0:00:00;South Africa: Kwazulu-Natal;1993;Yes;Positive;Yes;Top_right_lung;female;P4;P4-Lung1;null
+SRR4034388;26;5;PRJNA323744;SAMN05575039;null;P4-Lung2;2012-09-01 0:00:00;South Africa: Kwazulu-Natal;1993;Yes;Positive;Yes;Middle_right_lung;female;P4;P4-Lung2;null
+SRR4034389;26;5;PRJNA323744;SAMN05575040;null;P4-Lung3;2012-09-01 0:00:00;South Africa: Kwazulu-Natal;1993;Yes;Positive;Yes;Bottom_right_lung;female;P4;P4-Lung3;null
+SRR4034390;26;5;PRJNA323744;SAMN05575041;null;P4-Lung4;2012-09-01 0:00:00;South Africa: Kwazulu-Natal;1993;Yes;Positive;Yes;Top_left_lung;female;P4;P4-Lung4;null
+SRR5152910;27;5;PRJNA318002;SAMN06209936;BI;Mycobacterium tuberculosis 15-009024;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009024
+SRR5152924;27;5;PRJNA318002;SAMN06209917;BI;Mycobacterium tuberculosis 14-011961;2014;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;14-011961
+SRR5153231;27;5;PRJNA318002;SAMN05789031;BI;Mycobacterium tuberculosis  G-115;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-115
+SRR5153334;27;5;PRJNA318002;SAMN05789093;BI;Mycobacterium tuberculosis  G-132;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-132
+SRR5153423;27;5;PRJNA318002;SAMN05789091;BI;Mycobacterium tuberculosis  G-128;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-128
+ERR1873410;28;4;PRJEB14199;SAMEA95463418;UNIVERSITY OF CAPE TOWN;M_15_A697_F2_R12967_CCTCCTG_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873470;28;4;PRJEB14199;SAMEA95436418;UNIVERSITY OF CAPE TOWN;R13319;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873474;28;4;PRJEB14199;SAMEA95500168;UNIVERSITY OF CAPE TOWN;R14326_LFO46Pool106_3312__L6_TGGCTTCA_L006;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873556;28;4;PRJEB14199;SAMEA95422168;UNIVERSITY OF CAPE TOWN;R9261;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873432;29;4;PRJEB14199;SAMEA95479918;UNIVERSITY OF CAPE TOWN;M_15_A727_F2_R16838_AACTCAC_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873447;29;4;PRJEB14199;SAMEA95488918;UNIVERSITY OF CAPE TOWN;R10447_LFO46Pool105_3311__L5_GATAGACA_L005;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873509;29;4;PRJEB14199;SAMEA95443918;UNIVERSITY OF CAPE TOWN;R19042;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873562;29;4;PRJEB14199;SAMEA95425168;UNIVERSITY OF CAPE TOWN;R9771;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+SRR3742653;30;4;PRJNA327294;SAMN05328080;null;A1;2010-01-12 0:00:00;China: east of BEIJING;52;null;null;null;null;male;null;A1;null
+SRR3742654;30;4;PRJNA327294;SAMN05328081;null;A2;2010-09-08 0:00:00;China: east of BEIJING;52;null;null;null;null;male;null;A2;null
+SRR3742663;30;4;PRJNA327294;SAMN05328082;null;A3;2011-02-14 0:00:00;China: east of BEIJING;52;null;null;null;null;male;null;A3;null
+SRR3742664;30;4;PRJNA327294;SAMN05328083;null;A4;2011-08-11 0:00:00;China: east of BEIJING;52;null;null;null;null;male;null;A4;null
+SRR3742655;31;4;PRJNA327294;SAMN05328090;null;C3;2009-11-03 0:00:00;China: east of BEIJING;57;null;null;null;null;male;null;C3;null
+SRR3742656;31;4;PRJNA327294;SAMN05328091;null;C4;2011-08-31 0:00:00;China: east of BEIJING;57;null;null;null;null;male;null;C4;null
+SRR3742669;31;4;PRJNA327294;SAMN05328088;null;C1;2007-06-20 0:00:00;China: east of BEIJING;57;null;null;null;null;male;null;C1;null
+SRR3742670;31;4;PRJNA327294;SAMN05328089;null;C2;2008-10-09 0:00:00;China: east of BEIJING;57;null;null;null;null;male;null;C2;null
+SRR3743407;32;4;PRJNA318002;SAMN04633298;BI;Mycobacterium tuberculosis Moldova_17996;2015-09-09 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17996
+SRR3743481;32;4;PRJNA318002;SAMN04633355;BI;Mycobacterium tuberculosis Moldova_21656;2015-11-10 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_21656
+SRR5153911;32;4;PRJNA318002;SAMN06210081;BI;Mycobacterium tuberculosis complex 13800;2015;Moldova;null;null;null;null;null;null;null;missing;13800
+SRR5153924;32;4;PRJNA318002;SAMN06210100;BI;Mycobacterium tuberculosis complex 22538;2014;Moldova;null;null;null;null;null;null;null;missing;22538
+SRR5152908;33;4;PRJNA318002;SAMN06209921;BI;Mycobacterium tuberculosis 15-010728;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-010728
+SRR5152921;33;4;PRJNA318002;SAMN06209894;BI;Mycobacterium tuberculosis 15-005821;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-005821
+SRR5153262;33;4;PRJNA318002;SAMN05789053;BI;Mycobacterium tuberculosis  G-065;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-065
+SRR5535919;34;4;PRJNA300846;SAMN06251277;BI;G08366;missing;Botswana;missing;null;null;null;null;missing;missing;missing;G08366
+SRR5535921;34;4;PRJNA300846;SAMN06251278;BI;G08367;missing;Botswana;missing;null;null;null;null;missing;missing;missing;G08367
+SRR5535923;34;4;PRJNA300846;SAMN06251276;BI;G08365;missing;Botswana;missing;null;null;null;null;missing;missing;missing;G08365
+SRR5535925;34;4;PRJNA300846;SAMN06251280;BI;G08357;missing;Botswana;missing;null;null;null;null;missing;missing;missing;G08357
+SRR5818575;35;4;PRJNA393924;SAMN07344605;null;120_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate17;null
+SRR5818576;35;4;PRJNA393924;SAMN07344604;null;119_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate16;null
+SRR5818695;35;4;PRJNA393924;SAMN07344726;null;96_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate138;null
+SRR5818697;35;4;PRJNA393924;SAMN07344724;null;94_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate136;null
+ERR1555043;36;3;PRJEB5280;SAMEA3725913;THE WELLCOME TRUST SANGER INSTITUTE;37dbcbe0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555045;36;3;PRJEB5280;SAMEA3725915;THE WELLCOME TRUST SANGER INSTITUTE;37f1ebf0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555054;36;3;PRJEB5280;SAMEA3725924;THE WELLCOME TRUST SANGER INSTITUTE;38475ef0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555058;37;3;PRJEB5280;SAMEA3725928;THE WELLCOME TRUST SANGER INSTITUTE;386fce80-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555059;37;3;PRJEB5280;SAMEA3725929;THE WELLCOME TRUST SANGER INSTITUTE;3876d360-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555062;37;3;PRJEB5280;SAMEA3725932;THE WELLCOME TRUST SANGER INSTITUTE;388db6c0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664620;38;3;PRJEB15555;SAMEA4473374;LSHTM;SRMTB2;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664645;38;3;PRJEB15555;SAMEA4473399;LSHTM;SRMTB27;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664655;38;3;PRJEB15555;SAMEA4473409;LSHTM;SRMTB37;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664622;39;3;PRJEB15555;SAMEA4473376;LSHTM;SRMTB4;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664647;39;3;PRJEB15555;SAMEA4473401;LSHTM;SRMTB29;nan;null;null;null;null;null;null;null;null;null;null
+ERR1664657;39;3;PRJEB15555;SAMEA4473411;LSHTM;SRMTB39;nan;null;null;null;null;null;null;null;null;null;null
+ERR1679605;40;3;PRJEB15857;SAMEA4501298;BIRMINGHAM UNIVERSITY;NG30;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679609;40;3;PRJEB15857;SAMEA4501302;BIRMINGHAM UNIVERSITY;NG34;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679610;40;3;PRJEB15857;SAMEA4501303;BIRMINGHAM UNIVERSITY;NG35;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+SRR3544717;41;3;PRJNA318002;SAMN05001052;BI;Mycobacterium tuberculosis G-033_2;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-033_2
+SRR3544740;41;3;PRJNA318002;SAMN05001044;BI;Mycobacterium tuberculosis G-033S_1_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-033S_1_1
+SRR5153332;41;3;PRJNA318002;SAMN05789085;BI;Mycobacterium tuberculosis  G-094;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-094
+SRR3544729;42;3;PRJNA318002;SAMN05001043;BI;Mycobacterium tuberculosis G-034_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-034_1
+SRR5152909;42;3;PRJNA318002;SAMN06209937;BI;Mycobacterium tuberculosis 15-011925;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-011925
+SRR5761429;42;3;PRJNA392103;SAMN07281456;null;12-15893;2013;Georgia: Tbilisi;null;null;null;null;null;null;null;from TB patient;Beijing K2
+SRR3675262;43;3;PRJNA302362;SAMN05276356;MODMEDMICOXFORD;MMMOSAM:32b66345-5026-4014-86c6-d18e2f9bdc36;2015-01-01 0:00:00;United Kingdom: Oxford;null;null;null;null;null;null;null;7626930;NA
+SRR3675289;43;3;PRJNA302362;SAMN05276382;MODMEDMICOXFORD;MMMOSAM:4b191af4-5415-4987-9465-9a96abaa6e9b;2015-01-01 0:00:00;United Kingdom: Oxford;null;null;null;null;null;null;null;7626675;NA
+SRR3675523;43;3;PRJNA302362;SAMN05276493;MODMEDMICOXFORD;MMMOSAM:b3acf5c6-5597-4e4f-8334-8cae4be9b61d;2015-01-01 0:00:00;United Kingdom: Oxford;null;null;null;null;null;null;null;7627226;NA
+SRR3724662;44;3;PRJNA300846;SAMN04276805;BI;G04169;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04169
+SRR3724803;44;3;PRJNA300846;SAMN04276818;BI;G04037;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04037
+SRR3732647;44;3;PRJNA300846;SAMN04522096;BI;G05166;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05166
+SRR4423139;45;3;PRJNA343956;SAMN05806773;null;ITM-083358;2008-06-21 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423146;45;3;PRJNA343956;SAMN05806750;null;ITM-111346;2011-04-09 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423153;45;3;PRJNA343956;SAMN05806752;null;ITM-111485;2011-05-11 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423154;46;3;PRJNA343956;SAMN05806766;null;ITM-072228;2007-05-22 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423162;46;3;PRJNA343956;SAMN05806768;null;ITM-073332;2007-08-01 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423171;46;3;PRJNA343956;SAMN05806756;null;ITM-120718;2012-02-13 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR5065526;47;3;PRJNA355614;SAMN06091821;null;HCMC0124;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0124;null
+SRR5065595;47;3;PRJNA355614;SAMN06091780;null;HCMC0083;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0083;null
+SRR5067289;47;3;PRJNA355614;SAMN06092599;null;HCMC0902;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0902;null
+SRR5486866;48;3;PRJNA384815;SAMN06849037;null;Romania_24268A;2015-11-24 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_24268A
+SRR5486884;48;3;PRJNA384815;SAMN06849031;null;Romania_16280A;2015-07-27 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_16280A
+SRR5486895;48;3;PRJNA384815;SAMN06849027;null;Romania_22072A;26-Oct-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_22072A
+SRR5486875;49;3;PRJNA384815;SAMN06849011;null;Romania_18670A;2015-09-03 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_18670A
+SRR5486897;49;3;PRJNA384815;SAMN06849050;null;Romania_1151;2016-01-19 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_1151
+SRR5486906;49;3;PRJNA384815;SAMN06849033;null;Romania_13787B;2015-06-18 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_13787B
+SRR5486879;50;3;PRJNA384815;SAMN06849035;null;Romania_23522;2015-11-13 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_23522
+SRR5486885;50;3;PRJNA384815;SAMN06849040;null;Romania_2735A;2016-02-05 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_2735A
+ERR1193862;52;2;PRJEB11460;SAMEA3671272;UNIVERSITY OF BASEL;SAMEA3671272;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193881;53;2;PRJEB11460;SAMEA3671291;UNIVERSITY OF BASEL;SAMEA3671291;nan;null;null;null;null;null;null;null;null;null;null
+ERR1873435;53;2;PRJEB14199;SAMEA95482168;UNIVERSITY OF CAPE TOWN;M_tuberculosis__R10398__L6_TAGCTT_L006;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1193900;54;2;PRJEB11460;SAMEA3671310;UNIVERSITY OF BASEL;SAMEA3671310;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193903;54;2;PRJEB11460;SAMEA3671313;UNIVERSITY OF BASEL;SAMEA3671313;nan;null;null;null;null;null;null;null;null;null;null
+ERR1465931;55;2;PRJEB11460;SAMEA3715562;UNIVERSITY OF BASEL;SAMEA3715562;nan;null;null;null;null;null;null;null;null;null;null
+SRR5153077;55;2;PRJNA318002;SAMN06209885;BI;Mycobacterium tuberculosis 16-005760;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-005760
+ERR1555041;56;2;PRJEB5280;SAMEA3725911;THE WELLCOME TRUST SANGER INSTITUTE;37cc3b80-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555053;56;2;PRJEB5280;SAMEA3725923;THE WELLCOME TRUST SANGER INSTITUTE;38408120-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555047;57;2;PRJEB5280;SAMEA3725917;THE WELLCOME TRUST SANGER INSTITUTE;38083310-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555048;57;2;PRJEB5280;SAMEA3725918;THE WELLCOME TRUST SANGER INSTITUTE;38132f90-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555049;58;2;PRJEB5280;SAMEA3725919;THE WELLCOME TRUST SANGER INSTITUTE;381ec850-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555056;58;2;PRJEB5280;SAMEA3725926;THE WELLCOME TRUST SANGER INSTITUTE;38591230-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1633819;59;2;PRJEB15382;SAMEA4441469;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP1013;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873522;59;2;PRJEB14199;SAMEA95526418;UNIVERSITY OF CAPE TOWN;R4330_LFO46Pool106_3312__L6_AGCACCTC_L006;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1665402;60;2;PRJEB15326;SAMEA4475180;CENTER FOR PUBLIC HEALTH RESEARCH, UNIVERSITY OF V;43153;nan;Spain;null;null;null;null;null;null;null;null;null
+ERR1665403;60;2;PRJEB15326;SAMEA4475181;CENTER FOR PUBLIC HEALTH RESEARCH, UNIVERSITY OF V;43159;nan;Spain;null;null;null;null;null;null;null;null;null
+ERR1665404;61;2;PRJEB15326;SAMEA4475182;CENTER FOR PUBLIC HEALTH RESEARCH, UNIVERSITY OF V;43732;nan;Spain;null;null;null;null;null;null;null;null;null
+ERR1665405;61;2;PRJEB15326;SAMEA4475183;CENTER FOR PUBLIC HEALTH RESEARCH, UNIVERSITY OF V;43736;nan;Spain;null;null;null;null;null;null;null;null;null
+ERR1679614;62;2;PRJEB15857;SAMEA4501307;BIRMINGHAM UNIVERSITY;NG39;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679616;62;2;PRJEB15857;SAMEA4501309;BIRMINGHAM UNIVERSITY;NG40;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679615;63;2;PRJEB15857;SAMEA4501308;BIRMINGHAM UNIVERSITY;NG4;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679618;63;2;PRJEB15857;SAMEA4501311;BIRMINGHAM UNIVERSITY;NG43;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1873389;64;2;PRJEB14199;SAMEA95447668;UNIVERSITY OF CAPE TOWN;M_15_A662_4838_F1_Mycobacterium_ATGCCTA_L003;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873409;64;2;PRJEB14199;SAMEA95462668;UNIVERSITY OF CAPE TOWN;M_15_A696_F2_R9248_CCGTGAG_L004;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873392;65;2;PRJEB14199;SAMEA95449918;UNIVERSITY OF CAPE TOWN;M_15_A669_7202_F1_Mycobacterium_ACAAGCT_L003;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873531;65;2;PRJEB14199;SAMEA95413918;UNIVERSITY OF CAPE TOWN;R4819;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873433;66;2;PRJEB14199;SAMEA95480668;UNIVERSITY OF CAPE TOWN;M_15_A728_F2_R12931_AAGAGAT_L004;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873449;66;2;PRJEB14199;SAMEA95490418;UNIVERSITY OF CAPE TOWN;R10552_pool_283__L3_GTCGTAGA_L003;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873444;67;2;PRJEB14199;SAMEA95428918;UNIVERSITY OF CAPE TOWN;R10319;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873512;67;2;PRJEB14199;SAMEA95522668;UNIVERSITY OF CAPE TOWN;R19234_pool_282__L2_CTCAATGA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873448;68;2;PRJEB14199;SAMEA95489668;UNIVERSITY OF CAPE TOWN;R10512_LFO46Pool105_3311__L5_AGAGTCAA_L005;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873550;68;2;PRJEB14199;SAMEA95537668;UNIVERSITY OF CAPE TOWN;R7895_LFO46Pool106_3312__L6_CGGATTGC_L006;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873458;69;2;PRJEB14199;SAMEA95431168;UNIVERSITY OF CAPE TOWN;R11139;2010;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873545;69;2;PRJEB14199;SAMEA95419168;UNIVERSITY OF CAPE TOWN;R6560;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873464;70;2;PRJEB14199;SAMEA95498668;UNIVERSITY OF CAPE TOWN;R12966_pool_283__L3_TGAAGAGA_L003;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873535;70;2;PRJEB14199;SAMEA95415418;UNIVERSITY OF CAPE TOWN;R5166;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873477;71;2;PRJEB14199;SAMEA95501668;UNIVERSITY OF CAPE TOWN;R15141_LFO46Pool106_3312__L6_TTCACGCA_L006;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873532;71;2;PRJEB14199;SAMEA95530168;UNIVERSITY OF CAPE TOWN;R4825_LFO46Pool105_3311__L5_CTCAATGA_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+SRR3205960;72;2;PRJNA314415;SAMN04534872;null;DS19048 (WBB270);31-Oct-2008;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR3205961;72;2;PRJNA314415;SAMN04534873;null;DS21277 (WBB273);2009-07-24 0:00:00;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR3205963;73;2;PRJNA314415;SAMN04534875;null;DS29147 (WBB280);14-Oct-2011;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR3205964;73;2;PRJNA314415;SAMN04534876;null;DS31231 (WBB284);2012-06-15 0:00:00;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR3544724;74;2;PRJNA318002;SAMN05001036;BI;Mycobacterium tuberculosis G-019_2;2015;Georgia;missing;null;null;null;null;missing;missing;missing;G-019_2
+SRR5153223;74;2;PRJNA318002;SAMN05789022;BI;Mycobacterium tuberculosis  G-106;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-106
+SRR3544731;75;2;PRJNA318002;SAMN05001050;BI;Mycobacterium tuberculosis G-020_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-020_1
+SRR5153240;75;2;PRJNA318002;SAMN05789036;BI;Mycobacterium tuberculosis  G-120;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-120
+SRR3544733;76;2;PRJNA318002;SAMN05001048;BI;Mycobacterium tuberculosis G-025_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-025_1
+SRR5153272;76;2;PRJNA318002;SAMN05789058;BI;Mycobacterium tuberculosis  G-25_S_1;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-25_S_1
+SRR3724928;77;2;PRJNA300846;SAMN04276830;BI;G04042;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04042
+SRR3725718;77;2;PRJNA300846;SAMN04522006;BI;G05036;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05036
+SRR3724956;78;2;PRJNA300846;SAMN04276773;BI;G04035;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04035
+SRR5535687;78;2;PRJNA300846;SAMN04276783;BI;G04044;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04044
+SRR3732588;79;2;PRJNA300846;SAMN04522052;BI;G05122;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05122
+SRR3732589;79;2;PRJNA300846;SAMN04522065;BI;G05136;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05136
+SRR3732678;80;2;PRJNA300846;SAMN04522083;BI;G05155;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05155
+SRR5535703;80;2;PRJNA300846;SAMN04522055;BI;G05121;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05121
+SRR3732721;81;2;PRJNA300846;SAMN04522053;BI;G05123;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05123
+SRR5535706;81;2;PRJNA300846;SAMN04522032;BI;G05023;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05023
+SRR3743391;82;2;PRJNA318002;SAMN04633273;BI;Mycobacterium tuberculosis Moldova_11673;2015-06-01 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_11673
+SRR5153835;82;2;PRJNA318002;SAMN06210022;BI;Mycobacterium tuberculosis complex 16647;2012;Moldova;null;null;null;null;null;null;null;missing;16647
+SRR3743396;83;2;PRJNA318002;SAMN04633307;BI;Mycobacterium tuberculosis Moldova_19095;2014-09-25 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_19095
+SRR5153817;83;2;PRJNA318002;SAMN06210016;BI;Mycobacterium tuberculosis complex 22496;2015;Moldova;null;null;null;null;null;null;null;missing;22496
+SRR3743415;84;2;PRJNA318002;SAMN04633284;BI;Mycobacterium tuberculosis Moldova_3077;2015-02-11 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_3077
+SRR3743438;84;2;PRJNA318002;SAMN04633277;BI;Mycobacterium tuberculosis Moldova_5908;18-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_5908
+SRR3743433;85;2;PRJNA318002;SAMN04633296;BI;Mycobacterium tuberculosis Moldova_17123;2015-08-24 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17123
+SRR3743489;85;2;PRJNA318002;SAMN04633324;BI;Mycobacterium tuberculosis Moldova_13381;2015-06-24 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_13381
+SRR3743474;86;2;PRJNA318002;SAMN04633337;BI;Mycobacterium tuberculosis Moldova_23493;07-May-2014;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_23493
+SRR5153883;86;2;PRJNA318002;SAMN06210058;BI;Mycobacterium tuberculosis complex 14970;2015;Moldova;null;null;null;null;null;null;null;missing;14970
+SRR3743500;87;2;PRJNA318002;SAMN04633303;BI;Mycobacterium tuberculosis Moldova_3343;2015-02-12 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_3343
+SRR5153930;87;2;PRJNA318002;SAMN06210096;BI;Mycobacterium tuberculosis complex 6967;2012;Moldova;null;null;null;null;null;null;null;missing;6967
+SRR4423137;88;2;PRJNA343956;SAMN05806771;null;ITM-083114;2008-07-06 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423142;88;2;PRJNA343956;SAMN05806776;null;ITM-084090;2008-08-10 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423138;89;2;PRJNA343956;SAMN05806772;null;ITM-083135;2008-04-07 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423145;89;2;PRJNA343956;SAMN05806749;null;ITM-110401;2010-11-20 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423152;90;2;PRJNA343956;SAMN05806751;null;ITM-111354;2011-04-25 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423168;90;2;PRJNA343956;SAMN05806779;null;ITM-090523;2008-11-12T00:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR5007182;91;2;PRJNA339209;SAMN05969976;MODMEDMICOXFORD;MMMOSAM:1c34c976-8a62-45d3-bb5e-71499733578e;2015-02-21 0:00:00;United Kingdom: England;null;null;null;null;null;null;null;NA;602908
+SRR5007187;91;2;PRJNA339209;SAMN05969952;MODMEDMICOXFORD;MMMOSAM:7dd1169f-5b61-482e-ae55-690b3927cac4;2015-02-21 0:00:00;United Kingdom: England;null;null;null;null;null;null;null;NA;602907
+SRR5065488;92;2;PRJNA355614;SAMN06092076;null;HCMC0379;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0379;null
+SRR5065608;92;2;PRJNA355614;SAMN06092083;null;HCMC0386;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0386;null
+SRR5065596;93;2;PRJNA355614;SAMN06091883;null;HCMC0186;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0186;null
+SRR5073854;93;2;PRJNA355614;SAMN06055810;null;HCMC1413;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1413;null
+SRR5067292;94;2;PRJNA355614;SAMN06092453;null;HCMC0756;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0756;null
+SRR5067558;94;2;PRJNA355614;SAMN06092690;null;HCMC0993;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0993;null
+SRR5074074;95;2;PRJNA355614;SAMN06055993;null;HCMC1596;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1596;null
+SRR5074146;95;2;PRJNA355614;SAMN06055968;null;HCMC1571;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1571;null
+SRR5125074;96;2;PRJNA358480;SAMN06174399;null;PGI_IOB_EPTB_3;17-Dec-2014;India: Chandigarh;null;null;null;null;null;null;null;Extrapulmonary tuberculosis;Microbial
+SRR5125078;96;2;PRJNA358480;SAMN06174398;null;PGI_IOB_EPTB_2;16-Dec-2014;India: Chandigarh;null;null;null;null;null;null;null;Extrapulmonary tuberculosis;Microbial
+SRR5152896;97;2;PRJNA318002;SAMN06209927;BI;Mycobacterium tuberculosis 15-004449;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-004449
+SRR5153234;97;2;PRJNA318002;SAMN05789030;BI;Mycobacterium tuberculosis  G-114;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-114
+SRR5152906;98;2;PRJNA318002;SAMN06209925;BI;Mycobacterium tuberculosis 15-001598;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-001598
+SRR5152920;98;2;PRJNA318002;SAMN06209910;BI;Mycobacterium tuberculosis 15-012050;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-012050
+SRR5152942;99;2;PRJNA318002;SAMN06209868;BI;Mycobacterium tuberculosis 15-017326;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017326
+SRR5152944;99;2;PRJNA318002;SAMN06209866;BI;Mycobacterium tuberculosis 15-018949;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-018949
+SRR5152945;100;2;PRJNA318002;SAMN06209865;BI;Mycobacterium tuberculosis 15-014647;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-014647
+SRR5152948;100;2;PRJNA318002;SAMN06209870;BI;Mycobacterium tuberculosis 15-018961;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-018961
+SRR5152947;101;2;PRJNA318002;SAMN06209869;BI;Mycobacterium tuberculosis 15-017322;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017322
+SRR5152952;101;2;PRJNA318002;SAMN06209871;BI;Mycobacterium tuberculosis 16-000965;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-000965
+SRR5152950;102;2;PRJNA318002;SAMN06209874;BI;Mycobacterium tuberculosis 15-017787;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017787
+SRR5152973;102;2;PRJNA318002;SAMN06209878;BI;Mycobacterium tuberculosis 15-015957;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-015957
+SRR5152954;103;2;PRJNA318002;SAMN06209923;BI;Mycobacterium tuberculosis 15-009715;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009715
+SRR5153235;103;2;PRJNA318002;SAMN05789029;BI;Mycobacterium tuberculosis  G-113;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-113
+SRR5153082;104;2;PRJNA318002;SAMN06209881;BI;Mycobacterium tuberculosis 15-001678;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-001678
+SRR5153812;104;2;PRJNA318002;SAMN06209997;BI;Mycobacterium tuberculosis complex 16-004615;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-004615
+SRR5153093;105;2;PRJNA318002;SAMN06209951;BI;Mycobacterium tuberculosis 15-008502;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008502
+SRR5153255;106;2;PRJNA318002;SAMN05789038;BI;Mycobacterium tuberculosis  G-122;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-122
+SRR5153291;106;2;PRJNA318002;SAMN05789067;BI;Mycobacterium tuberculosis  G-077;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-077
+SRR5153267;107;2;PRJNA318002;SAMN05789054;BI;Mycobacterium tuberculosis  G-066;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-066
+SRR5153324;107;2;PRJNA318002;SAMN05789082;BI;Mycobacterium tuberculosis  G-091;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-091
+SRR5153271;108;2;PRJNA318002;SAMN05789050;BI;Mycobacterium tuberculosis  G-062;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-062
+SRR5153609;108;2;PRJNA318002;SAMN05789099;BI;Mycobacterium tuberculosis  G-131;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-131
+SRR5153273;109;2;PRJNA318002;SAMN05789047;BI;Mycobacterium tuberculosis  G-036_S_2;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-036_S_2
+SRR5153616;109;2;PRJNA318002;SAMN05789098;BI;Mycobacterium tuberculosis  G-125;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-125
+SRR5153311;110;2;PRJNA318002;SAMN05789069;BI;Mycobacterium tuberculosis  G-079;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-079
+SRR5153839;111;2;PRJNA318002;SAMN06210027;BI;Mycobacterium tuberculosis complex 54;2009;Moldova;null;null;null;null;null;null;null;missing;54
+SRR5153844;111;2;PRJNA318002;SAMN06210028;BI;Mycobacterium tuberculosis complex 12590;2015;Moldova;null;null;null;null;null;null;null;missing;12590
+SRR5341233;112;2;PRJNA376471;SAMN06473184;null;OU41-FMR324;2005-08-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_35;null
+SRR5341261;112;2;PRJNA376471;SAMN06473156;null;OU09-FMR197;01-Mar-2005;India:Mumbai;null;null;null;null;null;null;null;isolate_7;null
+SRR5341237;113;2;PRJNA376471;SAMN06473180;null;OU36-FMRHH12;2014-07-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_31;null
+SRR5341240;114;2;PRJNA376471;SAMN06473177;null;OU33-FMR473;2006-01-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_28;null
+SRR5341255;114;2;PRJNA376471;SAMN06473162;null;OU15-FMR338;2005-09-08 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_13;null
+SRR5486869;115;2;PRJNA384815;SAMN06849034;null;Romania_15061A;2015-07-07 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_15061A
+SRR5486894;115;2;PRJNA384815;SAMN06849030;null;Romania_11808A;25-May-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_11808A
+SRR5486883;116;2;PRJNA384815;SAMN06849051;null;Romania_6010A;15-Mar-2016;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_6010A
+SRR5486900;116;2;PRJNA384815;SAMN06849038;null;Romania_1138A;2016-01-19 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_1138A
+SRR5535857;117;2;PRJNA300846;SAMN06251251;BI;G07455;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G07455
+SRR5535858;117;2;PRJNA300846;SAMN06251250;BI;G07412;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G07412
+SRR5535861;118;2;PRJNA300846;SAMN06251261;BI;G08378;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08378
+SRR5535924;118;2;PRJNA300846;SAMN06251265;BI;G08386;missing;Tanzania;missing;null;null;null;null;missing;missing;missing;G08386
+SRR5818581;119;2;PRJNA393924;SAMN07344595;null;103_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate7;null
+SRR5818638;119;2;PRJNA393924;SAMN07344610;null;124_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate22;null
+SRR5818587;120;2;PRJNA393924;SAMN07344696;null;72_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate108;null
+SRR5818637;120;2;PRJNA393924;SAMN07344609;null;123_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate21;null
+SRR5818592;121;2;PRJNA393924;SAMN07344700;null;73_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate112;null
+SRR5818655;121;2;PRJNA393924;SAMN07344629;null;233_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate41;null
+SRR5818617;122;2;PRJNA393924;SAMN07344622;null;136_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate34;null
+SRR5818636;122;2;PRJNA393924;SAMN07344612;null;126_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate24;null
+ERR1161619;null;1;PRJEB11990;SAMEA3696301;RADBOUDUMC;EEA200801564;2008;null;null;null;null;null;null;null;null;EEA200903055;Beijing
+ERR1161621;null;1;PRJEB11990;SAMEA3696303;RADBOUDUMC;EEA200900968;2009;null;null;null;null;null;null;null;null;EEA200903055;Beijing
+ERR1161622;null;1;PRJEB11990;SAMEA3696297;RADBOUDUMC;EEA200903055;2009;null;null;null;null;null;null;null;null;EEA200903055;Beijing
+ERR1193661;null;1;PRJEB11460;SAMEA3671317;UNIVERSITY OF BASEL;SAMEA3671317;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193662;null;1;PRJEB11460;SAMEA3671330;UNIVERSITY OF BASEL;SAMEA3671330;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193674;null;1;PRJEB11460;SAMEA3671341;UNIVERSITY OF BASEL;SAMEA3671341;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193683;null;1;PRJEB11460;SAMEA3671350;UNIVERSITY OF BASEL;SAMEA3671350;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193724;null;1;PRJEB11460;SAMEA3671386;UNIVERSITY OF BASEL;SAMEA3671386;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193763;null;1;PRJEB11460;SAMEA3671410;UNIVERSITY OF BASEL;SAMEA3671410;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193781;null;1;PRJEB11460;SAMEA3671428;UNIVERSITY OF BASEL;SAMEA3671428;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193782;null;1;PRJEB11460;SAMEA3671429;UNIVERSITY OF BASEL;SAMEA3671429;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193792;null;1;PRJEB11460;SAMEA3671202;UNIVERSITY OF BASEL;SAMEA3671202;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193842;null;1;PRJEB11460;SAMEA3671252;UNIVERSITY OF BASEL;SAMEA3671252;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193843;null;1;PRJEB11460;SAMEA3671253;UNIVERSITY OF BASEL;SAMEA3671253;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193860;null;1;PRJEB11460;SAMEA3671270;UNIVERSITY OF BASEL;SAMEA3671270;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193861;null;1;PRJEB11460;SAMEA3671271;UNIVERSITY OF BASEL;SAMEA3671271;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193863;null;1;PRJEB11460;SAMEA3671273;UNIVERSITY OF BASEL;SAMEA3671273;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193864;null;1;PRJEB11460;SAMEA3671274;UNIVERSITY OF BASEL;SAMEA3671274;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193865;null;1;PRJEB11460;SAMEA3671275;UNIVERSITY OF BASEL;SAMEA3671275;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193866;null;1;PRJEB11460;SAMEA3671276;UNIVERSITY OF BASEL;SAMEA3671276;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193875;null;1;PRJEB11460;SAMEA3671285;UNIVERSITY OF BASEL;SAMEA3671285;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193877;null;1;PRJEB11460;SAMEA3671287;UNIVERSITY OF BASEL;SAMEA3671287;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193880;null;1;PRJEB11460;SAMEA3671290;UNIVERSITY OF BASEL;SAMEA3671290;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193882;null;1;PRJEB11460;SAMEA3671292;UNIVERSITY OF BASEL;SAMEA3671292;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193883;null;1;PRJEB11460;SAMEA3671293;UNIVERSITY OF BASEL;SAMEA3671293;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193888;null;1;PRJEB11460;SAMEA3671298;UNIVERSITY OF BASEL;SAMEA3671298;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193892;null;1;PRJEB11460;SAMEA3671302;UNIVERSITY OF BASEL;SAMEA3671302;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193897;null;1;PRJEB11460;SAMEA3671307;UNIVERSITY OF BASEL;SAMEA3671307;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193898;null;1;PRJEB11460;SAMEA3671308;UNIVERSITY OF BASEL;SAMEA3671308;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193901;null;1;PRJEB11460;SAMEA3671311;UNIVERSITY OF BASEL;SAMEA3671311;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193902;null;1;PRJEB11460;SAMEA3671312;UNIVERSITY OF BASEL;SAMEA3671312;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193904;null;1;PRJEB11460;SAMEA3671314;UNIVERSITY OF BASEL;SAMEA3671314;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199093;null;1;PRJEB11460;SAMEA3671461;UNIVERSITY OF BASEL;SAMEA3671461;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199096;null;1;PRJEB11460;SAMEA3671516;UNIVERSITY OF BASEL;SAMEA3671516;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199098;null;1;PRJEB11460;SAMEA3671530;UNIVERSITY OF BASEL;SAMEA3671530;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199099;null;1;PRJEB11460;SAMEA3671531;UNIVERSITY OF BASEL;SAMEA3671531;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199101;null;1;PRJEB11460;SAMEA3671534;UNIVERSITY OF BASEL;SAMEA3671534;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199102;null;1;PRJEB11460;SAMEA3671535;UNIVERSITY OF BASEL;SAMEA3671535;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199103;null;1;PRJEB11460;SAMEA3671536;UNIVERSITY OF BASEL;SAMEA3671536;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199104;null;1;PRJEB11460;SAMEA3671538;UNIVERSITY OF BASEL;SAMEA3671538;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199105;null;1;PRJEB11460;SAMEA3671539;UNIVERSITY OF BASEL;SAMEA3671539;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199106;null;1;PRJEB11460;SAMEA3671545;UNIVERSITY OF BASEL;SAMEA3671545;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199108;null;1;PRJEB11460;SAMEA3671557;UNIVERSITY OF BASEL;SAMEA3671557;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199109;null;1;PRJEB11460;SAMEA3671560;UNIVERSITY OF BASEL;SAMEA3671560;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199110;null;1;PRJEB11460;SAMEA3671563;UNIVERSITY OF BASEL;SAMEA3671563;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199111;null;1;PRJEB11460;SAMEA3671571;UNIVERSITY OF BASEL;SAMEA3671571;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199112;null;1;PRJEB11460;SAMEA3671572;UNIVERSITY OF BASEL;SAMEA3671572;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199113;null;1;PRJEB11460;SAMEA3671573;UNIVERSITY OF BASEL;SAMEA3671573;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199115;null;1;PRJEB11460;SAMEA3671582;UNIVERSITY OF BASEL;SAMEA3671582;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199117;null;1;PRJEB11460;SAMEA3671589;UNIVERSITY OF BASEL;SAMEA3671589;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199120;null;1;PRJEB11460;SAMEA3671594;UNIVERSITY OF BASEL;SAMEA3671594;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199122;null;1;PRJEB11460;SAMEA3671599;UNIVERSITY OF BASEL;SAMEA3671599;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199123;null;1;PRJEB11460;SAMEA3671601;UNIVERSITY OF BASEL;SAMEA3671601;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199126;null;1;PRJEB11460;SAMEA3671614;UNIVERSITY OF BASEL;SAMEA3671614;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199127;null;1;PRJEB11460;SAMEA3671615;UNIVERSITY OF BASEL;SAMEA3671615;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199128;null;1;PRJEB11460;SAMEA3671618;UNIVERSITY OF BASEL;SAMEA3671618;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199130;null;1;PRJEB11460;SAMEA3671465;UNIVERSITY OF BASEL;SAMEA3671465;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199131;null;1;PRJEB11460;SAMEA3671512;UNIVERSITY OF BASEL;SAMEA3671512;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199137;null;1;PRJEB11460;SAMEA3671528;UNIVERSITY OF BASEL;SAMEA3671528;nan;null;null;null;null;null;null;null;null;null;null
+ERR1199145;null;1;PRJEB11460;SAMEA3671581;UNIVERSITY OF BASEL;SAMEA3671581;nan;null;null;null;null;null;null;null;null;null;null
+ERR1367615;null;1;PRJEB12179;SAMEA3715670;UNIVERSITY OF BASEL;G02429;nan;Switzerland;null;null;null;null;null;null;null;null;null
+ERR1367634;null;1;PRJEB12179;SAMEA3715558;UNIVERSITY OF BASEL;G02135;nan;Switzerland;null;null;null;null;null;null;null;null;null
+ERR1367652;null;1;PRJEB12179;SAMEA3715554;UNIVERSITY OF BASEL;G02131;nan;Switzerland;null;null;null;null;null;null;null;null;null
+ERR1367666;null;1;PRJEB12179;SAMEA3715561;UNIVERSITY OF BASEL;G02138;nan;Switzerland;null;null;null;null;null;null;null;null;null
+ERR1413476;null;1;PRJEB13764;SAMEA3986718;BUGS;4,018;2004-01-08 0:00:00;null;null;null;null;null;null;null;null;4,018;null
+ERR1452609;null;1;PRJEB14401;SAMEA4032459;SAMRC CENTRE FOR TUBERCULOSIS RESEARCH;1945;1996;null;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1465864;null;1;PRJEB11460;SAMEA4041351;UNIVERSITY OF BASEL;SAMEA4041351;nan;null;null;null;null;null;null;null;null;null;null
+ERR1465875;null;1;PRJEB11460;SAMEA4041362;UNIVERSITY OF BASEL;SAMEA4041362;nan;null;null;null;null;null;null;null;null;null;null
+ERR1465929;null;1;PRJEB11460;SAMEA3715556;UNIVERSITY OF BASEL;SAMEA3715556;nan;null;null;null;null;null;null;null;null;null;null
+ERR1465930;null;1;PRJEB11460;SAMEA3715559;UNIVERSITY OF BASEL;SAMEA3715559;nan;null;null;null;null;null;null;null;null;null;null
+ERR1465932;null;1;PRJEB11460;SAMEA3715564;UNIVERSITY OF BASEL;SAMEA3715564;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555040;null;1;PRJEB5280;SAMEA3725910;THE WELLCOME TRUST SANGER INSTITUTE;37c33ad0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555044;null;1;PRJEB5280;SAMEA3725914;THE WELLCOME TRUST SANGER INSTITUTE;37e98780-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555046;null;1;PRJEB5280;SAMEA3725916;THE WELLCOME TRUST SANGER INSTITUTE;37fce870-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555050;null;1;PRJEB5280;SAMEA3725920;THE WELLCOME TRUST SANGER INSTITUTE;382753d0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555051;null;1;PRJEB5280;SAMEA3725921;THE WELLCOME TRUST SANGER INSTITUTE;38302d70-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555052;null;1;PRJEB5280;SAMEA3725922;THE WELLCOME TRUST SANGER INSTITUTE;383891e0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555055;null;1;PRJEB5280;SAMEA3725925;THE WELLCOME TRUST SANGER INSTITUTE;384f4e30-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555057;null;1;PRJEB5280;SAMEA3725927;THE WELLCOME TRUST SANGER INSTITUTE;38654730-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555060;null;1;PRJEB5280;SAMEA3725930;THE WELLCOME TRUST SANGER INSTITUTE;387e4d70-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1555061;null;1;PRJEB5280;SAMEA3725931;THE WELLCOME TRUST SANGER INSTITUTE;388615a0-b5f3-11e5-aed5-3c4a9275d6c6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1633780;null;1;PRJEB15382;SAMEA4441430;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP974;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1633839;null;1;PRJEB15382;SAMEA4441489;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP1033;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1633881;null;1;PRJEB15382;SAMEA4441531;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP1075;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1633939;null;1;PRJEB15382;SAMEA4441589;INSTITUTE OF INFECTIOUS DISEASE AND MOLECULAR MEDI;KSP1133;2010;Khayelitsha, Cape Town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1679585;null;1;PRJEB15857;SAMEA4501278;BIRMINGHAM UNIVERSITY;NG1;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679586;null;1;PRJEB15857;SAMEA4501279;BIRMINGHAM UNIVERSITY;NG10;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679587;null;1;PRJEB15857;SAMEA4501280;BIRMINGHAM UNIVERSITY;NG12;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679600;null;1;PRJEB15857;SAMEA4501293;BIRMINGHAM UNIVERSITY;NG25;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679607;null;1;PRJEB15857;SAMEA4501300;BIRMINGHAM UNIVERSITY;NG32;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679611;null;1;PRJEB15857;SAMEA4501304;BIRMINGHAM UNIVERSITY;NG36;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679617;null;1;PRJEB15857;SAMEA4501310;BIRMINGHAM UNIVERSITY;NG42;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679619;null;1;PRJEB15857;SAMEA4501312;BIRMINGHAM UNIVERSITY;NG44;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679621;null;1;PRJEB15857;SAMEA4501314;BIRMINGHAM UNIVERSITY;NG46;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679628;null;1;PRJEB15857;SAMEA4501321;BIRMINGHAM UNIVERSITY;NG54;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679629;null;1;PRJEB15857;SAMEA4501322;BIRMINGHAM UNIVERSITY;NG55;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679633;null;1;PRJEB15857;SAMEA4501326;BIRMINGHAM UNIVERSITY;NG64;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679636;null;1;PRJEB15857;SAMEA4501329;BIRMINGHAM UNIVERSITY;NG68;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1679656;null;1;PRJEB15857;SAMEA4501349;BIRMINGHAM UNIVERSITY;NG9;2012;Nigeria;null;null;null;null;null;null;null;MTBC;null
+ERR1750880;null;1;PRJEB18529;SAMEA23745418;BUGS;004-2;2008/2012;null;null;null;null;null;null;null;null;004-2;null
+ERR1815553;null;1;PRJEB19271;SAMEA72489418;FACULDADE DE FARMCIA DA UNIVERSIDADE DE LISBOA, LI;MTB_PT3;nan;null;null;null;null;null;null;null;null;null;null
+ERR1815556;null;1;PRJEB19271;SAMEA72491668;FACULDADE DE FARMCIA DA UNIVERSIDADE DE LISBOA, LI;MTB_PT6;nan;null;null;null;null;null;null;null;null;null;null
+ERR1873405;null;1;PRJEB14199;SAMEA95459668;UNIVERSITY OF CAPE TOWN;M_15_A690_15441_F1_Mycobacterium_CAATGGA_L003;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873441;null;1;PRJEB14199;SAMEA95486668;UNIVERSITY OF CAPE TOWN;M_tuberculosis__R16758_LFO46Pool105_3311__L5_GTACGCAA_L005;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873475;null;1;PRJEB14199;SAMEA95438668;UNIVERSITY OF CAPE TOWN;R14852;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873483;null;1;PRJEB14199;SAMEA95441668;UNIVERSITY OF CAPE TOWN;R16583;2011;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873488;null;1;PRJEB14199;SAMEA95506168;UNIVERSITY OF CAPE TOWN;R17085_pool_283__L3_ACACGACC_L003;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873505;null;1;PRJEB14199;SAMEA95518168;UNIVERSITY OF CAPE TOWN;R18832_pool_282__L2_CCTCCTGA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873506;null;1;PRJEB14199;SAMEA95518918;UNIVERSITY OF CAPE TOWN;R18913_pool_282__L2_CGAACTTA_L002;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873518;null;1;PRJEB14199;SAMEA95446168;UNIVERSITY OF CAPE TOWN;R19366;2012;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873527;null;1;PRJEB14199;SAMEA95527918;UNIVERSITY OF CAPE TOWN;R4674_LFO46Pool106_3312__L6_AGCCATGC_L006;2008;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873534;null;1;PRJEB14199;SAMEA95414668;UNIVERSITY OF CAPE TOWN;R5065;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873540;null;1;PRJEB14199;SAMEA95533918;UNIVERSITY OF CAPE TOWN;R5847_LFO46Pool105_3311__L5_CTGTAGCC_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873544;null;1;PRJEB14199;SAMEA95534668;UNIVERSITY OF CAPE TOWN;R6297_LFO46Pool105_3311__L5_AACAACCA_L005;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1873552;null;1;PRJEB14199;SAMEA95538418;UNIVERSITY OF CAPE TOWN;R8194_LFO46Pool106_3312__L6_CTAAGGTC_L006;2009;Cape town, South Africa;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1952138;null;1;PRJEB15076;SAMEA104035988;TRINITY COLLEGE DUBLIN;IEMDR01;2004;Ireland;null;null;null;null;null;null;null;MTBC Culture Isolate;null
+ERR1952140;null;1;PRJEB15076;SAMEA104035990;TRINITY COLLEGE DUBLIN;IEMDR03;2004;Ireland;null;null;null;null;null;null;null;MTBC Culture Isolate;null
+ERR1952141;null;1;PRJEB15076;SAMEA104035991;TRINITY COLLEGE DUBLIN;IEMDR04;2004;Ireland;null;null;null;null;null;null;null;MTBC Culture Isolate;null
+ERR1952142;null;1;PRJEB15076;SAMEA104035992;TRINITY COLLEGE DUBLIN;IEMDR05;2004;Ireland;null;null;null;null;null;null;null;MTBC Culture Isolate;null
+ERR1988847;null;1;PRJEB20942;SAMEA104090038;STELLENBOSCH UNIVERSITY;2;2010;South Africa;null;null;null;null;null;null;null;TT_98;null
+ERR2027265;null;1;PRJEB21685;SAMEA104153397;UNIVERSITY COLLEGE LONDON;Mtb_2274;2016;null;null;null;null;null;null;null;null;MGIT;null
+ERR2027285;null;1;PRJEB21685;SAMEA104153477;UNIVERSITY COLLEGE LONDON;Mtb_2298;2016;null;null;null;null;null;null;null;null;MGIT;null
+ERR2145493;null;1;PRJEB10950;SAMEA104326169;LSHTM;MTB_Saudi__1459_MTB-Pool59_3499__L3_CGCTGATC_L003;nan;null;null;null;null;null;null;null;null;null;null
+ERR2145508;null;1;PRJEB10950;SAMEA104326184;LSHTM;MTB_Saudi__1865_MTB-Pool59_3499__L3_AGATCGCA_L003;nan;null;null;null;null;null;null;null;null;null;null
+ERR2145512;null;1;PRJEB10950;SAMEA104326188;LSHTM;MTB_Saudi__1910_MTB-Pool59_3499__L3_ATTGAGGA_L003;nan;null;null;null;null;null;null;null;null;null;null
+ERR2145520;null;1;PRJEB10950;SAMEA104326196;LSHTM;MTB_Saudi__1991_MTB-Pool59_3499__L3_CCGAAGTA_L003;nan;null;null;null;null;null;null;null;null;null;null
+ERR2145524;null;1;PRJEB10950;SAMEA104326200;LSHTM;MTB_Saudi__2057_MTB-Pool59_3499__L3_CGCATACA_L003;nan;null;null;null;null;null;null;null;null;null;null
+SRR3205962;null;1;PRJNA314415;SAMN04534874;null;DS21644 (WBB274);2009-09-12 0:00:00;Thailand: Bangkok;null;null;null;null;null;null;null;null;East Asian
+SRR3544725;null;1;PRJNA318002;SAMN05001049;BI;Mycobacterium tuberculosis G-022_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-022_1
+SRR3544734;null;1;PRJNA318002;SAMN05001041;BI;Mycobacterium tuberculosis G-001S_1_1;2013;Georgia;missing;null;null;null;null;missing;missing;missing;G-001S_1_1
+SRR3544735;null;1;PRJNA318002;SAMN05001037;BI;Mycobacterium tuberculosis G-019S_1_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-019S_1_1
+SRR3544748;null;1;PRJNA318002;SAMN05001038;BI;Mycobacterium tuberculosis G-016S_1_1;2014;Georgia;missing;null;null;null;null;missing;missing;missing;G-016S_1_1
+SRR3618864;null;1;PRJNA317032;SAMN04599205;null;M67;2013-08-01 0:00:00;Myanmar: Yangon;null;null;null;null;null;null;null;null;M67
+SRR3647353;null;1;PRJNA270004;SAMN03257096;null;22103;2010-04-08 0:00:00;China;null;null;null;null;null;null;null;null;22103
+SRR3647359;null;1;PRJNA270004;SAMN03257092;null;2242;2006-10-25 0:00:00;China;null;null;null;null;null;null;null;null;2242
+SRR3647360;null;1;PRJNA270004;SAMN03257093;null;2279;2006-10-25 0:00:00;China;null;null;null;null;null;null;null;null;2279
+SRR3675217;null;1;PRJNA302362;SAMN05276311;MODMEDMICOXFORD;MMMOSAM:0975de12-90b8-4cc5-800a-1c3dba1920b8;2015-01-01 0:00:00;United Kingdom: Oxford;null;null;null;null;null;null;null;140603481;NA
+SRR3675285;null;1;PRJNA302362;SAMN05276378;MODMEDMICOXFORD;MMMOSAM:49693fa3-1486-4e97-9229-ba7691f7a3d3;2015-01-01 0:00:00;United Kingdom: Oxford;null;null;null;null;null;null;null;140603310;NA
+SRR3724660;null;1;PRJNA300846;SAMN04276755;BI;G04030;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G04030
+SRR3724791;null;1;PRJNA300846;SAMN04276760;BI;G04170;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04170
+SRR3724794;null;1;PRJNA300846;SAMN04276682;BI;G04319;missing;Thailand;missing;null;null;null;null;missing;missing;missing;G04319
+SRR3724799;null;1;PRJNA300846;SAMN04276787;BI;G04032;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G04032
+SRR3724802;null;1;PRJNA300846;SAMN04276822;BI;G04043;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04043
+SRR3724807;null;1;PRJNA300846;SAMN04276754;BI;G04033;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04033
+SRR3724819;null;1;PRJNA300846;SAMN04276779;BI;G04040;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04040
+SRR3724950;null;1;PRJNA300846;SAMN04276807;BI;G04031;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G04031
+SRR3724951;null;1;PRJNA300846;SAMN04276757;BI;G04057;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G04057
+SRR3724965;null;1;PRJNA300846;SAMN04276800;BI;G04039;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04039
+SRR3724971;null;1;PRJNA300846;SAMN04276748;BI;G04041;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04041
+SRR3724998;null;1;PRJNA300846;SAMN04276816;BI;G04171;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04171
+SRR3725008;null;1;PRJNA300846;SAMN04276812;BI;G04108;missing;Thailand;missing;null;null;null;null;missing;missing;missing;G04108
+SRR3725012;null;1;PRJNA300846;SAMN04276790;BI;G04111;missing;Thailand;missing;null;null;null;null;missing;missing;missing;G04111
+SRR3725013;null;1;PRJNA300846;SAMN04276756;BI;G04114;missing;Thailand;missing;null;null;null;null;missing;missing;missing;G04114
+SRR3725693;null;1;PRJNA300846;SAMN04522003;BI;G05033;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05033
+SRR3725703;null;1;PRJNA300846;SAMN04521995;BI;G05025;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05025
+SRR3725708;null;1;PRJNA300846;SAMN04522002;BI;G05032;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05032
+SRR3725712;null;1;PRJNA300846;SAMN04521998;BI;G05028;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05028
+SRR3725714;null;1;PRJNA300846;SAMN04521996;BI;G05026;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05026
+SRR3725717;null;1;PRJNA300846;SAMN04522005;BI;G05035;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05035
+SRR3725719;null;1;PRJNA300846;SAMN04522004;BI;G05034;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05034
+SRR3725722;null;1;PRJNA300846;SAMN04522007;BI;G05037;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05037
+SRR3732570;null;1;PRJNA300846;SAMN04522050;BI;G05107;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05107
+SRR3732576;null;1;PRJNA300846;SAMN04522077;BI;G05145;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05145
+SRR3732578;null;1;PRJNA300846;SAMN04522063;BI;G05133;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05133
+SRR3732579;null;1;PRJNA300846;SAMN04522068;BI;G05138;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05138
+SRR3732580;null;1;PRJNA300846;SAMN04522079;BI;G05147;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05147
+SRR3732581;null;1;PRJNA300846;SAMN04522040;BI;G05111;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05111
+SRR3732590;null;1;PRJNA300846;SAMN04522041;BI;G05112;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05112
+SRR3732591;null;1;PRJNA300846;SAMN04522056;BI;G05124;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05124
+SRR3732644;null;1;PRJNA300846;SAMN04522109;BI;G05180;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05180
+SRR3732645;null;1;PRJNA300846;SAMN04522066;BI;G05135;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05135
+SRR3732646;null;1;PRJNA300846;SAMN04522095;BI;G05162;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05162
+SRR3732655;null;1;PRJNA300846;SAMN04522093;BI;G05160;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05160
+SRR3732685;null;1;PRJNA300846;SAMN04522064;BI;G05206;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05206
+SRR3732711;null;1;PRJNA300846;SAMN04522084;BI;G05153;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05153
+SRR3742668;null;1;PRJNA327294;SAMN05328087;null;B3;2012-08-15 0:00:00;China: east of BEIJING;46;null;null;null;null;male;null;B3;null
+SRR3743200;null;1;PRJNA318002;SAMN05209825;BI;Mycobacterium tuberculosis 8824;2015;Romania:Craiova;missing;null;null;null;null;missing;missing;missing;8824
+SRR3743202;null;1;PRJNA318002;SAMN05209826;BI;Mycobacterium tuberculosis 9704;2015;Romania:Bucharest;missing;null;null;null;null;missing;missing;missing;9704
+SRR3743368;null;1;PRJNA318002;SAMN04633271;BI;Mycobacterium tuberculosis Moldova_12716;2015-06-16 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_12716
+SRR3743375;null;1;PRJNA318002;SAMN04633268;BI;Mycobacterium tuberculosis Moldova_17213;2015-08-24 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17213
+SRR3743376;null;1;PRJNA318002;SAMN04633305;BI;Mycobacterium tuberculosis Moldova_5393;11-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_5393
+SRR3743377;null;1;PRJNA318002;SAMN04633306;BI;Mycobacterium tuberculosis Moldova_165;2015-01-12 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_165
+SRR3743379;null;1;PRJNA318002;SAMN04633281;BI;Mycobacterium tuberculosis Moldova_18170;2015-09-15 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_18170
+SRR3743380;null;1;PRJNA318002;SAMN04633328;BI;Mycobacterium tuberculosis Moldova_105;2015-01-05 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_105
+SRR3743384;null;1;PRJNA318002;SAMN04633267;BI;Mycobacterium tuberculosis Moldova_12655;2015-06-15 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_12655
+SRR3743386;null;1;PRJNA318002;SAMN04633332;BI;Mycobacterium tuberculosis Moldova_6914;30-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_6914
+SRR3743388;null;1;PRJNA318002;SAMN04633291;BI;Mycobacterium tuberculosis Moldova_9941;12-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_9941
+SRR3743390;null;1;PRJNA318002;SAMN04633282;BI;Mycobacterium tuberculosis Moldova_9987;12-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_9987
+SRR3743392;null;1;PRJNA318002;SAMN04633297;BI;Mycobacterium tuberculosis Moldova_7878;2015-04-15 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_7878
+SRR3743393;null;1;PRJNA318002;SAMN04633318;BI;Mycobacterium tuberculosis Moldova_5543;16-Mar-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_5543
+SRR3743397;null;1;PRJNA318002;SAMN04633272;BI;Mycobacterium tuberculosis Moldova_7778;2015-04-08 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_7778
+SRR3743399;null;1;PRJNA318002;SAMN04633314;BI;Mycobacterium tuberculosis Moldova_19744;02-Oct-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_19744
+SRR3743406;null;1;PRJNA318002;SAMN04633319;BI;Mycobacterium tuberculosis Moldova_4769;2015-01-30 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_4769
+SRR3743409;null;1;PRJNA318002;SAMN04633317;BI;Mycobacterium tuberculosis Moldova_10326;14-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_10326
+SRR3743410;null;1;PRJNA318002;SAMN04633360;BI;Mycobacterium tuberculosis Moldova_25091;29-Dec-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_25091
+SRR3743434;null;1;PRJNA318002;SAMN04633289;BI;Mycobacterium tuberculosis Moldova_17015;2015-08-24 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17015
+SRR3743435;null;1;PRJNA318002;SAMN04633301;BI;Mycobacterium tuberculosis Moldova_16273;2015-08-12 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_16273
+SRR3743437;null;1;PRJNA318002;SAMN04633266;BI;Mycobacterium tuberculosis Moldova_17166;2015-08-24 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17166
+SRR3743450;null;1;PRJNA318002;SAMN04633336;BI;Mycobacterium tuberculosis Moldova_11120;25-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_11120
+SRR3743472;null;1;PRJNA318002;SAMN04633358;BI;Mycobacterium tuberculosis Moldova_157;2016-01-05 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_157
+SRR3743473;null;1;PRJNA318002;SAMN04633299;BI;Mycobacterium tuberculosis Moldova_15325;2015-07-27 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_15325
+SRR3743475;null;1;PRJNA318002;SAMN04633327;BI;Mycobacterium tuberculosis Moldova_17182;2015-09-05 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_17182
+SRR3743476;null;1;PRJNA318002;SAMN04633300;BI;Mycobacterium tuberculosis Moldova_613;2015-01-15 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_613
+SRR3743487;null;1;PRJNA318002;SAMN04633357;BI;Mycobacterium tuberculosis Moldova_9408;06-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_9408
+SRR3743490;null;1;PRJNA318002;SAMN04633287;BI;Mycobacterium tuberculosis Moldova_9888;11-May-2015;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_9888
+SRR3743492;null;1;PRJNA318002;SAMN04633334;BI;Mycobacterium tuberculosis Moldova_724;2015-01-13 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_724
+SRR3743494;null;1;PRJNA318002;SAMN04633326;BI;Mycobacterium tuberculosis Moldova_1764;2015-01-28 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_1764
+SRR3743496;null;1;PRJNA318002;SAMN04633313;BI;Mycobacterium tuberculosis Moldova_18474;2015-09-18 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_18474
+SRR3743497;null;1;PRJNA318002;SAMN04633308;BI;Mycobacterium tuberculosis Moldova_3335;2015-02-13 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_3335
+SRR3743499;null;1;PRJNA318002;SAMN04633330;BI;Mycobacterium tuberculosis Moldova_23869;2014-11-10 0:00:00;Moldova;missing;null;null;null;null;missing;missing;missing;Moldova_23869
+SRR4423135;null;1;PRJNA343956;SAMN05806769;null;ITM-080281;2007-11-13 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423136;null;1;PRJNA343956;SAMN05806770;null;ITM-083113;2008-06-30 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423140;null;1;PRJNA343956;SAMN05806774;null;ITM-084048;2008-09-18 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423141;null;1;PRJNA343956;SAMN05806775;null;ITM-084071;2008-09-10 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423143;null;1;PRJNA343956;SAMN05806777;null;ITM-090101;2008-10-30 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423144;null;1;PRJNA343956;SAMN05806778;null;ITM-090497;2008-11-08 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423147;null;1;PRJNA343956;SAMN05806755;null;ITM-120613;2012-01-15 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423148;null;1;PRJNA343956;SAMN05806757;null;ITM-120869;2012-03-11 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423149;null;1;PRJNA343956;SAMN05806753;null;ITM-111501;2011-05-12 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423150;null;1;PRJNA343956;SAMN05806754;null;ITM-112382;2011-08-23 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423151;null;1;PRJNA343956;SAMN05806758;null;ITM-121787;2012-09-08 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423155;null;1;PRJNA343956;SAMN05806765;null;ITM-072225;2007-05-08 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423156;null;1;PRJNA343956;SAMN05806764;null;ITM-072214;2007-05-07 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423157;null;1;PRJNA343956;SAMN05806763;null;ITM-062368;2006-06-12 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423158;null;1;PRJNA343956;SAMN05806762;null;ITM-130244;2012-11-20 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423159;null;1;PRJNA343956;SAMN05806761;null;ITM-130235;2012-11-26 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423160;null;1;PRJNA343956;SAMN05806760;null;ITM-130223;2012-10-30 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423161;null;1;PRJNA343956;SAMN05806759;null;ITM-121808;2012-09-22 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423163;null;1;PRJNA343956;SAMN05806767;null;ITM-072861;2007-06-28 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423165;null;1;PRJNA343956;SAMN05806783;null;ITM-091980;2009-02-16 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423166;null;1;PRJNA343956;SAMN05806785;null;ITM-092333;2009-05-27 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423167;null;1;PRJNA343956;SAMN05806780;null;ITM-090798;2008-11-12T00:00:01;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423169;null;1;PRJNA343956;SAMN05806782;null;ITM-091130;2009-02-03 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423170;null;1;PRJNA343956;SAMN05806781;null;ITM-091126;2009-01-15 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423172;null;1;PRJNA343956;SAMN05806739;null;ITM-100271;2009-11-04 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423173;null;1;PRJNA343956;SAMN05806740;null;ITM-100380;2009-11-11 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423174;null;1;PRJNA343956;SAMN05806741;null;ITM-101140;2010-02-23 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423175;null;1;PRJNA343956;SAMN05806742;null;ITM-101142;2010-02-15 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423176;null;1;PRJNA343956;SAMN05806743;null;ITM-101661;2010-04-11 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423177;null;1;PRJNA343956;SAMN05806744;null;ITM-101905;2010-04-27 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423178;null;1;PRJNA343956;SAMN05806745;null;ITM-102106;2010-05-15 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423179;null;1;PRJNA343956;SAMN05806746;null;ITM-102627;2010-08-10 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423180;null;1;PRJNA343956;SAMN05806747;null;ITM-102808;2010-09-22 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR4423181;null;1;PRJNA343956;SAMN05806748;null;ITM-110113;2010-10-03 0:00:00;Bangladesh: Damien Foundation Project area;null;null;null;null;null;null;null;MDR-TB patient;null
+SRR5007183;null;1;PRJNA339209;SAMN05969962;MODMEDMICOXFORD;MMMOSAM:55b6539f-b92d-494e-82bd-18ba5cf4c3fd;2015-02-19 0:00:00;United Kingdom: England;null;null;null;null;null;null;null;NA;L66375
+SRR5065228;null;1;PRJNA355614;SAMN06091866;null;HCMC0169;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0169;null
+SRR5065250;null;1;PRJNA355614;SAMN06091722;null;HCMC0025;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0025;null
+SRR5065261;null;1;PRJNA355614;SAMN06091890;null;HCMC0193;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0193;null
+SRR5065303;null;1;PRJNA355614;SAMN06091739;null;HCMC0042;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0042;null
+SRR5065326;null;1;PRJNA355614;SAMN06091756;null;HCMC0059;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0059;null
+SRR5065336;null;1;PRJNA355614;SAMN06091868;null;HCMC0171;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0171;null
+SRR5065339;null;1;PRJNA355614;SAMN06091937;null;HCMC0240;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0240;null
+SRR5065371;null;1;PRJNA355614;SAMN06092145;null;HCMC0448;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0448;null
+SRR5065381;null;1;PRJNA355614;SAMN06092159;null;HCMC0462;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0462;null
+SRR5065407;null;1;PRJNA355614;SAMN06091878;null;HCMC0181;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0181;null
+SRR5065470;null;1;PRJNA355614;SAMN06092007;null;HCMC0310;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0310;null
+SRR5065480;null;1;PRJNA355614;SAMN06092042;null;HCMC0345;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0345;null
+SRR5065524;null;1;PRJNA355614;SAMN06092126;null;HCMC0429;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0429;null
+SRR5065537;null;1;PRJNA355614;SAMN06091915;null;HCMC0218;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0218;null
+SRR5065538;null;1;PRJNA355614;SAMN06091959;null;HCMC0262;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0262;null
+SRR5065560;null;1;PRJNA355614;SAMN06091918;null;HCMC0221;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0221;null
+SRR5065588;null;1;PRJNA355614;SAMN06092086;null;HCMC0389;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0389;null
+SRR5065610;null;1;PRJNA355614;SAMN06092090;null;HCMC0393;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0393;null
+SRR5065627;null;1;PRJNA355614;SAMN06092113;null;HCMC0416;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0416;null
+SRR5065654;null;1;PRJNA355614;SAMN06091919;null;HCMC0222;2011;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0222;null
+SRR5067222;null;1;PRJNA355614;SAMN06092269;null;HCMC0572;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0572;null
+SRR5067226;null;1;PRJNA355614;SAMN06092548;null;HCMC0851;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0851;null
+SRR5067309;null;1;PRJNA355614;SAMN06092525;null;HCMC0828;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0828;null
+SRR5067348;null;1;PRJNA355614;SAMN06092261;null;HCMC0564;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0564;null
+SRR5067435;null;1;PRJNA355614;SAMN06092448;null;HCMC0751;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0751;null
+SRR5067439;null;1;PRJNA355614;SAMN06092265;null;HCMC0568;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0568;null
+SRR5067440;null;1;PRJNA355614;SAMN06092294;null;HCMC0597;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0597;null
+SRR5067458;null;1;PRJNA355614;SAMN06092252;null;HCMC0555;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0555;null
+SRR5067481;null;1;PRJNA355614;SAMN06092394;null;HCMC0697;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0697;null
+SRR5067504;null;1;PRJNA355614;SAMN06092242;null;HCMC0545;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0545;null
+SRR5067543;null;1;PRJNA355614;SAMN06092311;null;HCMC0614;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0614;null
+SRR5067544;null;1;PRJNA355614;SAMN06092653;null;HCMC0956;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0956;null
+SRR5067645;null;1;PRJNA355614;SAMN06092318;null;HCMC0621;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0621;null
+SRR5067693;null;1;PRJNA355614;SAMN06092281;null;HCMC0584;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0584;null
+SRR5067704;null;1;PRJNA355614;SAMN06092481;null;HCMC0784;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC0784;null
+SRR5073521;null;1;PRJNA355614;SAMN06055522;null;HCMC1125;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1125;null
+SRR5073533;null;1;PRJNA355614;SAMN06055656;null;HCMC1259;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1259;null
+SRR5073534;null;1;PRJNA355614;SAMN06055428;null;HCMC1031;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1031;null
+SRR5073555;null;1;PRJNA355614;SAMN06055666;null;HCMC1269;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1269;null
+SRR5073603;null;1;PRJNA355614;SAMN06055833;null;HCMC1436;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1436;null
+SRR5073631;null;1;PRJNA355614;SAMN06055492;null;HCMC1095;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1095;null
+SRR5073654;null;1;PRJNA355614;SAMN06055516;null;HCMC1119;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1119;null
+SRR5073694;null;1;PRJNA355614;SAMN06055805;null;HCMC1408;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1408;null
+SRR5073698;null;1;PRJNA355614;SAMN06055418;null;HCMC1021;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1021;null
+SRR5073764;null;1;PRJNA355614;SAMN06055681;null;HCMC1284;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1284;null
+SRR5073787;null;1;PRJNA355614;SAMN06055511;null;HCMC1114;2010;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1114;null
+SRR5073810;null;1;PRJNA355614;SAMN06055454;null;HCMC1057;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1057;null
+SRR5073818;null;1;PRJNA355614;SAMN06055893;null;HCMC1496;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1496;null
+SRR5073905;null;1;PRJNA355614;SAMN06055405;null;HCMC1008;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1008;null
+SRR5073935;null;1;PRJNA355614;SAMN06055653;null;HCMC1256;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1256;null
+SRR5073972;null;1;PRJNA355614;SAMN06055850;null;HCMC1453;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1453;null
+SRR5073982;null;1;PRJNA355614;SAMN06055488;null;HCMC1091;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1091;null
+SRR5073998;null;1;PRJNA355614;SAMN06055863;null;HCMC1466;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1466;null
+SRR5074053;null;1;PRJNA355614;SAMN06055911;null;HCMC1514;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1514;null
+SRR5074123;null;1;PRJNA355614;SAMN06055924;null;HCMC1527;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1527;null
+SRR5074155;null;1;PRJNA355614;SAMN06055961;null;HCMC1564;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1564;null
+SRR5074185;null;1;PRJNA355614;SAMN06055964;null;HCMC1567;2009;Viet Nam: Ho Chi Minh City;null;null;null;null;null;null;null;HCMC1567;null
+SRR5125075;null;1;PRJNA358480;SAMN06174400;null;PGI_IOB_EPTB_4;18-Dec-2014;India: Chandigarh;null;null;null;null;null;null;null;Extrapulmonary tuberculosis;Microbial
+SRR5152902;null;1;PRJNA318002;SAMN06209912;BI;Mycobacterium tuberculosis 15-012523;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-012523
+SRR5152903;null;1;PRJNA318002;SAMN06209926;BI;Mycobacterium tuberculosis 15-009942;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009942
+SRR5152907;null;1;PRJNA318002;SAMN06209913;BI;Mycobacterium tuberculosis 15-005508;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-005508
+SRR5152912;null;1;PRJNA318002;SAMN06209922;BI;Mycobacterium tuberculosis 15-007199;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-007199
+SRR5152916;null;1;PRJNA318002;SAMN06209928;BI;Mycobacterium tuberculosis 14-002289;2014;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;14-002289
+SRR5152917;null;1;PRJNA318002;SAMN06209904;BI;Mycobacterium tuberculosis 15-011741;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-011741
+SRR5152919;null;1;PRJNA318002;SAMN06209916;BI;Mycobacterium tuberculosis 15-006439;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-006439
+SRR5152925;null;1;PRJNA318002;SAMN06209902;BI;Mycobacterium tuberculosis 15-004455;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-004455
+SRR5152927;null;1;PRJNA318002;SAMN06209914;BI;Mycobacterium tuberculosis 15-004915;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-004915
+SRR5152930;null;1;PRJNA318002;SAMN06209934;BI;Mycobacterium tuberculosis 15-000611;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-000611
+SRR5152939;null;1;PRJNA318002;SAMN06209919;BI;Mycobacterium tuberculosis 14-008320;2014;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;14-008320
+SRR5152940;null;1;PRJNA318002;SAMN06209864;BI;Mycobacterium tuberculosis 15-018518;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-018518
+SRR5152951;null;1;PRJNA318002;SAMN06209906;BI;Mycobacterium tuberculosis 15-011913;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-011913
+SRR5152953;null;1;PRJNA318002;SAMN06209933;BI;Mycobacterium tuberculosis 15-005973;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-005973
+SRR5152957;null;1;PRJNA318002;SAMN06209876;BI;Mycobacterium tuberculosis 15-012952;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012952
+SRR5153074;null;1;PRJNA318002;SAMN06209883;BI;Mycobacterium tuberculosis 16-003401;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-003401
+SRR5153075;null;1;PRJNA318002;SAMN06209879;BI;Mycobacterium tuberculosis 16-003466;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-003466
+SRR5153078;null;1;PRJNA318002;SAMN06209888;BI;Mycobacterium tuberculosis 16-002558;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-002558
+SRR5153085;null;1;PRJNA318002;SAMN06209890;BI;Mycobacterium tuberculosis 16-003090;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-003090
+SRR5153086;null;1;PRJNA318002;SAMN06209889;BI;Mycobacterium tuberculosis 16-002490;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-002490
+SRR5153088;null;1;PRJNA318002;SAMN06209942;BI;Mycobacterium tuberculosis 15-009838;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009838
+SRR5153089;null;1;PRJNA318002;SAMN06209940;BI;Mycobacterium tuberculosis 15-001642;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-001642
+SRR5153094;null;1;PRJNA318002;SAMN06209948;BI;Mycobacterium tuberculosis 15-009113;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009113
+SRR5153095;null;1;PRJNA318002;SAMN06209944;BI;Mycobacterium tuberculosis 15-008049;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008049
+SRR5153214;null;1;PRJNA318002;SAMN06209955;BI;Mycobacterium tuberculosis 14-001345;2014;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;14-001345
+SRR5153216;null;1;PRJNA318002;SAMN06209957;BI;Mycobacterium tuberculosis 14-003997;2014;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;14-003997
+SRR5153217;null;1;PRJNA318002;SAMN06209956;BI;Mycobacterium tuberculosis 15-009482;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-009482
+SRR5153218;null;1;PRJNA318002;SAMN05789015;BI;Mycobacterium tuberculosis  G-100;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-100
+SRR5153219;null;1;PRJNA318002;SAMN06209958;BI;Mycobacterium tuberculosis 15-008501;2015;Georgia: Tbilisi;null;null;null;null;null;null;null;missing;15-008501
+SRR5153220;null;1;PRJNA318002;SAMN05789024;BI;Mycobacterium tuberculosis  G-108;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-108
+SRR5153228;null;1;PRJNA318002;SAMN05789026;BI;Mycobacterium tuberculosis  G-110;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-110
+SRR5153229;null;1;PRJNA318002;SAMN05789025;BI;Mycobacterium tuberculosis  G-109;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-109
+SRR5153230;null;1;PRJNA318002;SAMN05789032;BI;Mycobacterium tuberculosis  G-116;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-116
+SRR5153233;null;1;PRJNA318002;SAMN05789016;BI;Mycobacterium tuberculosis  G-101;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-101
+SRR5153242;null;1;PRJNA318002;SAMN05789035;BI;Mycobacterium tuberculosis  G-119;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-119
+SRR5153252;null;1;PRJNA318002;SAMN05789044;BI;Mycobacterium tuberculosis  G-040_S-1;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-040_S-1
+SRR5153257;null;1;PRJNA318002;SAMN05789037;BI;Mycobacterium tuberculosis  G-121;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-121
+SRR5153264;null;1;PRJNA318002;SAMN05789045;BI;Mycobacterium tuberculosis  G-057;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-057
+SRR5153269;null;1;PRJNA318002;SAMN05789052;BI;Mycobacterium tuberculosis  G-064;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-064
+SRR5153270;null;1;PRJNA318002;SAMN05789064;BI;Mycobacterium tuberculosis  G-074;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-074
+SRR5153274;null;1;PRJNA318002;SAMN05789062;BI;Mycobacterium tuberculosis  G-072;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-072
+SRR5153278;null;1;PRJNA318002;SAMN05789060;BI;Mycobacterium tuberculosis  G-070;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-070
+SRR5153303;null;1;PRJNA318002;SAMN05789068;BI;Mycobacterium tuberculosis  G-078;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-078
+SRR5153307;null;1;PRJNA318002;SAMN05789063;BI;Mycobacterium tuberculosis  G-073;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-073
+SRR5153309;null;1;PRJNA318002;SAMN05789065;BI;Mycobacterium tuberculosis  G-075;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-075
+SRR5153310;null;1;PRJNA318002;SAMN05789071;BI;Mycobacterium tuberculosis  G-080;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-080
+SRR5153313;null;1;PRJNA318002;SAMN05789079;BI;Mycobacterium tuberculosis  G-088;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-088
+SRR5153315;null;1;PRJNA318002;SAMN05789073;BI;Mycobacterium tuberculosis  G-082;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-082
+SRR5153316;null;1;PRJNA318002;SAMN05789074;BI;Mycobacterium tuberculosis  G-083;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-083
+SRR5153317;null;1;PRJNA318002;SAMN05789078;BI;Mycobacterium tuberculosis  G-087;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-087
+SRR5153318;null;1;PRJNA318002;SAMN05789087;BI;Mycobacterium tuberculosis  G-096;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-096
+SRR5153319;null;1;PRJNA318002;SAMN05789075;BI;Mycobacterium tuberculosis  G-084;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-084
+SRR5153320;null;1;PRJNA318002;SAMN05789081;BI;Mycobacterium tuberculosis  G-090;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-090
+SRR5153321;null;1;PRJNA318002;SAMN05789090;BI;Mycobacterium tuberculosis  G-099;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-099
+SRR5153322;null;1;PRJNA318002;SAMN05789076;BI;Mycobacterium tuberculosis  G-085;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-085
+SRR5153323;null;1;PRJNA318002;SAMN05789080;BI;Mycobacterium tuberculosis  G-089;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-089
+SRR5153325;null;1;PRJNA318002;SAMN05789077;BI;Mycobacterium tuberculosis  G-086;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-086
+SRR5153328;null;1;PRJNA318002;SAMN05789089;BI;Mycobacterium tuberculosis  G-098;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-098
+SRR5153329;null;1;PRJNA318002;SAMN05789084;BI;Mycobacterium tuberculosis  G-093;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-093
+SRR5153335;null;1;PRJNA318002;SAMN05789097;BI;Mycobacterium tuberculosis  G-123;2014;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-123
+SRR5153336;null;1;PRJNA318002;SAMN05789094;BI;Mycobacterium tuberculosis  G-129;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-129
+SRR5153595;null;1;PRJNA318002;SAMN05789102;BI;Mycobacterium tuberculosis  G-133;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-133
+SRR5153597;null;1;PRJNA318002;SAMN06209960;BI;Mycobacterium tuberculosis complex 15-019062;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-019062
+SRR5153598;null;1;PRJNA318002;SAMN06209962;BI;Mycobacterium tuberculosis complex 15-012871;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012871
+SRR5153599;null;1;PRJNA318002;SAMN06209969;BI;Mycobacterium tuberculosis complex 15-000767;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-000767
+SRR5153602;null;1;PRJNA318002;SAMN05789103;BI;Mycobacterium tuberculosis  G-137;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-137
+SRR5153604;null;1;PRJNA318002;SAMN06209964;BI;Mycobacterium tuberculosis complex 15-014054;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-014054
+SRR5153605;null;1;PRJNA318002;SAMN06209968;BI;Mycobacterium tuberculosis complex 15-018418;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-018418
+SRR5153608;null;1;PRJNA318002;SAMN06209965;BI;Mycobacterium tuberculosis complex 15-012566;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012566
+SRR5153610;null;1;PRJNA318002;SAMN06209971;BI;Mycobacterium tuberculosis complex 16-000766;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-000766
+SRR5153612;null;1;PRJNA318002;SAMN06209975;BI;Mycobacterium tuberculosis complex 15-017100;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017100
+SRR5153613;null;1;PRJNA318002;SAMN05789105;BI;Mycobacterium tuberculosis  G-139;2015;Georgia: Tbilisi;missing;null;null;null;null;missing;missing;missing;G-139
+SRR5153617;null;1;PRJNA318002;SAMN06209974;BI;Mycobacterium tuberculosis complex 15-013023;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013023
+SRR5153618;null;1;PRJNA318002;SAMN06209972;BI;Mycobacterium tuberculosis complex 15-014220;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-014220
+SRR5153620;null;1;PRJNA318002;SAMN06209976;BI;Mycobacterium tuberculosis complex 15-012244;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012244
+SRR5153622;null;1;PRJNA318002;SAMN06209978;BI;Mycobacterium tuberculosis complex 15-011595;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-011595
+SRR5153710;null;1;PRJNA318002;SAMN06209981;BI;Mycobacterium tuberculosis complex 15-017552;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017552
+SRR5153711;null;1;PRJNA318002;SAMN06209980;BI;Mycobacterium tuberculosis complex 16-003181;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-003181
+SRR5153713;null;1;PRJNA318002;SAMN06209984;BI;Mycobacterium tuberculosis complex 16-000761;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-000761
+SRR5153716;null;1;PRJNA318002;SAMN06209985;BI;Mycobacterium tuberculosis complex 15-017437;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-017437
+SRR5153719;null;1;PRJNA318002;SAMN06209986;BI;Mycobacterium tuberculosis complex 15-012220;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012220
+SRR5153721;null;1;PRJNA318002;SAMN06209988;BI;Mycobacterium tuberculosis complex 15-015533;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-015533
+SRR5153723;null;1;PRJNA318002;SAMN06209990;BI;Mycobacterium tuberculosis complex 15-012670;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012670
+SRR5153808;null;1;PRJNA318002;SAMN06210002;BI;Mycobacterium tuberculosis complex 16-000762;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-000762
+SRR5153809;null;1;PRJNA318002;SAMN06209994;BI;Mycobacterium tuberculosis complex 15-019726;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-019726
+SRR5153810;null;1;PRJNA318002;SAMN06209996;BI;Mycobacterium tuberculosis complex 16-002065;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-002065
+SRR5153811;null;1;PRJNA318002;SAMN06210001;BI;Mycobacterium tuberculosis complex 16-006793;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-006793
+SRR5153814;null;1;PRJNA318002;SAMN06210003;BI;Mycobacterium tuberculosis complex 15-012561;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-012561
+SRR5153815;null;1;PRJNA318002;SAMN06209998;BI;Mycobacterium tuberculosis complex 16-006349;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-006349
+SRR5153819;null;1;PRJNA318002;SAMN06210017;BI;Mycobacterium tuberculosis complex 13515;2015;Moldova;null;null;null;null;null;null;null;missing;13515
+SRR5153820;null;1;PRJNA318002;SAMN06209993;BI;Mycobacterium tuberculosis complex 16-000772;2016;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;16-000772
+SRR5153823;null;1;PRJNA318002;SAMN06210009;BI;Mycobacterium tuberculosis complex 16065;2015;Moldova;null;null;null;null;null;null;null;missing;16065
+SRR5153826;null;1;PRJNA318002;SAMN06210004;BI;Mycobacterium tuberculosis complex 15-013017;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-013017
+SRR5153829;null;1;PRJNA318002;SAMN06209999;BI;Mycobacterium tuberculosis complex 15-019213;2015;Azerbaijan: Baku;null;null;null;null;null;null;null;missing;15-019213
+SRR5153830;null;1;PRJNA318002;SAMN06210013;BI;Mycobacterium tuberculosis complex 13163;2015;Moldova;null;null;null;null;null;null;null;missing;13163
+SRR5153831;null;1;PRJNA318002;SAMN06210015;BI;Mycobacterium tuberculosis complex 11897;2015;Moldova;null;null;null;null;null;null;null;missing;11897
+SRR5153837;null;1;PRJNA318002;SAMN06210023;BI;Mycobacterium tuberculosis complex 12993;2015;Moldova;null;null;null;null;null;null;null;missing;12993
+SRR5153838;null;1;PRJNA318002;SAMN06210030;BI;Mycobacterium tuberculosis complex 12224;2015;Moldova;null;null;null;null;null;null;null;missing;12224
+SRR5153848;null;1;PRJNA318002;SAMN06210043;BI;Mycobacterium tuberculosis complex 16481;2015;Moldova;null;null;null;null;null;null;null;missing;16481
+SRR5153850;null;1;PRJNA318002;SAMN06210026;BI;Mycobacterium tuberculosis complex 2718;2015;Moldova;null;null;null;null;null;null;null;missing;2718
+SRR5153856;null;1;PRJNA318002;SAMN06210052;BI;Mycobacterium tuberculosis complex 9417;2016;Moldova;null;null;null;null;null;null;null;missing;9417
+SRR5153857;null;1;PRJNA318002;SAMN06210045;BI;Mycobacterium tuberculosis complex 19876;2015;Moldova;null;null;null;null;null;null;null;missing;19876
+SRR5153859;null;1;PRJNA318002;SAMN06210039;BI;Mycobacterium tuberculosis complex 8404;2015;Moldova;null;null;null;null;null;null;null;missing;8404
+SRR5153864;null;1;PRJNA318002;SAMN06210057;BI;Mycobacterium tuberculosis complex 13287;2016;Moldova;null;null;null;null;null;null;null;missing;13287
+SRR5153871;null;1;PRJNA318002;SAMN06210056;BI;Mycobacterium tuberculosis complex 12628;2016;Moldova;null;null;null;null;null;null;null;missing;12628
+SRR5153886;null;1;PRJNA318002;SAMN06210067;BI;Mycobacterium tuberculosis complex 12223;2016;Moldova;null;null;null;null;null;null;null;missing;12223
+SRR5153888;null;1;PRJNA318002;SAMN06210069;BI;Mycobacterium tuberculosis complex 12414;2015;Moldova;null;null;null;null;null;null;null;missing;12414
+SRR5153903;null;1;PRJNA318002;SAMN06210068;BI;Mycobacterium tuberculosis complex 18028;2015;Moldova;null;null;null;null;null;null;null;missing;18028
+SRR5153904;null;1;PRJNA318002;SAMN06210077;BI;Mycobacterium tuberculosis complex 22495;2015;Moldova;null;null;null;null;null;null;null;missing;22495
+SRR5153905;null;1;PRJNA318002;SAMN06210073;BI;Mycobacterium tuberculosis complex 6480;2009;Moldova;null;null;null;null;null;null;null;missing;6480
+SRR5153907;null;1;PRJNA318002;SAMN06210079;BI;Mycobacterium tuberculosis complex 18882;2015;Moldova;null;null;null;null;null;null;null;missing;18882
+SRR5153908;null;1;PRJNA318002;SAMN06210074;BI;Mycobacterium tuberculosis complex 12157;2016;Moldova;null;null;null;null;null;null;null;missing;12157
+SRR5153912;null;1;PRJNA318002;SAMN06210078;BI;Mycobacterium tuberculosis complex 14007;2015;Moldova;null;null;null;null;null;null;null;missing;14007
+SRR5153916;null;1;PRJNA318002;SAMN06210090;BI;Mycobacterium tuberculosis complex 21209;2015;Moldova;null;null;null;null;null;null;null;missing;21209
+SRR5153920;null;1;PRJNA318002;SAMN06210087;BI;Mycobacterium tuberculosis complex 7025;2016;Moldova;null;null;null;null;null;null;null;missing;7025
+SRR5153928;null;1;PRJNA318002;SAMN06210094;BI;Mycobacterium tuberculosis complex 15077;2015;Moldova;null;null;null;null;null;null;null;missing;15077
+SRR5153929;null;1;PRJNA318002;SAMN06210097;BI;Mycobacterium tuberculosis complex 15201;2015;Moldova;null;null;null;null;null;null;null;missing;15201
+SRR5306022;null;1;PRJNA360308;SAMN06463364;null;6075;2016;Myanmar: Yangon;null;null;null;null;null;null;null;null;6075
+SRR5314268;null;1;PRJNA378222;SAMN06481156;null;MTB-04;01-December-2011;India: Andaman;24 years;null;null;null;null;null;null;Clinical isolate from Pulmonary tuberculosis patient;microbial
+SRR5314269;null;1;PRJNA378222;SAMN06481155;null;MTB-03;01-May-2013;India: Tamil Nadu;46 years;null;null;null;null;null;null;Clinical isolate from Pulmonary tuberculosis patient;microbial
+SRR5314271;null;1;PRJNA378222;SAMN06481153;null;MTB-01;28-May-2011;India: Tamil Nadu;71 years;null;null;null;null;null;null;Clinical isolate from Pulmonary tuberculosis patient;microbial
+SRR5341196;null;1;PRJNA376471;SAMN06473221;null;OU85-FMRHH46;2014-08-12 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_72;null
+SRR5341209;null;1;PRJNA376471;SAMN06473208;null;OU69-FMRHH27;2014-07-08 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_59;null
+SRR5341210;null;1;PRJNA376471;SAMN06473207;null;OU68-FMRHH25;2014-07-05 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_58;null
+SRR5341213;null;1;PRJNA376471;SAMN06473204;null;OU65-FMRHH21;2014-07-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_55;null
+SRR5341216;null;1;PRJNA376471;SAMN06473201;null;OU62-FMRHH17;2014-07-18 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_52;null
+SRR5341218;null;1;PRJNA376471;SAMN06473199;null;OU59-FMR370F;2006-01-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_50;null
+SRR5341223;null;1;PRJNA376471;SAMN06473194;null;OU51-FMR206;01-Mar-2005;India:Mumbai;null;null;null;null;null;null;null;isolate_45;null
+SRR5341227;null;1;PRJNA376471;SAMN06473190;null;OU47-FMR188;01-Mar-2005;India:Mumbai;null;null;null;null;null;null;null;isolate_41;null
+SRR5341235;null;1;PRJNA376471;SAMN06473182;null;OU39-FMR195;23-Mar-2005;India:Mumbai;null;null;null;null;null;null;null;isolate_33;null
+SRR5341238;null;1;PRJNA376471;SAMN06473179;null;OU35-FMRHH6;2014-07-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_30;null
+SRR5341243;null;1;PRJNA376471;SAMN06473174;null;OU30-FMR163;2005-02-22 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_25;null
+SRR5341244;null;1;PRJNA376471;SAMN06473173;null;OU29-FMR157;2005-02-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_24;null
+SRR5341247;null;1;PRJNA376471;SAMN06473170;null;OU26-FMR46;01-May-2005;India:Mumbai;null;null;null;null;null;null;null;isolate_21;null
+SRR5341251;null;1;PRJNA376471;SAMN06473166;null;OU20-FMR332;2005-09-06 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_17;null
+SRR5341252;null;1;PRJNA376471;SAMN06473165;null;OU18-FMR64;2004-09-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_16;null
+SRR5341253;null;1;PRJNA376471;SAMN06473164;null;OU17-FMR346;2005-09-20 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_15;null
+SRR5341257;null;1;PRJNA376471;SAMN06473160;null;OU13-FMR310;2005-07-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_11;null
+SRR5341264;null;1;PRJNA376471;SAMN06473153;null;OU05-FMRHH4;2014-07-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_4;null
+SRR5341266;null;1;PRJNA376471;SAMN06473151;null;OU03-FMR814;2006-11-01 0:00:00;India:Mumbai;null;null;null;null;null;null;null;isolate_2;null
+SRR5486867;null;1;PRJNA384815;SAMN06849018;null;Romania_18106;2016-08-27 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_18106
+SRR5486868;null;1;PRJNA384815;SAMN06849049;null;Romania_3516B;2016-02-16 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_3516B
+SRR5486870;null;1;PRJNA384815;SAMN06849025;null;Romania_24915A;14-Dec-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_24915A
+SRR5486872;null;1;PRJNA384815;SAMN06849019;null;Romania_21025B;12-Oct-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_21025B
+SRR5486873;null;1;PRJNA384815;SAMN06849023;null;Romania_20590B;05-Oct-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_20590B
+SRR5486874;null;1;PRJNA384815;SAMN06849028;null;Romania_19477A;2015-09-17 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_19477A
+SRR5486876;null;1;PRJNA384815;SAMN06849041;null;Romania_1615A;2016-01-22 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_1615A
+SRR5486877;null;1;PRJNA384815;SAMN06849026;null;Romania_23174A;2015-11-09 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_23174A
+SRR5486878;null;1;PRJNA384815;SAMN06849024;null;Romania_20979B;09-Oct-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_20979B
+SRR5486880;null;1;PRJNA384815;SAMN06849012;null;Romania_18148B;2015-08-27 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_18148B
+SRR5486881;null;1;PRJNA384815;SAMN06849045;null;Romania_20454B;01-Oct-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_20454B
+SRR5486882;null;1;PRJNA384815;SAMN06849014;null;Romania_17698A;2015-08-19 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_17698A
+SRR5486886;null;1;PRJNA384815;SAMN06849042;null;Romania_1616A;2016-01-22 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_1616A
+SRR5486887;null;1;PRJNA384815;SAMN06849015;null;Romania_17794A;2015-08-20 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_17794A
+SRR5486888;null;1;PRJNA384815;SAMN06849020;null;Romania_19968A;2015-09-24 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_19968A
+SRR5486890;null;1;PRJNA384815;SAMN06849046;null;Romania_22845;2015-11-04 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_22845
+SRR5486892;null;1;PRJNA384815;SAMN06849022;null;Romania_7605A;30-Mar-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_7605A
+SRR5486893;null;1;PRJNA384815;SAMN06849044;null;Romania_942;2016-01-15 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_942
+SRR5486896;null;1;PRJNA384815;SAMN06849021;null;Romania_19609;2015-09-21 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_19609
+SRR5486898;null;1;PRJNA384815;SAMN06849048;null;Romania_1309;2015-01-20 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_1309
+SRR5486899;null;1;PRJNA384815;SAMN06849039;null;Romania_4578A;2016-02-29 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_4578A
+SRR5486901;null;1;PRJNA384815;SAMN06849036;null;Romania_14441B;2015-06-29 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_14441B
+SRR5486902;null;1;PRJNA384815;SAMN06849016;null;Romania_21085;13-Oct-2015;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_21085
+SRR5486904;null;1;PRJNA384815;SAMN06849047;null;Romania_19399A;2015-09-16 0:00:00;Romania:Bucuresti;null;null;null;null;null;null;null;missing;Romania_19399A
+SRR5535684;null;1;PRJNA300846;SAMN04276767;BI;G04034;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04034
+SRR5535691;null;1;PRJNA300846;SAMN04276785;BI;G04036;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G04036
+SRR5535694;null;1;PRJNA300846;SAMN04276684;BI;G04321;missing;Thailand;missing;null;null;null;null;missing;missing;missing;G04321
+SRR5535696;null;1;PRJNA300846;SAMN04521938;BI;G05010;missing;Peru;missing;null;null;null;null;missing;missing;missing;G05010
+SRR5535708;null;1;PRJNA300846;SAMN04522000;BI;G05030;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05030
+SRR5535719;null;1;PRJNA300846;SAMN06251197;BI;G04320;missing;Thailand;missing;null;null;null;null;missing;missing;missing;G04320
+SRR5535723;null;1;PRJNA300846;SAMN04522001;BI;G05031;missing;Cote dIvoire;missing;null;null;null;null;missing;missing;missing;G05031
+SRR5535785;null;1;PRJNA300846;SAMN06251226;BI;G07409;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07409
+SRR5535808;null;1;PRJNA300846;SAMN06251221;BI;G07410;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07410
+SRR5535825;null;1;PRJNA300846;SAMN06251248;BI;G07492;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07492
+SRR5535829;null;1;PRJNA300846;SAMN06251241;BI;G07431;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07431
+SRR5535831;null;1;PRJNA300846;SAMN06251236;BI;G07436;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07436
+SRR5535834;null;1;PRJNA300846;SAMN06251240;BI;G07491;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07491
+SRR5535854;null;1;PRJNA300846;SAMN06251247;BI;G07430;missing;Nigeria;missing;null;null;null;null;missing;missing;missing;G07430
+SRR5535862;null;1;PRJNA300846;SAMN06251255;BI;G07411;missing;Democratic Republic of the Congo;missing;null;null;null;null;missing;missing;missing;G07411
+SRR5535930;null;1;PRJNA300846;SAMN06251286;BI;G08363;missing;Botswana;missing;null;null;null;null;missing;missing;missing;G08363
+SRR5818574;null;1;PRJNA393924;SAMN07344606;null;121_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate18;null
+SRR5818577;null;1;PRJNA393924;SAMN07344603;null;118_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate15;null
+SRR5818579;null;1;PRJNA393924;SAMN07344608;null;122_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate20;null
+SRR5818580;null;1;PRJNA393924;SAMN07344607;null;122_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate19;null
+SRR5818595;null;1;PRJNA393924;SAMN07344701;null;74_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate113;null
+SRR5818601;null;1;PRJNA393924;SAMN07344707;null;81_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate119;null
+SRR5818602;null;1;PRJNA393924;SAMN07344600;null;111_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate12;null
+SRR5818615;null;1;PRJNA393924;SAMN07344620;null;134_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate32;null
+SRR5818618;null;1;PRJNA393924;SAMN07344621;null;135_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate33;null
+SRR5818620;null;1;PRJNA393924;SAMN07344623;null;137_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate35;null
+SRR5818633;null;1;PRJNA393924;SAMN07344617;null;131_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate29;null
+SRR5818634;null;1;PRJNA393924;SAMN07344618;null;132_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate30;null
+SRR5818635;null;1;PRJNA393924;SAMN07344611;null;125_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate23;null
+SRR5818639;null;1;PRJNA393924;SAMN07344615;null;129_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate27;null
+SRR5818641;null;1;PRJNA393924;SAMN07344613;null;127_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate25;null
+SRR5818642;null;1;PRJNA393924;SAMN07344614;null;128_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate26;null
+SRR5818674;null;1;PRJNA393924;SAMN07344718;null;89_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate130;null
+SRR5818682;null;1;PRJNA393924;SAMN07344716;null;87_2016;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate128;null
+SRR5818699;null;1;PRJNA393924;SAMN07344722;null;93_2015;2014/2015;Djibouti;null;null;null;null;null;null;null;Clinical isolate134;null
+SRR5894881;null;1;PRJNA395592;SAMN07411329;null;Mtb13476;2013;China: Jilin;null;null;null;null;null;null;null;null;13476
+SRR5894882;null;1;PRJNA395592;SAMN07411206;null;Mtb12657;2013;China: Hebei;null;null;null;null;null;null;null;null;12657
+SRR5894883;null;1;PRJNA395592;SAMN07411132;null;Mtb10601;2012;China: Shanxi;null;null;null;null;null;null;null;null;10601
+SRR5894884;null;1;PRJNA395592;SAMN07411131;null;Mtb10149;2012;China: Gansu;null;null;null;null;null;null;null;null;10149
+SRR5894885;null;1;PRJNA395592;SAMN07411331;null;Mtb16833;2014;China: Beijing;null;null;null;null;null;null;null;null;16833
+SRR5894886;null;1;PRJNA395592;SAMN07411330;null;Mtb11873;2013;China: Beijing;null;null;null;null;null;null;null;null;11873
+SRR6152800;null;1;PRJNA413593;SAMN07766246;null;BC11-Mtb232;2011;Canada: British Columbia;null;null;null;null;null;null;null;BC11-Mtb232;null
+SRR6152899;null;1;PRJNA413593;SAMN07765985;null;BC07-Mtb097;2007;Canada: British Columbia;null;null;null;null;null;null;null;BC07-Mtb097;null
+10962-13;1;102;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3125-13;1;102;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5366-12;1;102;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1296-12;5;30;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11883-13;8;18;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+13344-13;8;18;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1244-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12466-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12487-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3007-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4245-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5887-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6764-13;12;9;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12103-13;21;6;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4153-13;22;5;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8017-13;22;5;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5190-13;33;4;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+304-13;50;3;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10896-12;51;3;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5871-12;51;3;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6364-12;51;3;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8565-12;52;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10346-12;105;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12016-13;110;2;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+833-12;113;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10655-12;123;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+134-13;123;2;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10926-12;124;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11460-12;124;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1571-12;125;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3617-12;125;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+253-12;126;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+254-12;126;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2955-12;127;2;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4305-13;127;2;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10162-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10284-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10428-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10490-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10505-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10743-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10759-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+10840-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11132-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11250-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11355-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11686-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11960-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+11987-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12009-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12017-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12018-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12041-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12471-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12510-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1298-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+13432-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+13739-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+13898-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+14102-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+14217-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+14489-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1560-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1635-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+1725-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2065-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2135-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2303-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2378-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2636-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2709-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2718-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+2823-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3106-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3116-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3201-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3290-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3413-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+3593-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4038-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4345-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4517-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4556-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4563-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4751-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+479-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4798-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4839-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4893-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+4960-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5033-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5096-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5158-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+521-14;null;1;NA;NA;NA;NA;2014;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5271-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5439-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+565-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5667-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+5675-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6089-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6316-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6360-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6760-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+6934-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+72-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+7604-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+7712-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+7854-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+7977-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+7984-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8291-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8300-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8305-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8347-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+871-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+8847-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+886-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9082-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9165-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9354-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9468-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9498-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9505-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9508-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9653-12;null;1;NA;NA;NA;NA;2012;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9771-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9776-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9777-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9926-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9927-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA
+999-13;null;1;NA;NA;NA;NA;2013;Germany;NA;NA;NA;NA;NA;NA;NA;NA;NA

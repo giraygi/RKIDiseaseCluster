@@ -1,0 +1,1232 @@
+package dtn.cluster;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
+import org.neo4j.driver.v1.AuthTokens;
+import org.neo4j.driver.v1.Driver;
+import org.neo4j.driver.v1.GraphDatabase;
+import org.neo4j.driver.v1.Record;
+import org.neo4j.driver.v1.Session;
+import org.neo4j.driver.v1.StatementResult;
+import org.neo4j.driver.v1.summary.ResultSummary;
+import org.neo4j.driver.v1.types.Entity;
+import org.neo4j.driver.v1.types.Node;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
+import org.neo4j.helpers.TransactionTemplate;
+
+public class DiseaseCluster {
+	
+	/**
+	 * @param args
+	 */
+	
+	static GraphDatabaseService graphDb;
+	static String databaseAddress;
+	FileReader fr;
+	BufferedReader br;
+	FileWriter fw;
+	BufferedWriter bw;
+	static Driver driver;
+	Session session;
+	double maxDistance= 0.0;
+	double averageDistance = 0.0;
+	double minDistance = 0.0;
+	int numberOfSimilarityLinks = 0;
+	int numberOfCloserLinks = 0;
+	int numberOfNodePairsWithBothSimilarityAndCommonAnnotations = 0;
+	int noofAligners;
+	MetaData md;
+	
+	
+	
+	public DiseaseCluster(int noofAligners, String args, int toleranceLimitForUnimprovedAligners,int toleranceCycleForUnimprovedAligners){
+		this.noofAligners = noofAligners;
+		this.init(args);
+		md  = new MetaData(20);
+	}
+	
+	public void init(String args){
+
+//		@SuppressWarnings("unused")
+		GraphDatabaseService graphDb = new GraphDatabaseFactory()
+                .newEmbeddedDatabase( new File("~/"+args) );
+		DiseaseCluster.graphDb = graphDb;
+		driver = GraphDatabase.driver( "bolt://localhost:7688", AuthTokens.basic( "neo4j", "evet" ) );
+		session = driver.session();
+	}
+	
+	public void createGraph(String isolates, String distances, String resistances){
+		
+		try ( org.neo4j.driver.v1.Transaction setConstraints = session.beginTransaction() ){
+			setConstraints.run("CREATE CONSTRAINT ON (n:Patient) ASSERT n.Isolate_ID IS UNIQUE");
+			setConstraints.success();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		String line;
+		String[] isolateInfo;
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			 
+			fr = new FileReader(isolates); 
+			br = new BufferedReader(fr); 
+			line = null;
+			isolateInfo = null;
+			while((line = br.readLine())!=null)
+			{ 
+				isolateInfo = line.split(";");
+				System.out.println(isolateInfo[0]);
+				tx.run("CREATE (a:Patient {Isolate_ID: '"+isolateInfo[0]+"', Previous_Cluster_ID: "+isolateInfo[1]+", BioProject: '"+isolateInfo[3]+"', BioSample: '"+isolateInfo[4]+"', Sequencing_Institution: '"+isolateInfo[5]+"', Sample_Name: '"+isolateInfo[6]+"', Isolation_Date: '"+isolateInfo[7]+"', Isolation_Country: '"+isolateInfo[8]+"', Host_Age: '"+isolateInfo[9]+"', host_anti_retroviral_status: '"+isolateInfo[10]+"', host_hiv_status: '"+isolateInfo[11]+"', host_hiv_status_diagnosis_postmortem: '"+isolateInfo[12]+"', host_location_sampled: '"+isolateInfo[13]+"', patient_gender: '"+isolateInfo[14]+"', host_subject: '"+isolateInfo[15]+"', isolate_name: '"+isolateInfo[16]+"', strain: '"+isolateInfo[17]+"', power2: 0, power3: 0, power4: 0, pos:[],ref:[],alt:[],drug_resistance:[],multidrug_resistance:'NA'})");
+			}
+			fr = new FileReader(distances);
+			br =  new BufferedReader(fr); 
+			line = null;
+			String[] distanceInfo = null;
+			System.out.println("Patients are created.");
+			double weight = 0.0;
+			String from;
+			String to;
+			while((line = br.readLine())!=null)
+			{ 
+				distanceInfo = line.split("\t");
+				weight = Double.parseDouble(distanceInfo[2]) != 0.0 ? 1/Double.parseDouble(distanceInfo[2]) : 1;
+				
+				
+				if (distanceInfo[0].charAt(0) == 'X') {		
+					from = distanceInfo[0].substring(1, distanceInfo[0].split("_")[0].length()).replace('.', '-');
+					System.out.println(from);
+				} else
+					from = distanceInfo[0];
+				
+				
+				if (distanceInfo[1].charAt(0) == 'X') {		
+					to = distanceInfo[1].substring(1, distanceInfo[1].split("_")[0].length()).replace('.', '-');
+					System.out.println(to);
+				} else
+					to = distanceInfo[1];
+					
+				
+				tx.run("match (n:Patient {Isolate_ID: '"+from+"'}), (m:Patient {Isolate_ID: '"+to+"'}) create (n)-[:TRANSMITS {distance: "+Double.parseDouble(distanceInfo[2])+",weight: "+weight+"}]->(m) ");
+
+			}
+			System.out.println("Distances are created.");	
+			
+			fr = new FileReader(resistances);
+			br =  new BufferedReader(fr); 
+			line = null;
+			String[] resistanceInfo;
+			
+			br.readLine();
+			while((line = br.readLine())!=null)
+			{ 
+				resistanceInfo = line.split(",");
+				System.out.println(resistanceInfo[0]+" - "+resistanceInfo[5]);
+				tx.run("MATCH (n:Patient {Isolate_ID: '"+resistanceInfo[0]+"'}) SET n.pos = n.pos +  "+resistanceInfo[1]+",n.ref = n.ref + '"+resistanceInfo[2]+"',n.alt = n.alt + '"+resistanceInfo[3]+"', n.drug_resistance = n.drug_resistance + '"+resistanceInfo[4]+"',n.multidrug_resistance = '"+resistanceInfo[5]+"' return (n)");
+			}
+			
+			System.out.println("Resistances are created.");	
+			
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			System.out.println("Could not create isolates, distances and resistances");
+			e.printStackTrace();
+		} 
+		
+	}
+	
+	public void computeMetaData() {
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			StatementResult result;
+			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return max(t.distance)");
+			maxDistance = Double.parseDouble(result.single().get("max(t.distance)").toString());
+			System.out.println("Maximum Distance: "+maxDistance);
+			
+			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return avg(t.distance)");
+			averageDistance = Double.parseDouble(result.single().get("avg(t.distance)").toString());
+			System.out.println("Average Distance: "+averageDistance);
+			
+			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return min(t.distance)");
+			minDistance = Double.parseDouble(result.single().get("min(t.distance)").toString());
+			System.out.println("Minimum Distance: "+minDistance);
+			
+			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return count(t)");
+			numberOfSimilarityLinks = Integer.parseInt(result.single().get("count(t.similarity)").toString());
+			System.out.println("Number of Similarity Links: "+numberOfSimilarityLinks);
+			
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			System.err.println("Could not create metadata::: "+e.getMessage());
+		}
+		this.numberOfCloserLinks = this.countEdgesBelowDistance(averageDistance);
+		System.out.println("Number of Closer Links: "+this.numberOfCloserLinks);
+
+	}
+	
+	public void computeDistanceMetaData() {
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			StatementResult result;	
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {	
+				result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")");
+				md.distance[i] = Double.parseDouble(result.single().get("percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Similarity "+md.distance[i] );
+			}
+			
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+	}
+	
+	public void computePowerMetaData() {
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			StatementResult result;
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.power2,"+(i+1)/md.noofPercentileSteps+")");
+				md.Power2[i] = Double.parseDouble(result.single().get("percentileCont(p.power2,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Power2: "+md.Power2[i] );
+			}
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.power3,"+(i+1)/md.noofPercentileSteps+")");
+				md.Power3[i] = Double.parseDouble(result.single().get("percentileCont(p.power3,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Power3: "+md.Power3[i] );
+			}
+			
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.power4,"+(i+1)/md.noofPercentileSteps+")");
+				md.Power4[i] = Double.parseDouble(result.single().get("percentileCont(p.power4,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Power4: "+md.Power4[i] );
+			}
+			
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void computeCentralityMetaData() {
+		
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			StatementResult result;
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.pagerank,"+(i+1)/md.noofPercentileSteps+")");
+				md.Pagerank[i] = Double.parseDouble(result.single().get("percentileCont(p.pagerank,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Pagerank: "+md.Pagerank[i] );
+			}
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.betweenness,"+(i+1)/md.noofPercentileSteps+")");
+				md.Betweenness[i] = Double.parseDouble(result.single().get("percentileCont(p.betweenness,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Betweenness: "+md.Betweenness[i] );
+			}
+			
+			
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.closeness,"+(i+1)/md.noofPercentileSteps+")");
+				md.Closeness[i] = Double.parseDouble(result.single().get("percentileCont(p.closeness,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Closeness: "+md.Closeness[i] );
+			}
+			for (int i = 0;i<md.noofPercentileSteps;i++) {
+				result = tx.run( "match (p:Patient) return percentileCont(p.harmonic,"+(i+1)/md.noofPercentileSteps+")");
+				md.Harmonic[i] = Double.parseDouble(result.single().get("percentileCont(p.harmonic,"+(i+1)/md.noofPercentileSteps+")").toString());
+				System.out.println(i+". Harmonic: "+md.Harmonic[i] );
+			}
+			
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void computeDrugResistanceMetaData() {
+		
+	}
+	
+	public int computeOrderOfClusterForGivenAverageFactor(ArrayList<ClusterSimilarity> cs, double averageFactor){
+		double sum = 0.0;
+		for (int i = 0;i<cs.size();i++) {
+				sum+=cs.get(i).similarity;
+		}
+		
+		double average = sum/cs.size();
+		double aggregateAverage = average*averageFactor;
+		
+		for (int i = 0;i<cs.size();i++) {
+		if	((cs.get(i).similarity)<aggregateAverage) {
+			return i;
+		}	
+	}	
+		return 0;
+	}
+	
+	
+	public void computePowers(){
+		boolean error = false;
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient) with (n),count(n) as connections set n.power2 = connections");
+			tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient)-[i2:TRANSMITS]-(o:Patient)-[i3:TRANSMITS]-(n) with (n),count(n) as connections set n.power3 = connections");
+			tx.run("match (a:Patient)-[r1:TRANSMITS]-(b:Patient)-[r2:TRANSMITS]-(c:Patient)-[r3:TRANSMITS]-(a:Patient),(c:Patient)-[r4:TRANSMITS]-(d:Patient)-[r5:TRANSMITS]-(a:Patient),(d:Patient)-[r6:TRANSMITS]-(b:Patient) with (a),count(a) as connections set a.power4 = connections");
+			System.out.println("Powers are computed for all Nodes");      
+			tx.success(); tx.close();
+		} catch (Exception e){
+			error = true;
+			e.printStackTrace();
+		} finally {
+			if(!error)
+				System.out.println("Powers are computed for all Nodes"); 
+		}
+	}
+	
+	public void computePageRank(int iterations, double dampingFactor) {
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("CALL algo.pageRank('Patient', 'TRANSMITS',\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank', weightProperty: 'weight',defaultValue:0.0})\n" + 
+					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
+		     System.out.println("Page Rank Values are computed for all Nodes"); 
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void computeEigenVector(int iterations, double dampingFactor){
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("CALL algo.eigenvector('Patient', 'TRANSMITS',\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector', weightProperty: 'weight',defaultValue:0.0})\n" + 
+					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
+		     System.out.println("Eigen Vector Values are computed for all Nodes"); 
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void computeArticleRank(int iterations, double dampingFactor){
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("CALL algo.articleRank('Patient', 'TRANSMITS',\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank', weightProperty: 'weight',defaultValue:0.0})\n" + 
+					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
+		     System.out.println("Article Rank Values are computed for all Nodes"); 
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void computeDegreeCentrality(int iterations, double dampingFactor){
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("CALL algo.degree('Patient', 'TRANSMITS',\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree', weightProperty: 'weight',defaultValue:0.0})\n" + 
+					"YIELD nodes, loadMillis, computeMillis, writeMillis, write, writeProperty");
+		     System.out.println("Degree Centrality Values are computed for all Nodes"); 
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	// Proteinler arası İlişkilerin yönleri bir şey ifade etmediği için direction özelliği "both" olarak seçilmiştir. Yön bilgisi anlamlı olsaydı "in" ya da "out" olarak da seçilebilirdi. 
+	public void computeBetweennessCentrality() {
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			
+			tx.run("CALL algo.betweenness('Patient','TRANSMITS', {direction:'both',write:true, writeProperty:'betweenness',weightProperty:'weight',defaultValue:0.0})\n" + 
+					"YIELD nodes, minCentrality, maxCentrality, sumCentrality, loadMillis, computeMillis, writeMillis;");
+			System.out.println("Betweenness Centrality Values are computed for all Nodes");  
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	// Sadece bu sürümünde weight olabiliyormuş?
+	public void computeClosenessCentrality() {
+			
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("CALL algo.closeness(\n" + 
+					"  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
+					"  'MATCH (p1:Patient)-[:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target',\n" + 
+					"  {graph:'cypher', write: true, writeProperty:'closeness',weightProperty: 'weight',defaultValue:0.0}\n" + 
+					");");
+			System.out.println("Closeness Centrality Values are computed for all Nodes");   
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	// Bu en doğru
+	public void computeCloseness2Centrality() {
+		
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+		tx.run("CALL algo.closeness('Patient', 'TRANSMITS', {direction:'both',write:true,writeProperty:'closeness2',weightProperty:'weight',defaultValue:0.0})\n" + 
+				"	YIELD nodes,loadMillis, computeMillis, writeMillis;");
+		System.out.println("Closeness3 Centrality Values are computed");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+
+	public void computeHarmonicCentrality() {
+		
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+		tx.run("CALL algo.closeness.harmonic('Patient', 'TRANSMITS', {write:true,writeProperty:'harmonic',weightProperty:'weight',defaultValue:0.0})\n" + 
+				"	YIELD nodes,loadMillis, computeMillis, writeMillis;");
+		System.out.println("Harmonic Centrality Values are computed");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+	
+public void computeLouvainCommunities() {
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+		tx.run("CALL algo.louvain(\n" + 
+				"			  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
+				"			  'MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient)\n" + 
+				"			   RETURN id(p1) as source, id(p2) as target, f.weight as weight',\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, graph:'cypher',write:true,writeProperty:'louvain'})");
+		System.out.println("Louvain Communities are computed");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+
+public void computeLabelPropagationCommunities(int iterations) {
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		tx.run("CALL algo.labelPropagation('Patient', 'TRANSMITS','BOTH',\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'labelpropagation', write:true})\n" + 
+				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
+		System.out.println("Label Propagation Communities are computed");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+}
+
+public void computeLabelPropagationCommunities2(String propertyName,int iterations) {
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		tx.run("CALL algo.labelPropagation('Patient', 'TRANSMITS','BOTH',\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+"', write:true})\n" + 
+				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
+		System.out.println("Label Propagation Communities are computed");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+}
+
+public int computeUnionFind(String unionName) {
+	Session clccs = driver.session();
+	StatementResult result;
+	int count = 0;
+	try ( org.neo4j.driver.v1.Transaction computeLCCS = clccs.beginTransaction() )
+    {
+		computeLCCS.run("CALL algo.unionFind('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
+		result = computeLCCS.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
+		count = Integer.parseInt(result.single().get("clustersize").toString());	
+		computeLCCS.success();
+		computeLCCS.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      } finally {clccs.close();}
+	return count;
+}
+
+public int computeSCC(String unionName) {
+	Session clccs = driver.session();
+	StatementResult result;
+	int count = 0;
+	try ( org.neo4j.driver.v1.Transaction computeLCCS = clccs.beginTransaction() )
+    {
+		computeLCCS.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
+		result = computeLCCS.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
+		count = Integer.parseInt(result.single().get("clustersize").toString());	
+		computeLCCS.success();
+		computeLCCS.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      } finally {clccs.close();}
+	return count;
+}
+
+public ArrayList<ArrayList<Entity>> transmissionBetweenCountries(double levenshteinSimilarity) {
+				
+	StatementResult result;		
+	ArrayList<ArrayList<Entity>> records = new ArrayList<ArrayList<Entity>>();
+	ArrayList<Entity> record = new ArrayList<Entity>();
+			
+			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+			{	
+				result = tx.run("match (n:Patient)-[t:TRANSMITS]->(m:Patient) where apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" return n,m,t order by t.distance desc");
+
+				while(result.hasNext()){
+					Record row = result.next();
+					record.clear();
+					for ( Entry<String,Object> column : row.asMap().entrySet() ){
+						if(column.getValue()!=null)
+							switch (column.getKey()) {
+							case "n":
+								record.add(0,row.get( column.getKey() ).asNode());
+								break;
+							case "m":
+								record.add(1,row.get( column.getKey() ).asNode());
+								break;
+							case "t":
+								record.add(2,row.get( column.getKey() ).asRelationship());
+								break;
+							default:
+								System.out.println("Unexpected column"+column.getKey());
+								break;
+							}
+						}
+					records.add(new ArrayList<Entity>(record));
+					}
+				
+				System.out.println("Transmission Between Countries are computed");  
+				tx.success(); tx.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		return records;	
+			// ALmanya içeren 3 lüler
+			// match (o:Patient)-[t2:TRANSMITS]-(n:Patient)-[t1:TRANSMITS]-(m:Patient) where (n.Isolation_Country = 'Germany' or m.Isolation_Country = 'Germany' or o.Isolation_Country = 'Germany') and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < 0.4 and apoc.text.levenshteinSimilarity(n.Isolation_Country,o.Isolation_Country) < 0.4 return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
+}
+
+public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, double levenshteinSimilarity) {
+	
+	StatementResult result;	
+	ArrayList<ArrayList<Entity>> records = new ArrayList<ArrayList<Entity>>();
+	ArrayList<Entity> record = new ArrayList<Entity>();
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient)-[t1:TRANSMITS]-(p:Patient)-[t2:TRANSMITS]-(q:Patient)-[t3:TRANSMITS]-(o) where apoc.text.levenshteinSimilarity(o.Isolation_Country,"+country+") > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity(p.Isolation_Country,"+country+") > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity(q.Isolation_Country,"+country+") > "+levenshteinSimilarity+" return o,t1,p,t2,q,t3 order by t1.distance+t2.distance+t3.distance");
+
+		while(result.hasNext()){
+			Record row = result.next();
+			record.clear();
+			for ( Entry<String,Object> column : row.asMap().entrySet() ){
+				if(column.getValue()!=null)
+					switch (column.getKey()) {
+					case "o":
+						record.add(0,row.get( column.getKey() ).asNode());
+						break;
+					case "t1":
+						record.add(1,row.get( column.getKey() ).asRelationship());
+					break;
+					case "p":
+						record.add(2,row.get( column.getKey() ).asNode());
+						break;
+					case "t2":
+						record.add(3,row.get( column.getKey() ).asRelationship());
+					break;
+					case "q":
+						record.add(4,row.get( column.getKey() ).asNode());
+						break;
+					case "t3":
+						record.add(5,row.get( column.getKey() ).asRelationship());
+					break;
+				default:
+						System.out.println("Unexpected column"+column.getKey());
+						break;
+					}
+				}
+			records.add(new ArrayList<Entity>(record));
+			}
+		
+		System.out.println("Transmission Between Countries are computed");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	return records;
+	
+}
+
+public HashMap<String,Integer> computeSharedDrugResistanceWithinACluster(String clusterType,long clusterID) {
+	StatementResult result;	
+//	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
+	HashMap<String,Integer> records = new HashMap<String,Integer>();
+
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) where o."+clusterType+" = "+clusterID+" return o.drug_resistance");
+		System.out.println("returned");
+		while(result.hasNext()){
+			Record row = result.next();
+			for (Object key : row.get(0).asList()) {
+				String[] keys = ((String) key).split("_");
+				for (int i = 0;i<keys.length;i++) {
+//					if(!records.containsKey(keys[i]))
+//						records.put(keys[i], new ArrayList<Node>(Arrays.asList(row.get(1).asNode())));
+//					else
+						{
+//							ArrayList<Node> al = records.get(keys[i]);
+							int temp = records.get(keys[i]);
+							temp++;
+//							al.add(row.get(1).asNode());
+//							records.put(keys[i],al);
+							records.put(keys[i], temp);
+							System.out.println(keys[i]+ " - "+temp);
+						}
+				}
+					
+			}
+			}
+		for (Map.Entry<String,Integer> entry : records.entrySet())  {
+			 System.out.println("Key = " + entry.getKey() + 
+                     ", Value = "+ entry.getValue() + " Nodes"); 
+		}
+           
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return records;
+}
+
+public ArrayList<Node> sortCentralPatients(String centralityType) {
+	StatementResult result;	
+	ArrayList<Node> records = new ArrayList<Node>();
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) return o order by o."+centralityType+" desc");
+
+		while(result.hasNext()){
+			Record row = result.next();
+			records.add(row.get(0).asNode());
+			}
+		
+		System.out.println("Paients are sorted with respect to "+centralityType);  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	return records;
+}
+
+//clusterNo her bir organizmada hesaplanacak en büyük küme sayısıdır.
+
+public void computeClusterSimilarities(final String clusterType,int clusterNo) {
+	
+	double[] bitscoreSums = new double[(clusterNo*clusterNo)];
+	double[] commonGOSums = new double[(clusterNo*clusterNo)];;
+	int[] o1Clusters = new int[clusterNo];
+	int[] o2Clusters = new int[clusterNo];
+	int[] o1ClusterSizes = new int[clusterNo];
+	int[] o2ClusterSizes = new int[clusterNo];
+	StatementResult result = null;
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction();
+			BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+".clstr")))
+	{
+		result = tx.run("match (n:Patient) return distinct(n."+clusterType+") as clustertype,count(n) order by count(n) desc limit "+clusterNo+"");
+		int count = 0;
+		while(result.hasNext()){
+			Record row = result.next();
+			for ( Entry<String,Object> column : row.asMap().entrySet() ){
+				if(column.getValue()!=null)		
+					if (column.getKey().equals("clustertype"))
+						o1Clusters[count] = row.get( column.getKey() ).asInt();
+					else if (column.getKey().equals("count(n)"))
+						o1ClusterSizes[count] = row.get( column.getKey() ).asInt();
+			}
+			bw.write(o1Clusters[count]+" "+o1ClusterSizes[count]);
+			bw.newLine();
+			count++;
+		}
+		tx.success(); tx.close();
+		bw.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction();
+			BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+"2")) )
+	{
+		result = tx.run("match (n:Organism2) return distinct(n."+clusterType+") as clustertype,count(n) order by count(n) desc limit "+clusterNo+"");
+		int count = 0;
+		while(result.hasNext()){
+			Record row = result.next();
+			for ( Entry<String,Object> column : row.asMap().entrySet() ){
+				if(column.getValue()!=null)		
+					if (column.getKey().equals("clustertype"))
+						o2Clusters[count] = row.get( column.getKey() ).asInt();
+					else if (column.getKey().equals("count(n)"))
+						o2ClusterSizes[count] = row.get( column.getKey() ).asInt();
+			}
+			bw.write(o2Clusters[count]+" "+o2ClusterSizes[count]);
+			bw.newLine();
+			count++;
+		}
+		tx.success(); tx.close();
+		bw.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	//devamı uzun. Her kümenin biribiri ile toplam benzerlikleri bulup eleman sayılarına bölmek gerekiyor.
+	//alttakini döngüye sokcaz.
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+"BitScore"))){
+		for (int i = 0;i<clusterNo;i++)
+			for (int j = 0;j<clusterNo;j++)
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			result = tx.run("match (n:Organism2) <-[s:SIMILARITY]-(m:Organism1) where n."+clusterType+" = "+o2Clusters[j]+" and m."+clusterType+" = "+o1Clusters[i]+" return sum(s.similarity)");
+				bitscoreSums[i*clusterNo+j] = Double.parseDouble(result.single().get("sum(s.similarity)").toString())/(o1ClusterSizes[i]+o2ClusterSizes[j]);
+			bw.write(o1Clusters[i]+" "+o2Clusters[j]+" "+bitscoreSums[i*clusterNo+j] );
+			bw.newLine();
+			tx.success(); tx.close();
+			
+		} catch (Exception e){
+			bitscoreSums[i*clusterNo+j] = 0;
+			System.out.println(e.getMessage());
+		}
+		bw.close();
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+"commonGO")) ){
+		for (int i = 0;i<clusterNo;i++)
+			for (int j = 0;j<clusterNo;j++)
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			// Birer birer toplamak yerine sum(length(FILTER(x in n.annotations WHERE x in m.annotations))) kullanılabilir.
+			result = tx.run("match (n:Organism2),(m:Organism1) where n."+clusterType+" = "+o2Clusters[j]+" and m."+clusterType+" = "+o1Clusters[i]+" return sum(length(FILTER(x in n.annotations WHERE x in m.annotations)))");
+			
+			commonGOSums[i*clusterNo+j]  = Double.parseDouble(result.single().get("sum(length(FILTER(x in n.annotations WHERE x in m.annotations)))").toString())/(o1ClusterSizes[i]+o2ClusterSizes[j]);
+			bw.write(o1Clusters[i]+" "+o2Clusters[j]+" "+commonGOSums[i*clusterNo+j] );
+			bw.newLine();
+			tx.success(); tx.close();
+		} catch (Exception e){
+			commonGOSums[i*clusterNo+j] = 0;
+			System.out.println(e.getMessage());
+		}
+		bw.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}	
+	
+}
+// benchmark options: commonGO,  BitScore
+public ArrayList<ClusterSimilarity> sortSimilarClusters(String clusterType, String benchmark) {
+	
+	ArrayList<ClusterSimilarity> alcs = new ArrayList<ClusterSimilarity>();
+	
+	try {
+		fr = new FileReader(clusterType+benchmark);
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	br =  new BufferedReader(fr); 
+	String line = null;
+	String[] clusterPairWithSimilarity;
+	try {
+		while((line = br.readLine())!=null)
+		{
+			clusterPairWithSimilarity = line.split(" ");
+			alcs.add(new ClusterSimilarity(Long.parseLong(clusterPairWithSimilarity[0]),Long.parseLong(clusterPairWithSimilarity[1]),Double.parseDouble((clusterPairWithSimilarity[2]))));
+		}
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	Collections.sort(alcs, new Comparator<ClusterSimilarity>(){
+
+		@Override
+		public int compare(ClusterSimilarity arg0, ClusterSimilarity arg1) {
+			// TODO Auto-generated method stub
+			if (arg0.similarity<arg1.similarity)
+			return 1;
+			else if (arg0.similarity==arg1.similarity)
+				return 0;
+			else return -1;
+//			return (int) Math.ceil(arg1.similarity - arg0.similarity);
+		}
+		
+	});
+	System.out.println("Printing similarities of "+clusterType+" : "+benchmark);
+	for(ClusterSimilarity cs: alcs){
+		System.out.println(cs.similarity);
+   }
+	
+	return alcs;
+}
+		
+	public void deleteAllNodesRelationships(){
+		System.out.println("DELETING ALL");
+		
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+		      tx.run( "MATCH (n) DETACH DELETE n" );
+		      System.out.println("Previous data cleared");
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeAllTransmissions(){
+		
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+	    {
+			tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient) delete r");
+			System.out.println("Previous transmissions are deleted.");
+			tx.success(); tx.close();
+	    } catch (Exception e){
+	    	  e.printStackTrace();
+	      }
+
+	}
+	
+public void removeIdenticalTransmissions(boolean removeOlder){
+	System.out.println("removeIdenticalTransmissions");
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+    {
+		if(removeOlder)
+		tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient)<-[k:TRANSMITS]-(n:Patient) where r.Isolate_ID = k.Isolate_ID and r.isolate_name = k.isolate_name and id(r) < id(k) delete r");
+		else
+		tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient)<-[k:TRANSMITS]-(n:Patient) where r.Isolate_ID = k.Isolate_ID and r.isolate_name = k.isolate_name and id(r) >= id(k) delete r");
+		tx.success(); tx.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      }
+
+}
+
+
+/**
+ * Bir ağda düğümler arası uzaklığın belirli bir sayıdan küçük olduğu tüm kenarların sayısı
+ **/
+
+public int countEdgesBelowDistance(double distance){
+	int count = 0;
+	StatementResult result;
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction()  )
+	{
+		result = tx.run( "match (n:Patient)-[r:TRANSMITS]->(m:Patient) where r.distance <="+distance+" return count(r)");
+		count = Integer.parseInt(result.single().get("count(r)").toString());
+		//result.close();
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return count;
+}
+
+//Sıralı olması gerekiyordu !!!
+public ArrayList<PowerNode> findCentralNodes2( int limit){
+	StatementResult result;
+	ArrayList<PowerNode> nodes = new ArrayList<PowerNode>();
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+ {
+		result = tx.run("match (n:Patient)-[t:TRANSMITS]-(m:Patient) return (n),count(m) as connections order by connections desc limit "+limit+"");
+		Record record;
+		while(result.hasNext()){
+			record = result.next();
+			nodes.add(new PowerNode(record.get(0).asNode(),record.get(1).asInt()));
+			tx.success(); tx.close();
+		}
+ } catch (Exception e){
+ 	  e.printStackTrace();
+   }
+	return nodes;
+	
+}
+//match (n:Organism1)-[i:INTERACTS_1]-(m:Organism1)-[i2:INTERACTS_1]-(o:Organism1)-[i3:INTERACTS_1]-(n) with count(n) as connections set n.power = connections
+public ArrayList<PowerNode> findCentralNodes3(int limit){
+	StatementResult result;
+	ArrayList<PowerNode> nodes = new ArrayList<PowerNode>();
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+ {
+		result = tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient)-[i2:TRANSMITS]-(o:Patient)-[i3:TRANSMITS]-(n) return (n),count(i2) as connections order by connections desc limit "+limit+"");
+		Record record;
+		while(result.hasNext()){
+			record = result.next();
+			nodes.add(new PowerNode(record.get(0).asNode(),record.get(1).asInt()));
+		}
+		tx.success(); tx.close();
+ } catch (Exception e){
+ 	  e.printStackTrace();
+   }
+	return nodes;
+	
+}
+
+public ArrayList<PowerNode> findCentralNodes4( int limit){
+	StatementResult result;
+	ArrayList<PowerNode> nodes = new ArrayList<PowerNode>();
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+ {
+		result = tx.run("match (a:Patient)-[r1:TRANSMITS]-(b:Patient)-[r2:TRANSMITS]-(c:Patient)-[r3:TRANSMITS]-(a:Patient),(c:Patient)-[r4:TRANSMITS]-(d:Patient)-[r5:TRANSMITS]-(a:Patient),(d:Patient)-[r6:TRANSMITS]-(b:Patient) return a,count(a) as connections order by connections desc limit "+limit+"");
+		Record record;
+		while(result.hasNext()){
+			record = result.next();
+			nodes.add(new PowerNode(record.get(0).asNode(),record.get(1).asInt()));
+		}
+		tx.success(); tx.close();
+ } catch (Exception e){
+ 	  e.printStackTrace();
+   }
+	return nodes;
+	
+}
+
+public void markCluster(long clusterid, String clusterType, long markedQuery) {
+	
+	TransactionTemplate.Monitor tm = new TransactionTemplate.Monitor.Adapter();
+	tm.failure(new Throwable("Herkesin tuttuğu kendine"));
+	TransactionTemplate template = new TransactionTemplate(  ).retries( 1000 ).backoff( 5, TimeUnit.SECONDS ).monitor(tm);
+	boolean success = template.with(DiseaseCluster.graphDb).execute( transaction -> {
+		boolean uncaught = true;
+		ResultSummary rs = null;
+		Session markKGOTermsSession = DiseaseCluster.driver.session();
+		try{
+		rs =	markKGOTermsSession.run("match (n:Patient) where n."+clusterType+"="+clusterid+" "
+					+ "set n.markedQuery = case when not ANY(x IN n.markedQuery WHERE x = '"+markedQuery+"') then n.markedQuery+'"+markedQuery+"' else n.markedQuery end ").consume();
+		} catch(Exception e){
+			System.err.println("Mark K GO Terms::: "+e.getMessage());
+			uncaught = false;
+		} finally {markKGOTermsSession.close();}
+		System.out.println(rs.counters().propertiesSet()+" properties were set on nodes and relationships for GO Terms");
+		return uncaught;
+	} );
+	if(success) 
+	{
+		
+	}
+else {
+	
+}
+	
+}
+
+public void markUnionOfQueries(String queryNumber1,String queryNumber2, String unionNumber){
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run("match (n) where not ANY(x IN n.markedQuery WHERE x = '"+unionNumber+"') and (ANY(x IN n.markedQuery WHERE x = '"+queryNumber1+"') or ANY(x IN n.markedQuery WHERE x = '"+queryNumber2+"')) set n.markedQuery = n.markedQuery + '"+unionNumber+"' return (n)");
+	tx.run("match ()-[n]-() where not ANY(x IN n.markedQuery WHERE x = '"+unionNumber+"') and (ANY(x IN n.markedQuery WHERE x = '"+queryNumber1+"') or ANY(x IN n.markedQuery WHERE x = '"+queryNumber2+"')) set n.markedQuery = n.markedQuery + '"+unionNumber+"' return (n)");
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+
+}
+
+public void markIntersectionOfQueries(String queryNumber1,String queryNumber2, String intersectionNumber){
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run("match (n) where not ANY(x IN n.markedQuery WHERE x = '"+intersectionNumber+"') and (ANY(x IN n.markedQuery WHERE x = '"+queryNumber1+"') and ANY(x IN n.markedQuery WHERE x = '"+queryNumber2+"')) set n.markedQuery = n.markedQuery + '"+intersectionNumber+"' return (n)");
+	tx.run("match ()-[n]-() where not ANY(x IN n.markedQuery WHERE x = '"+intersectionNumber+"') and (ANY(x IN n.markedQuery WHERE x = '"+queryNumber1+"') and ANY(x IN n.markedQuery WHERE x = '"+queryNumber2+"')) set n.markedQuery = n.markedQuery + '"+intersectionNumber+"' return (n)");
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+} 
+
+public void markDifferenceOfQueries(String queryNumber1,String queryNumber2, String differenceNumber){
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run("match (n) where not ANY(x IN n.markedQuery WHERE x = '"+differenceNumber+"') and (ANY(x IN n.markedQuery WHERE x = '"+queryNumber1+"') and not ANY(x IN n.markedQuery WHERE x = '"+queryNumber2+"')) set n.markedQuery = n.markedQuery + '"+differenceNumber+"' return (n)");
+	tx.run("match ()-[n]-() where not ANY(x IN n.markedQuery WHERE x = '"+differenceNumber+"') and (ANY(x IN n.markedQuery WHERE x = '"+queryNumber1+"') and not ANY(x IN n.markedQuery WHERE x = '"+queryNumber2+"')) set n.markedQuery = n.markedQuery + '"+differenceNumber+"' return (n)");
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+
+public void removeQuery(String queryNumber){
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.markedQuery = FILTER(x IN n.markedQuery WHERE x <> '"+queryNumber+"')");	
+	tx.run("MATCH ()-[n]-() WHERE EXISTS(n.markedQuery) SET n.markedQuery = FILTER(x IN n.markedQuery WHERE x <> '"+queryNumber+"')");	
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+
+//AkkaSystemde bulunması daha doğru olabilir.
+public void unmarkConservedStructureQuery(int markedQuery) {
+	
+	TransactionTemplate.Monitor tm = new TransactionTemplate.Monitor.Adapter();
+	tm.failure(new Throwable("Herkesin tuttuğu kendine"));
+	TransactionTemplate template = new TransactionTemplate(  ).retries( 1000 ).backoff( 5, TimeUnit.SECONDS ).monitor(tm);
+	boolean success = template.with(DiseaseCluster.graphDb).execute( transaction -> {
+		Session unMarkSession = DiseaseCluster.driver.session();
+		try{
+			unMarkSession.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.markedQuery = FILTER(x IN n.markedQuery WHERE x <> '"+markedQuery+"')");
+			unMarkSession.run("MATCH ()-[r:ALIGNS]->() WHERE EXISTS(r.markedQuery) SET r.markedQuery = FILTER(x IN r.markedQuery WHERE x <> '"+markedQuery+"')");
+		} catch(Exception e){
+			System.err.println("Unmark all nodes::: "+e.getMessage());
+			unmarkConservedStructureQuery(markedQuery) ;
+		} finally {unMarkSession.close();}
+		return true;
+	} );
+	if(success)
+		System.out.println("Unmark Conserved Structure Query was successful.");
+	else
+		System.err.println("Unmark Conserved Structure Query was interrupted!");
+	
+}
+
+public void removeAllQueries(){
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.markedQuery = []");	
+	tx.run("MATCH ()-[n]-() WHERE EXISTS(n.markedQuery) SET n.markedQuery = []");	
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+
+public void removeAllMarks(){
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.marked = []");	
+	tx.run("MATCH ()-[n]-() WHERE EXISTS(n.markedQuery) SET n.marked = []");	
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+}
+
+//AkkaSystemde bulunması daha doğru olabilir.
+public void unmarkAllConservedStructureQueries() {
+	
+	TransactionTemplate.Monitor tm = new TransactionTemplate.Monitor.Adapter();
+	tm.failure(new Throwable("Herkesin tuttuğu kendine"));
+	TransactionTemplate template = new TransactionTemplate(  ).retries( 1000 ).backoff( 5, TimeUnit.SECONDS ).monitor(tm);
+	boolean success = template.with(DiseaseCluster.graphDb).execute( transaction -> {
+		Session unMarkSession = DiseaseCluster.driver.session();
+		try{
+			unMarkSession.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.markedQuery = []");
+			unMarkSession.run("MATCH ()-[r:TRANSMITS]->() WHERE EXISTS(r.markedQuery) SET r.markedQuery = []");
+		} catch(Exception e){
+			System.err.println("Unmark all nodes::: "+e.getMessage());
+			unmarkAllConservedStructureQueries() ;
+		} finally {unMarkSession.close();}
+		return true;
+	} );
+	
+	if(success)
+		System.out.println("Unmark All Conserved Structure Queries was successful.");
+	else
+		System.err.println("Unmark All Conserved Structure Queries was interrupted!");
+	
+}
+
+//Test Edilmedi. Yanlış gibi. Yarıda bırakılmış uygulamanın işaretli sorgularını dosya adına göre dosyadan veritabanına yükler.
+public void loadOldMarkedQueriesFromFileToDB(String fileName) {
+	
+	try {
+		fr = new FileReader(fileName);
+	} catch (FileNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	br =  new BufferedReader(fr); 
+	String line = null;
+	String[] markedQueries;
+	Session saveOldQuerySession = DiseaseCluster.driver.session();
+	
+	try {
+		while((line = br.readLine())!=null)
+		{ 
+			markedQueries = line.split(" ");
+			if(markedQueries.length >=2) {
+				// burada bir stringbuilderla ilgili alignment birden çok değerle set işlemi yapılacak.
+				StringBuilder sb = new StringBuilder(" set a.markedQuery = a.markedQuery + [");
+				for (int i =1;i<markedQueries.length;i++) {
+					sb.append("'"+markedQueries[i]+"'");
+					if(i<=markedQueries.length-2)
+						sb.append(", ");
+					else
+						sb.append("]");
+				}
+				saveOldQuerySession.run("match ()-[a:ALIGNS]->() where a.alignmentIndex = '"+markedQueries[0]+"'");	
+			}
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+} 
+// Hizalayıcı numaraları elle veriliyor. Ön tanımlı: 1-10
+//Uygulamada mevcut durumda veritabanında bulunan İşaretli Sorgular daha sonra tekrar veritbanına yüklenebilecek biçimde dosyaya kaydedilir.
+public void saveOldMarkedQueriesToFile(String fileName) {
+	StatementResult result;
+	Record record;
+		
+		Session womqtd = DiseaseCluster.driver.session();
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))){
+			
+			for (int i = 1;i<11;i++) {
+				result = womqtd.run("match ()-[a:TRANSMITS]-() where a.alignmentNumber = '"+i+"' return distinct a.markedQuery,a.alignmentIndex");
+				while(result.hasNext()){
+					record = result.next();
+					bw.write("AlignmentIndex:"+record.get(1).asString()+" ");
+					if(!record.get(0).isNull())
+					for (Object o : record.get(0).asList()) {
+						bw.write((String) o+" ");
+						System.out.println((String) o);
+					}
+					bw.newLine();
+				}
+				
+			}	
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			System.err.println("Write Old Marked Queries::: "+e.getMessage());
+			unmarkAllConservedStructureQueries() ;
+		} finally {womqtd.close();System.out.println("Old Marked Queries has been written to file: "+fileName);}
+}
+
+
+// Daha olmadi
+public SubGraph convertMarkToSubGraph(String markNumber){
+	SubGraph sg = new SubGraph();
+	StatementResult result;
+	Record record;
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	result = tx.run("MATCH (n:Patient) WHERE ANY(x IN n.markedQuery WHERE x = '"+markNumber+"') return distinct (n)");
+	while(result.hasNext()){
+		record = result.next();
+		sg.patients.add(record.get(0).asNode());
+	}
+	
+	record = null; result = null;
+	result = tx.run("MATCH ()-[n:TRANSMITS]-() WHERE ANY(x IN n.markedQuery WHERE x = '"+markNumber+"') return distinct (n)");
+	while(result.hasNext()){
+		record = result.next();
+		sg.similarity.add(record.get(0).asRelationship());
+	}
+	
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return sg;
+}
+	
+/**
+ * Herhangi bir sorgu çalıştırmak için
+ **/
+public void queryGraph(String queryString){
+	System.out.println("QUERYING");
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+		StatementResult result = tx.run( queryString );   
+		while ( result.hasNext() )
+		    {
+		      System.out.println(result.next().toString());
+		    }
+		    tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+}
+
+	public static void main(String[] args) {
+		databaseAddress = args[2];	
+		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20);	
+		as.deleteAllNodesRelationships();
+		as.createGraph(args[0], args[1],args[2]);
+		as.computePowers();
+		as.computePageRank(20, 0.85);
+		as.computeEigenVector(20, 0.85);
+		as.computeArticleRank(20, 0.85);
+		as.computeDegreeCentrality(20, 0.85);
+		as.computeBetweennessCentrality();
+		as.computeClosenessCentrality();
+		as.computeCloseness2Centrality();
+		as.computeHarmonicCentrality();
+		as.computeLouvainCommunities();
+		as.computeLabelPropagationCommunities(1);
+		as.computeLabelPropagationCommunities2("lp2", 2);
+		as.computeLabelPropagationCommunities2("lp3", 3);
+		as.computeUnionFind("union_cluster");
+		as.computeSCC("scc_cluster");
+		as.computeDistanceMetaData();
+		as.computeCentralityMetaData();
+		as.computeSharedDrugResistanceWithinACluster("union_cluster", 1048);
+	}
+
+}
+
+
+class ClusterSimilarity {
+	long clusterIDOfOrganism1;
+	long clusterIDOfOrganism2;
+	double similarity;
+	
+	ClusterSimilarity(long cidoo1,long cidoo2, double sim){
+		clusterIDOfOrganism1 = cidoo1;
+		clusterIDOfOrganism2 = cidoo2;
+		similarity = sim;
+	}
+	
+}
+
+class DrugResistancePrevalance {
+	String drug;
+	String clusterType;
+	String clusterID;
+	int noOfResistantPatients;
+}
