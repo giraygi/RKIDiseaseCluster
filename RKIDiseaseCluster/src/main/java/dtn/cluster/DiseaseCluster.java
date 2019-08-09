@@ -587,39 +587,33 @@ public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, dou
 	
 }
 
-public HashMap<String,Integer> computeSharedDrugResistanceWithinACluster(String clusterType,long clusterID) {
+public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster(String clusterType,long clusterID) {
 	StatementResult result;	
-//	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
-	HashMap<String,Integer> records = new HashMap<String,Integer>();
+	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
 
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		result = tx.run("match (o:Patient) where o."+clusterType+" = "+clusterID+" return o.drug_resistance");
-		System.out.println("returned");
+		result = tx.run("match (o:Patient) where o."+clusterType+" = "+clusterID+" return o.drug_resistance,o");
 		while(result.hasNext()){
 			Record row = result.next();
 			for (Object key : row.get(0).asList()) {
 				String[] keys = ((String) key).split("_");
 				for (int i = 0;i<keys.length;i++) {
-//					if(!records.containsKey(keys[i]))
-//						records.put(keys[i], new ArrayList<Node>(Arrays.asList(row.get(1).asNode())));
-//					else
+					if(!records.containsKey(keys[i]))
+						records.put(keys[i], new ArrayList<Node>(Arrays.asList(row.get(1).asNode())));
+					else
 						{
-//							ArrayList<Node> al = records.get(keys[i]);
-							int temp = records.get(keys[i]);
-							temp++;
-//							al.add(row.get(1).asNode());
-//							records.put(keys[i],al);
-							records.put(keys[i], temp);
-							System.out.println(keys[i]+ " - "+temp);
+							ArrayList<Node> al = records.get(keys[i]);
+							al.add(row.get(1).asNode());
+							records.put(keys[i],al);
 						}
 				}
 					
 			}
 			}
-		for (Map.Entry<String,Integer> entry : records.entrySet())  {
+		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
 			 System.out.println("Key = " + entry.getKey() + 
-                     ", Value = "+ entry.getValue() + " Nodes"); 
+                     ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
 		}
            
 		tx.success(); tx.close();
@@ -629,6 +623,27 @@ public HashMap<String,Integer> computeSharedDrugResistanceWithinACluster(String 
 	
 	return records;
 }
+
+public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) 
+{ 
+
+    // Create a new ArrayList 
+    ArrayList<T> newList = new ArrayList<T>(); 
+
+    // Traverse through the first list 
+    for (T element : list) { 
+
+        // If this element is not present in newList 
+        // then add it 
+        if (!newList.contains(element)) { 
+
+            newList.add(element); 
+        } 
+    } 
+
+    // return the new list 
+    return newList; 
+} 
 
 public ArrayList<Node> sortCentralPatients(String centralityType) {
 	StatementResult result;	
@@ -1163,6 +1178,36 @@ public SubGraph convertMarkToSubGraph(String markNumber){
 	
 	return sg;
 }
+
+public ArrayList<Long> detectCommunityIDs(String communityType,long treshold) {
+	long activeTreshold = 1L;
+	if(treshold>1)
+		activeTreshold = treshold;
+	
+	StatementResult result;	
+	ArrayList<Long> records = new ArrayList<Long>();
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) return o."+communityType+", count(o) order by count(o) desc");
+
+		while(result.hasNext()){
+			Record row = result.next();
+			if(row.get(1).asLong()>activeTreshold) {
+				records.add(row.get(0).asLong());
+				System.out.println("Community ID: "+row.get(0).asLong());
+			}
+			
+			}
+		
+		System.out.println("Communities are detected with respect to "+communityType);  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return records;
+}
 	
 /**
  * Herhangi bir sorgu çalıştırmak için
@@ -1186,26 +1231,27 @@ public void queryGraph(String queryString){
 	public static void main(String[] args) {
 		databaseAddress = args[2];	
 		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20);	
-		as.deleteAllNodesRelationships();
-		as.createGraph(args[0], args[1],args[2]);
-		as.computePowers();
-		as.computePageRank(20, 0.85);
-		as.computeEigenVector(20, 0.85);
-		as.computeArticleRank(20, 0.85);
-		as.computeDegreeCentrality(20, 0.85);
-		as.computeBetweennessCentrality();
-		as.computeClosenessCentrality();
-		as.computeCloseness2Centrality();
-		as.computeHarmonicCentrality();
-		as.computeLouvainCommunities();
-		as.computeLabelPropagationCommunities(1);
-		as.computeLabelPropagationCommunities2("lp2", 2);
-		as.computeLabelPropagationCommunities2("lp3", 3);
-		as.computeUnionFind("union_cluster");
-		as.computeSCC("scc_cluster");
-		as.computeDistanceMetaData();
-		as.computeCentralityMetaData();
-		as.computeSharedDrugResistanceWithinACluster("union_cluster", 1048);
+//		as.deleteAllNodesRelationships();
+//		as.createGraph(args[0], args[1],args[2]);
+//		as.computePowers();
+//		as.computePageRank(20, 0.85);
+//		as.computeEigenVector(20, 0.85);
+//		as.computeArticleRank(20, 0.85);
+//		as.computeDegreeCentrality(20, 0.85);
+//		as.computeBetweennessCentrality();
+//		as.computeClosenessCentrality();
+//		as.computeCloseness2Centrality();
+//		as.computeHarmonicCentrality();
+//		as.computeLouvainCommunities();
+//		as.computeLabelPropagationCommunities(1);
+//		as.computeLabelPropagationCommunities2("lp2", 2);
+//		as.computeLabelPropagationCommunities2("lp3", 3);
+//		as.computeUnionFind("union_cluster");
+//		as.computeSCC("scc_cluster");
+//		as.computeDistanceMetaData();
+//		as.computeCentralityMetaData();
+		as.computeSharedDrugResistanceWithinACluster("union_cluster", 21);
+		as.detectCommunityIDs("union_cluster", 2);
 	}
 
 }
