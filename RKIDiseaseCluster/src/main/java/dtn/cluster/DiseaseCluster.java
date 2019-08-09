@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
@@ -587,13 +586,13 @@ public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, dou
 	
 }
 
-public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster(String clusterType,long clusterID) {
+public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster(String comunityType,long communityID) {
 	StatementResult result;	
 	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
 
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		result = tx.run("match (o:Patient) where o."+clusterType+" = "+clusterID+" return o.drug_resistance,o");
+		result = tx.run("match (o:Patient) where o."+comunityType+" = "+communityID+" return o.drug_resistance,o");
 		while(result.hasNext()){
 			Record row = result.next();
 			for (Object key : row.get(0).asList()) {
@@ -611,10 +610,12 @@ public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster
 					
 			}
 			}
+		System.out.println("Drug Resistances in "+comunityType+" and communityID "+communityID);
 		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
 			 System.out.println("Key = " + entry.getKey() + 
                      ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
 		}
+		System.out.println();
            
 		tx.success(); tx.close();
 	} catch (Exception e){
@@ -659,6 +660,27 @@ public ArrayList<Node> sortCentralPatients(String centralityType) {
 			}
 		
 		System.out.println("Paients are sorted with respect to "+centralityType);  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	return records;
+}
+
+public ArrayList<Node> sortCentralPatientsWithinACommunity(String centralityType,String communityType,String communityID) {
+	StatementResult result;	
+	ArrayList<Node> records = new ArrayList<Node>();
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) where o."+communityType+" = "+communityID+" return o order by o."+centralityType+" desc");
+
+		while(result.hasNext()){
+			Record row = result.next();
+			records.add(row.get(0).asNode());
+			}
+		
+		System.out.println("Paients are sorted with respect to "+centralityType+" in "+communityType+" type communities with "+communityID+" ");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -1250,8 +1272,11 @@ public void queryGraph(String queryString){
 //		as.computeSCC("scc_cluster");
 //		as.computeDistanceMetaData();
 //		as.computeCentralityMetaData();
-		as.computeSharedDrugResistanceWithinACluster("union_cluster", 21);
-		as.detectCommunityIDs("union_cluster", 2);
+		
+		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
+		
+		for (int i =0;i<al.size();i++)
+			as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
 	}
 
 }
