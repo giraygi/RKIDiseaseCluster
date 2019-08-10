@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <title>Neovis.js Simple Example</title>
+    <style type="text/css">
+        html, body {
+            font: 16pt arial;
+        }
+        #viz {
+            width: 1300px;
+            height: 1300px;
+            border: 1px solid lightgray;
+            font: 22pt arial;
+        }
+    </style>
+
+    <!-- FIXME: load from dist -->
+    <script type="text/javascript" src="/usr/share/npm/node_modules/neovis.js/dist/neovis.js"></script>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+		// define config car
+		// instantiate nodevis object
+		// draw
+		var viz;
+		function draw() {
+			var config = {
+				container_id: "viz",
+				server_url: "bolt://localhost:7688",
+				server_user: "neo4j",
+				server_password: "evet",
+				labels: {
+					//"Character": "name",
+					"Patient": {
+						"caption": "Isolation_Country",
+						"size": $("#centrality").val(),
+						"community": $("#community").val()
+						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+					}
+				},
+				relationships: {
+					"TRANSMITS": {
+						"thickness": "weight",
+						"caption": false
+					}
+				},
+				initial_cypher: "MATCH (n)-[r:TRANSMITS]->(m) RETURN n,r,m"
+			};
+			viz = new NeoVis.default(config);
+			viz.render();
+			console.log(viz);
+		}
+    </script>
+</head>
+<body onload="draw()">
+<div id="viz"></div>
+
+
+Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
+<input type="submit" value="Submit" id="reload">
+<input type="submit" value="Stabilize" id="stabilize">
+
+<select id="centrality"  onChange="draw()">
+  <option value="pagerank">Page Rank</option>
+  <option value="betweenness">Betweenness</option>
+  <option value="closeness">Closeness</option>
+  <option value="harmonic">Harmonic</option>
+  <option value="articlerank">Article Rank</option>
+  <option value="eigenvector">Eigen Vector</option>
+  <option value="degree">Degree Centrality</option>
+</select>
+
+<select id="community" onChange="draw()">
+  <option value="labelpropagation">Label Propagation</option>
+  <option value="lp2">Label Propagation 2</option>
+  <option value="lp3">Label Propagation 3</option>
+  <option value="louvain">Louvain Modularity</option>
+ <option value="union_cluster">Union</option>
+ <option value="scc_cluster">SCC</option>
+<option value="Previous_Cluster_ID">Previous Cluster ID</option>
+
+</select>
+
+</body>
+
+<script>
+	$("#reload").click(function() {
+		var cypher = $("#cypher").val();
+		if (cypher.length > 3) {
+			viz.renderWithCypher(cypher);
+		} else {
+			console.log("reload");
+			viz.reload();
+		}
+	});
+	$("#stabilize").click(function() {
+		viz.stabilize();
+	})
+</script>
+</html>
