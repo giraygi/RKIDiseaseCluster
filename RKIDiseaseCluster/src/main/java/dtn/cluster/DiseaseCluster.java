@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
@@ -586,13 +587,55 @@ public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, dou
 	
 }
 
-public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster(String comunityType,long communityID) {
+public HashMap<String,ArrayList<Node>> computesharedMutationsWithinACluster(String communityType,long communityID) {
+	
 	StatementResult result;	
 	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
 
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		result = tx.run("match (o:Patient) where o."+comunityType+" = "+communityID+" return o.drug_resistance,o");
+		result = tx.run("match (o:Patient) where o."+communityType+" = "+communityID+" return o.pos,o.ref,o.alt,o");
+		while(result.hasNext()){
+			Record row = result.next();
+			List<Object> plist = row.get(0).asList();
+			List<Object> rlist = row.get(1).asList();
+			List<Object> alist = row.get(2).asList();
+			for (int p = 0;p<plist.size();p++) {
+				String key = plist.get(p)+(String) rlist.get(p)+(String) alist.get(p);
+	
+					if(!records.containsKey(key))
+						records.put(key, new ArrayList<Node>(Arrays.asList(row.get(3).asNode())));
+					else
+						{
+							ArrayList<Node> al = records.get(key);
+							al.add(row.get(3).asNode());
+							records.put(key,al);
+						}		
+			}
+			}
+		System.out.println("Mutations in "+communityType+" and communityID "+communityID);
+		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
+			 System.out.println("Key = " + entry.getKey() + 
+                     ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
+		}
+		System.out.println();
+           
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return records;
+	
+}
+
+public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster(String communityType,long communityID) {
+	StatementResult result;	
+	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
+
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) where o."+communityType+" = "+communityID+" return o.drug_resistance,o");
 		while(result.hasNext()){
 			Record row = result.next();
 			for (Object key : row.get(0).asList()) {
@@ -610,7 +653,7 @@ public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster
 					
 			}
 			}
-		System.out.println("Drug Resistances in "+comunityType+" and communityID "+communityID);
+		System.out.println("Drug Resistances in "+communityType+" and communityID "+communityID);
 		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
 			 System.out.println("Key = " + entry.getKey() + 
                      ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
@@ -1275,8 +1318,11 @@ public void queryGraph(String queryString){
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		
-		for (int i =0;i<al.size();i++)
+		for (int i =0;i<al.size();i++) {
 			as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
+			as.computesharedMutationsWithinACluster("union_cluster", al.get(i));
+		}
+			
 	}
 
 }
