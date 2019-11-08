@@ -534,6 +534,9 @@ public ArrayList<ArrayList<Entity>> transmissionBetweenCountries(double levensht
 		return records;	
 			// ALmanya içeren 3 lüler
 			// match (o:Patient)-[t2:TRANSMITS]-(n:Patient)-[t1:TRANSMITS]-(m:Patient) where (n.Isolation_Country = 'Germany' or m.Isolation_Country = 'Germany' or o.Isolation_Country = 'Germany') and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < 0.4 and apoc.text.levenshteinSimilarity(n.Isolation_Country,o.Isolation_Country) < 0.4 return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
+			// match (o:Patient)-[t2:TRANSMITS]-(n:Patient)-[t1:TRANSMITS]-(m:Patient) where (n.Isolation_Country CONTAINS 'Germany' or m.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> m.Isolation_Country and n.Isolation_Country <> o.Isolation_Country return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
+			// match (o:Patient)-[q:TRANSMITS]-(n:Patient)-[p:TRANSMITS]-(m:Patient) where (n.Isolation_Country CONTAINS 'Germany' or m.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> m.Isolation_Country and n.Isolation_Country <> o.Isolation_Country return o,q,n,p,m
+			// match (o:Patient)-[q:TRANSMITS]-(n:Patient) where (n.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> o.Isolation_Country return o,q,n
 }
 
 public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, double levenshteinSimilarity) {
@@ -653,11 +656,26 @@ public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster
 					
 			}
 			}
+		
+		ArrayList<String> totalDrugResistances = new ArrayList<String>();
+		ArrayList<Node> nodesOfCluster = new ArrayList<Node>();
+		StringBuilder sb = new StringBuilder();
+		
 		System.out.println("Drug Resistances in "+communityType+" and communityID "+communityID);
 		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
 			 System.out.println("Key = " + entry.getKey() + 
                      ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
+			 
+			if (!totalDrugResistances.contains(entry.getKey())) {
+				totalDrugResistances.add(entry.getKey());
+				sb.append(entry.getKey());
+				sb.append(", ");
+			}
+			 
 		}
+		sb.delete(sb.length()-2, sb.length());
+		System.out.println("TOTAL DRUG RESISTANCES");
+		System.err.println(sb);
 		System.out.println();
            
 		tx.success(); tx.close();
@@ -689,6 +707,89 @@ public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
     return newList; 
 } 
 
+public static ArrayList<String> detectAllSharedDrugResistancesWithinACluster(HashMap<String,ArrayList<Node>> clusterName){
+	
+	ArrayList<String> totalDrugResistances = new ArrayList<String>();
+	for (Map.Entry<String,ArrayList<Node>> entry : clusterName.entrySet())  {
+		 
+		if (!totalDrugResistances.contains(entry.getKey())) {
+			totalDrugResistances.add(entry.getKey());
+		}	
+		 
+	}
+	
+	return totalDrugResistances;
+	
+}
+
+
+public static ArrayList<Node> detectAllPatientsWithinACluster(HashMap<String,ArrayList<Node>> clusterName){
+	
+	ArrayList<Node> patients = new ArrayList<Node>();
+	for (Map.Entry<String,ArrayList<Node>> entry : clusterName.entrySet())  {
+		
+		for (Node patient : removeDuplicates(entry.getValue()))
+			if (!patients.contains(patient)) {
+			patients.add(patient);
+		}	
+		 
+	}	
+	return patients;
+}
+
+public static boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayList<Node>> clusterName,String clusterType, Long cluster_ID){
+	
+	final Object[] totalDrugResistances = detectAllSharedDrugResistancesWithinACluster(clusterName).toArray();
+	final Object[] patients = detectAllPatientsWithinACluster(clusterName).toArray();
+	boolean[][] drm = null;
+	try {
+		FileWriter fw = new FileWriter(clusterType+cluster_ID+".txt");
+		StringBuilder sb = new StringBuilder();
+		
+		for (int k = 0;k<totalDrugResistances.length;k++) {
+			sb.append(totalDrugResistances[k]);
+			
+			if (k==totalDrugResistances.length-1)
+				sb.append("\n");
+			else
+				sb.append(" ");		
+		}
+		
+		drm = new boolean[patients.length][totalDrugResistances.length];
+		
+		for (int i = 0; i<patients.length;i++)  {	
+			for (int j = 0;j<totalDrugResistances.length;j++) {
+				if(( (Node) patients[i]).get("drug_resistance").asList().contains(totalDrugResistances[j]))
+					drm[i][j] = true;
+						
+				if(drm[i][j])
+					sb.append("1");
+				else 
+					sb.append("0");
+				if(j==totalDrugResistances.length-1&&i==patients.length-1)
+					;
+				else if (j==totalDrugResistances.length-1)
+					sb.append("\n");
+				else if (j < totalDrugResistances.length-1)
+					sb.append(" ");	
+				else
+					System.out.println("There is a vibe in the force");
+			
+				
+			} 
+		}
+		
+		fw.write(sb.toString(),0,sb.toString().length());		
+		fw.close();
+		
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	return drm;
+}
+
 public ArrayList<Node> sortCentralPatients(String centralityType) {
 	StatementResult result;	
 	ArrayList<Node> records = new ArrayList<Node>();
@@ -702,7 +803,7 @@ public ArrayList<Node> sortCentralPatients(String centralityType) {
 			records.add(row.get(0).asNode());
 			}
 		
-		System.out.println("Paients are sorted with respect to "+centralityType);  
+		System.out.println("Patients are sorted with respect to "+centralityType);  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -1319,7 +1420,8 @@ public void queryGraph(String queryString){
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		
 		for (int i =0;i<al.size();i++) {
-			as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
+			
+			convertDrugResistancesToMatrix(as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));		
 			as.computesharedMutationsWithinACluster("union_cluster", al.get(i));
 		}
 			
