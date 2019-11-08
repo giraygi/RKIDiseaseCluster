@@ -658,7 +658,6 @@ public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster
 			}
 		
 		ArrayList<String> totalDrugResistances = new ArrayList<String>();
-		ArrayList<Node> nodesOfCluster = new ArrayList<Node>();
 		StringBuilder sb = new StringBuilder();
 		
 		System.out.println("Drug Resistances in "+communityType+" and communityID "+communityID);
@@ -707,18 +706,18 @@ public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
     return newList; 
 } 
 
-public static ArrayList<String> detectAllSharedDrugResistancesWithinACluster(HashMap<String,ArrayList<Node>> clusterName){
+public static ArrayList<String> detectAllKeyEntitiesWithinAHashMap(HashMap<String,ArrayList<Node>> clusterName){
 	
-	ArrayList<String> totalDrugResistances = new ArrayList<String>();
+	ArrayList<String> totalKeyEntities = new ArrayList<String>();
 	for (Map.Entry<String,ArrayList<Node>> entry : clusterName.entrySet())  {
 		 
-		if (!totalDrugResistances.contains(entry.getKey())) {
-			totalDrugResistances.add(entry.getKey());
+		if (!totalKeyEntities.contains(entry.getKey())) {
+			totalKeyEntities.add(entry.getKey());
 		}	
 		 
 	}
 	
-	return totalDrugResistances;
+	return totalKeyEntities;
 	
 }
 
@@ -739,11 +738,11 @@ public static ArrayList<Node> detectAllPatientsWithinACluster(HashMap<String,Arr
 
 public static boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayList<Node>> clusterName,String clusterType, Long cluster_ID){
 	
-	final Object[] totalDrugResistances = detectAllSharedDrugResistancesWithinACluster(clusterName).toArray();
+	final Object[] totalDrugResistances = detectAllKeyEntitiesWithinAHashMap(clusterName).toArray();
 	final Object[] patients = detectAllPatientsWithinACluster(clusterName).toArray();
 	boolean[][] drm = null;
 	try {
-		FileWriter fw = new FileWriter(clusterType+cluster_ID+".txt");
+		FileWriter fw = new FileWriter("drugresistances_"+clusterType+"_"+cluster_ID+".txt");
 		StringBuilder sb = new StringBuilder();
 		
 		for (int k = 0;k<totalDrugResistances.length;k++) {
@@ -788,6 +787,74 @@ public static boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayLis
 	}
 
 	return drm;
+}
+
+public static boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clusterName,String clusterType, Long cluster_ID){
+	
+	final Object[] totalDrugResistances = detectAllKeyEntitiesWithinAHashMap(clusterName).toArray();
+	final Object[] patients = detectAllPatientsWithinACluster(clusterName).toArray();
+	boolean[][] drm = null;
+	try {
+		FileWriter fw = new FileWriter("mutations_"+clusterType+"_"+cluster_ID+".txt");
+		StringBuilder sb = new StringBuilder();
+		
+		for (int k = 0;k<totalDrugResistances.length;k++) {
+			sb.append(totalDrugResistances[k]);
+			
+			if (k==totalDrugResistances.length-1)
+				sb.append("\n");
+			else
+				sb.append(" ");		
+		}
+		
+		drm = new boolean[patients.length][totalDrugResistances.length];
+		
+		for (int i = 0; i<patients.length;i++)  {	
+			for (int j = 0;j<totalDrugResistances.length;j++) {
+				
+				System.err.println(totalDrugResistances[j]);
+				
+				if(( concatanateItemsWithSameIndex(( (Node) patients[i]).get("pos").asList(),( (Node) patients[i]).get("ref").asList(),( (Node) patients[i]).get("alt").asList()).contains(totalDrugResistances[j])))
+					drm[i][j] = true;
+				if(drm[i][j])
+					sb.append("1");
+				else 
+					sb.append("0");
+				if(j==totalDrugResistances.length-1&&i==patients.length-1)
+					;
+				else if (j==totalDrugResistances.length-1)
+					sb.append("\n");
+				else if (j < totalDrugResistances.length-1)
+					sb.append(" ");	
+				else
+					System.out.println("There is a vibe in the force");			
+			} 
+		}
+		
+		fw.write(sb.toString(),0,sb.toString().length());		
+		fw.close();
+		
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	return drm;
+}
+
+public static List<String> concatanateItemsWithSameIndex(List<Object> pos, List<Object> ref, List<Object> alt){
+	
+	List<String> listOfMergedItems = new ArrayList<String>();
+	
+	for (int i = 0;i<pos.size();i++) {
+		listOfMergedItems.add(String.valueOf(pos.get(i))+(String)ref.get(i)+(String)alt.get(i));
+//		System.out.println("adding::: "+(String)pos.get(i)+(String)ref.get(i)+(String)alt.get(i));
+		
+		
+	}
+	
+	return listOfMergedItems;
+	
 }
 
 public ArrayList<Node> sortCentralPatients(String centralityType) {
@@ -1419,10 +1486,9 @@ public void queryGraph(String queryString){
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		
-		for (int i =0;i<al.size();i++) {
-			
+		for (int i =0;i<al.size();i++) {		
 			convertDrugResistancesToMatrix(as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));		
-			as.computesharedMutationsWithinACluster("union_cluster", al.get(i));
+			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
 		}
 			
 	}
