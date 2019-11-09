@@ -9,8 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -268,23 +266,6 @@ public class DiseaseCluster {
 		
 	}
 	
-	public int computeOrderOfClusterForGivenAverageFactor(ArrayList<ClusterSimilarity> cs, double averageFactor){
-		double sum = 0.0;
-		for (int i = 0;i<cs.size();i++) {
-				sum+=cs.get(i).similarity;
-		}
-		
-		double average = sum/cs.size();
-		double aggregateAverage = average*averageFactor;
-		
-		for (int i = 0;i<cs.size();i++) {
-		if	((cs.get(i).similarity)<aggregateAverage) {
-			return i;
-		}	
-	}	
-		return 0;
-	}
-	
 	
 	public void computePowers(){
 		boolean error = false;
@@ -463,13 +444,13 @@ public int computeUnionFind(String unionName) {
 	Session clccs = driver.session();
 	StatementResult result;
 	int count = 0;
-	try ( org.neo4j.driver.v1.Transaction computeLCCS = clccs.beginTransaction() )
+	try ( org.neo4j.driver.v1.Transaction computeUF = clccs.beginTransaction() )
     {
-		computeLCCS.run("CALL algo.unionFind('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
-		result = computeLCCS.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
+		computeUF.run("CALL algo.unionFind('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
+		result = computeUF.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
-		computeLCCS.success();
-		computeLCCS.close();
+		computeUF.success();
+		computeUF.close();
     } catch (Exception e){
     	  e.printStackTrace();
       } finally {clccs.close();}
@@ -480,13 +461,13 @@ public int computeSCC(String unionName) {
 	Session clccs = driver.session();
 	StatementResult result;
 	int count = 0;
-	try ( org.neo4j.driver.v1.Transaction computeLCCS = clccs.beginTransaction() )
+	try ( org.neo4j.driver.v1.Transaction computeSCC = clccs.beginTransaction() )
     {
-		computeLCCS.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
-		result = computeLCCS.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
+		computeSCC.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
+		result = computeSCC.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
-		computeLCCS.success();
-		computeLCCS.close();
+		computeSCC.success();
+		computeSCC.close();
     } catch (Exception e){
     	  e.printStackTrace();
       } finally {clccs.close();}
@@ -758,7 +739,17 @@ public static boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayLis
 		
 		for (int i = 0; i<patients.length;i++)  {	
 			for (int j = 0;j<totalDrugResistances.length;j++) {
-				if(( (Node) patients[i]).get("drug_resistance").asList().contains(totalDrugResistances[j]))
+				
+				List<Object> l =( (Node) patients[i]).get("drug_resistance").asList();
+				List<Object> lsplitted = new ArrayList<Object>();
+				for (Object o : l) {
+				
+					String[] sarray = ((String) o).split("_");
+					for (int m = 0;m<sarray.length;m++)
+						lsplitted.add(sarray[m]);
+				}
+				
+				if(lsplitted.contains(totalDrugResistances[j]))
 					drm[i][j] = true;
 						
 				if(drm[i][j])
@@ -791,40 +782,40 @@ public static boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayLis
 
 public static boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clusterName,String clusterType, Long cluster_ID){
 	
-	final Object[] totalDrugResistances = detectAllKeyEntitiesWithinAHashMap(clusterName).toArray();
+	final Object[] totalMutations = detectAllKeyEntitiesWithinAHashMap(clusterName).toArray();
 	final Object[] patients = detectAllPatientsWithinACluster(clusterName).toArray();
 	boolean[][] drm = null;
 	try {
 		FileWriter fw = new FileWriter("mutations_"+clusterType+"_"+cluster_ID+".txt");
 		StringBuilder sb = new StringBuilder();
 		
-		for (int k = 0;k<totalDrugResistances.length;k++) {
-			sb.append(totalDrugResistances[k]);
+		for (int k = 0;k<totalMutations.length;k++) {
+			sb.append(totalMutations[k]);
 			
-			if (k==totalDrugResistances.length-1)
+			if (k==totalMutations.length-1)
 				sb.append("\n");
 			else
 				sb.append(" ");		
 		}
 		
-		drm = new boolean[patients.length][totalDrugResistances.length];
+		drm = new boolean[patients.length][totalMutations.length];
 		
 		for (int i = 0; i<patients.length;i++)  {	
-			for (int j = 0;j<totalDrugResistances.length;j++) {
+			for (int j = 0;j<totalMutations.length;j++) {
 				
-				System.err.println(totalDrugResistances[j]);
+				System.err.println(totalMutations[j]);
 				
-				if(( concatanateItemsWithSameIndex(( (Node) patients[i]).get("pos").asList(),( (Node) patients[i]).get("ref").asList(),( (Node) patients[i]).get("alt").asList()).contains(totalDrugResistances[j])))
+				if(( concatanateItemsWithSameIndex(( (Node) patients[i]).get("pos").asList(),( (Node) patients[i]).get("ref").asList(),( (Node) patients[i]).get("alt").asList()).contains(totalMutations[j])))
 					drm[i][j] = true;
 				if(drm[i][j])
 					sb.append("1");
 				else 
 					sb.append("0");
-				if(j==totalDrugResistances.length-1&&i==patients.length-1)
+				if(j==totalMutations.length-1&&i==patients.length-1)
 					;
-				else if (j==totalDrugResistances.length-1)
+				else if (j==totalMutations.length-1)
 					sb.append("\n");
-				else if (j < totalDrugResistances.length-1)
+				else if (j < totalMutations.length-1)
 					sb.append(" ");	
 				else
 					System.out.println("There is a vibe in the force");			
@@ -849,12 +840,8 @@ public static List<String> concatanateItemsWithSameIndex(List<Object> pos, List<
 	for (int i = 0;i<pos.size();i++) {
 		listOfMergedItems.add(String.valueOf(pos.get(i))+(String)ref.get(i)+(String)alt.get(i));
 //		System.out.println("adding::: "+(String)pos.get(i)+(String)ref.get(i)+(String)alt.get(i));
-		
-		
-	}
-	
-	return listOfMergedItems;
-	
+	}	
+	return listOfMergedItems;	
 }
 
 public ArrayList<Node> sortCentralPatients(String centralityType) {
@@ -899,154 +886,22 @@ public ArrayList<Node> sortCentralPatientsWithinACommunity(String centralityType
 	return records;
 }
 
-//clusterNo her bir organizmada hesaplanacak en büyük küme sayısıdır.
-
-public void computeClusterSimilarities(final String clusterType,int clusterNo) {
+public static BasicStatistics basicCentralityStatisticsWithinACommunity(String centralityType, ArrayList<Node> community) {
 	
-	double[] bitscoreSums = new double[(clusterNo*clusterNo)];
-	double[] commonGOSums = new double[(clusterNo*clusterNo)];;
-	int[] o1Clusters = new int[clusterNo];
-	int[] o2Clusters = new int[clusterNo];
-	int[] o1ClusterSizes = new int[clusterNo];
-	int[] o2ClusterSizes = new int[clusterNo];
-	StatementResult result = null;
+	double sum = 0;
+	double max = Double.MIN_VALUE;
+	double min = Double.MAX_VALUE;
 	
-	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction();
-			BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+".clstr")))
-	{
-		result = tx.run("match (n:Patient) return distinct(n."+clusterType+") as clustertype,count(n) order by count(n) desc limit "+clusterNo+"");
-		int count = 0;
-		while(result.hasNext()){
-			Record row = result.next();
-			for ( Entry<String,Object> column : row.asMap().entrySet() ){
-				if(column.getValue()!=null)		
-					if (column.getKey().equals("clustertype"))
-						o1Clusters[count] = row.get( column.getKey() ).asInt();
-					else if (column.getKey().equals("count(n)"))
-						o1ClusterSizes[count] = row.get( column.getKey() ).asInt();
-			}
-			bw.write(o1Clusters[count]+" "+o1ClusterSizes[count]);
-			bw.newLine();
-			count++;
-		}
-		tx.success(); tx.close();
-		bw.close();
-	} catch (Exception e){
-		e.printStackTrace();
+	for (Node node : community) {
+		sum+=node.get(centralityType).asDouble();
+		if(node.get(centralityType).asDouble()>max)
+			max = node.get(centralityType).asDouble();
+		if(node.get(centralityType).asDouble()<min)
+			min = node.get(centralityType).asDouble();
 	}
 	
-	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction();
-			BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+"2")) )
-	{
-		result = tx.run("match (n:Organism2) return distinct(n."+clusterType+") as clustertype,count(n) order by count(n) desc limit "+clusterNo+"");
-		int count = 0;
-		while(result.hasNext()){
-			Record row = result.next();
-			for ( Entry<String,Object> column : row.asMap().entrySet() ){
-				if(column.getValue()!=null)		
-					if (column.getKey().equals("clustertype"))
-						o2Clusters[count] = row.get( column.getKey() ).asInt();
-					else if (column.getKey().equals("count(n)"))
-						o2ClusterSizes[count] = row.get( column.getKey() ).asInt();
-			}
-			bw.write(o2Clusters[count]+" "+o2ClusterSizes[count]);
-			bw.newLine();
-			count++;
-		}
-		tx.success(); tx.close();
-		bw.close();
-	} catch (Exception e){
-		e.printStackTrace();
-	}
+	return new BasicStatistics(max,min,sum/community.size());
 	
-	//devamı uzun. Her kümenin biribiri ile toplam benzerlikleri bulup eleman sayılarına bölmek gerekiyor.
-	//alttakini döngüye sokcaz.
-	try (BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+"BitScore"))){
-		for (int i = 0;i<clusterNo;i++)
-			for (int j = 0;j<clusterNo;j++)
-		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
-		{
-			result = tx.run("match (n:Organism2) <-[s:SIMILARITY]-(m:Organism1) where n."+clusterType+" = "+o2Clusters[j]+" and m."+clusterType+" = "+o1Clusters[i]+" return sum(s.similarity)");
-				bitscoreSums[i*clusterNo+j] = Double.parseDouble(result.single().get("sum(s.similarity)").toString())/(o1ClusterSizes[i]+o2ClusterSizes[j]);
-			bw.write(o1Clusters[i]+" "+o2Clusters[j]+" "+bitscoreSums[i*clusterNo+j] );
-			bw.newLine();
-			tx.success(); tx.close();
-			
-		} catch (Exception e){
-			bitscoreSums[i*clusterNo+j] = 0;
-			System.out.println(e.getMessage());
-		}
-		bw.close();
-	} catch (Exception e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	try (BufferedWriter bw = new BufferedWriter(new FileWriter(clusterType+"commonGO")) ){
-		for (int i = 0;i<clusterNo;i++)
-			for (int j = 0;j<clusterNo;j++)
-		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
-		{
-			// Birer birer toplamak yerine sum(length(FILTER(x in n.annotations WHERE x in m.annotations))) kullanılabilir.
-			result = tx.run("match (n:Organism2),(m:Organism1) where n."+clusterType+" = "+o2Clusters[j]+" and m."+clusterType+" = "+o1Clusters[i]+" return sum(length(FILTER(x in n.annotations WHERE x in m.annotations)))");
-			
-			commonGOSums[i*clusterNo+j]  = Double.parseDouble(result.single().get("sum(length(FILTER(x in n.annotations WHERE x in m.annotations)))").toString())/(o1ClusterSizes[i]+o2ClusterSizes[j]);
-			bw.write(o1Clusters[i]+" "+o2Clusters[j]+" "+commonGOSums[i*clusterNo+j] );
-			bw.newLine();
-			tx.success(); tx.close();
-		} catch (Exception e){
-			commonGOSums[i*clusterNo+j] = 0;
-			System.out.println(e.getMessage());
-		}
-		bw.close();
-	} catch (Exception e) {
-		e.printStackTrace();
-	}	
-	
-}
-// benchmark options: commonGO,  BitScore
-public ArrayList<ClusterSimilarity> sortSimilarClusters(String clusterType, String benchmark) {
-	
-	ArrayList<ClusterSimilarity> alcs = new ArrayList<ClusterSimilarity>();
-	
-	try {
-		fr = new FileReader(clusterType+benchmark);
-	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	br =  new BufferedReader(fr); 
-	String line = null;
-	String[] clusterPairWithSimilarity;
-	try {
-		while((line = br.readLine())!=null)
-		{
-			clusterPairWithSimilarity = line.split(" ");
-			alcs.add(new ClusterSimilarity(Long.parseLong(clusterPairWithSimilarity[0]),Long.parseLong(clusterPairWithSimilarity[1]),Double.parseDouble((clusterPairWithSimilarity[2]))));
-		}
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	Collections.sort(alcs, new Comparator<ClusterSimilarity>(){
-
-		@Override
-		public int compare(ClusterSimilarity arg0, ClusterSimilarity arg1) {
-			// TODO Auto-generated method stub
-			if (arg0.similarity<arg1.similarity)
-			return 1;
-			else if (arg0.similarity==arg1.similarity)
-				return 0;
-			else return -1;
-//			return (int) Math.ceil(arg1.similarity - arg0.similarity);
-		}
-		
-	});
-	System.out.println("Printing similarities of "+clusterType+" : "+benchmark);
-	for(ClusterSimilarity cs: alcs){
-		System.out.println(cs.similarity);
-   }
-	
-	return alcs;
 }
 		
 	public void deleteAllNodesRelationships(){
@@ -1487,26 +1342,32 @@ public void queryGraph(String queryString){
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		
 		for (int i =0;i<al.size();i++) {		
-			convertDrugResistancesToMatrix(as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));		
+			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
+			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			System.out.println("average pagerank: "+bs.average);
+			System.out.println("max pagerank: "+bs.max);
+			System.out.println("min pagerank: "+bs.min);
+			
+			convertDrugResistancesToMatrix(hm,"union_cluster",al.get(i));		
 			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
 		}
+		
+		
+		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
+		
+		for (int i =0;i<al2.size();i++) {		
+			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
+			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			System.out.println("average pagerank: "+bs2.average);
+			System.out.println("max pagerank: "+bs2.max);
+			System.out.println("min pagerank: "+bs2.min);
 			
+			convertDrugResistancesToMatrix(hm,"louvain",al2.get(i));		
+			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",al2.get(i));	
+		}		
 	}
-
-}
-
-
-class ClusterSimilarity {
-	long clusterIDOfOrganism1;
-	long clusterIDOfOrganism2;
-	double similarity;
-	
-	ClusterSimilarity(long cidoo1,long cidoo2, double sim){
-		clusterIDOfOrganism1 = cidoo1;
-		clusterIDOfOrganism2 = cidoo2;
-		similarity = sim;
-	}
-	
 }
 
 class DrugResistancePrevalance {
@@ -1514,4 +1375,17 @@ class DrugResistancePrevalance {
 	String clusterType;
 	String clusterID;
 	int noOfResistantPatients;
+}
+
+class BasicStatistics {
+	double max;
+	double min;
+	double average;
+	
+	public BasicStatistics(double max,double min, double average) {
+		// TODO Auto-generated constructor stub
+		this.max = max;
+		this.min = min;
+		this.average = average;
+	}
 }
