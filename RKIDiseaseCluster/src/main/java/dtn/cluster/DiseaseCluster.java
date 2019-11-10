@@ -394,7 +394,22 @@ public class DiseaseCluster {
 	}
 }
 	
-public void computeLouvainCommunities() {
+	public void computeLouvainCommunities() {
+		
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run("CALL algo.louvain(\n" + 
+					"			  'Patient',\n" + 
+					"			  'TRANSMITS',\n" + 
+					"			  {weightProperty:'weight', defaultValue:0.0, graph:'huge',write:true,writeProperty:'louvain'})");
+			System.out.println("Louvain Communities are computed");  
+			tx.success(); tx.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+public void computeLouvainCommunities2() {
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{
@@ -402,20 +417,20 @@ public void computeLouvainCommunities() {
 				"			  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
 				"			  'MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient)\n" + 
 				"			   RETURN id(p1) as source, id(p2) as target, f.weight as weight',\n" + 
-				"			  {weightProperty:'weight', defaultValue:0.0, graph:'cypher',write:true,writeProperty:'louvain'})");
-		System.out.println("Louvain Communities are computed");  
+				"			  {weightProperty:'weight', defaultValue:0.0, graph:'cypher',write:true,writeProperty:'louvain2'})");
+		System.out.println("Louvain Communities 2 are computed");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
 	}
 }
-
-public void computeLabelPropagationCommunities(int iterations) {
+// calismiyor
+public void computeLabelPropagationCommunities(String propertyName,int iterations) {
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
 		tx.run("CALL algo.labelPropagation('Patient', 'TRANSMITS','BOTH',\n" + 
-				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'labelpropagation', write:true})\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"'', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
 		System.out.println("Label Propagation Communities are computed");  
 		tx.success(); tx.close();
@@ -429,10 +444,10 @@ public void computeLabelPropagationCommunities2(String propertyName,int iteratio
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		tx.run("CALL algo.labelPropagation('Patient', 'TRANSMITS','BOTH',\n" + 
-				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+"', write:true})\n" + 
+		tx.run("CALL algo.labelPropagation('MATCH (p:Patient) RETURN id(p) as id', 'MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target','BOTH',\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"', graph:'cypher', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
-		System.out.println("Label Propagation Communities are computed");  
+		System.out.println("Label Propagation Communities 2 are computed");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -457,13 +472,47 @@ public int computeUnionFind(String unionName) {
 	return count;
 }
 
+public int computeUnionFind2(String unionName) {
+	Session clccs = driver.session();
+	StatementResult result;
+	int count = 0;
+	try ( org.neo4j.driver.v1.Transaction computeUF = clccs.beginTransaction() )
+    {
+		computeUF.run("CALL algo.unionFind('MATCH (p:Patient) RETURN id(p) as id','MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target', {weightProperty:'weight', defaultValue:0.0, graph:'cypher', write: true, writeProperty:'"+unionName+"'});");
+		result = computeUF.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
+		count = Integer.parseInt(result.single().get("clustersize").toString());	
+		computeUF.success();
+		computeUF.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      } finally {clccs.close();}
+	return count;
+}
+// calismiyor
 public int computeSCC(String unionName) {
 	Session clccs = driver.session();
 	StatementResult result;
 	int count = 0;
 	try ( org.neo4j.driver.v1.Transaction computeSCC = clccs.beginTransaction() )
     {
-		computeSCC.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
+		computeSCC.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, graph:'huge', write: true, writeProperty:'"+unionName+"'});");
+		result = computeSCC.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
+		count = Integer.parseInt(result.single().get("clustersize").toString());	
+		computeSCC.success();
+		computeSCC.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      } finally {clccs.close();}
+	return count;
+}
+// union cluster ile aynı
+public int computeSCC2(String unionName) {
+	Session clccs = driver.session();
+	StatementResult result;
+	int count = 0;
+	try ( org.neo4j.driver.v1.Transaction computeSCC = clccs.beginTransaction() )
+    {
+		computeSCC.run("CALL algo.scc('MATCH (p:Patient) RETURN id(p) as id','MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target', {weightProperty:'weight', defaultValue:0.0, graph:'cypher', write: true, writeProperty:'"+unionName+"'});");
 		result = computeSCC.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
 		computeSCC.success();
@@ -891,6 +940,7 @@ public static BasicStatistics basicCentralityStatisticsWithinACommunity(String c
 	double sum = 0;
 	double max = Double.MIN_VALUE;
 	double min = Double.MAX_VALUE;
+	double stdev = 0;
 	
 	for (Node node : community) {
 		sum+=node.get(centralityType).asDouble();
@@ -899,9 +949,36 @@ public static BasicStatistics basicCentralityStatisticsWithinACommunity(String c
 		if(node.get(centralityType).asDouble()<min)
 			min = node.get(centralityType).asDouble();
 	}
+	double average = (sum/community.size());
+	for (Node node : community) {
+		stdev+=Math.pow((node.get(centralityType).asDouble()-average), 2);
+	}
+	return new BasicStatistics(max,min,average,stdev/community.size());
+}
+
+public static StringBuilder resistanceAndCentralityMatrix(ArrayList<Node> patients, String[] centralities) {
+	StringBuilder sb = new StringBuilder();
+	for  (Node node : patients) {
+		List<Object> patient_drs = node.get("drug_resistance").asList();
+		List<Object> drssplitted = new ArrayList<Object>();
+		for (Object drs: patient_drs) {	
+			String[] sarray = ((String) drs).split("_");
+			for (int m = 0;m<sarray.length;m++)
+				if(!drssplitted.contains(sarray[m])&&drssplitted.add(sarray[m]))
+					sb.append(sarray[m]).append("-");
+		}
+		sb.delete(sb.length()-1, sb.length());
+		sb.append(",");
+		
+		for (int i = 0;i<centralities.length;i++) {
+			sb.append(node.get(centralities[i])).append(",");
+		}
+		sb.delete(sb.length()-1, sb.length());
+		sb.append("\n");
+	}
+	sb.delete(sb.length()-1, sb.length());
 	
-	return new BasicStatistics(max,min,sum/community.size());
-	
+	return sb;
 }
 		
 	public void deleteAllNodesRelationships(){
@@ -942,7 +1019,6 @@ public void removeIdenticalTransmissions(boolean removeOlder){
     } catch (Exception e){
     	  e.printStackTrace();
       }
-
 }
 
 
@@ -1063,7 +1139,6 @@ public void markUnionOfQueries(String queryNumber1,String queryNumber2, String u
 	} catch (Exception e){
 		e.printStackTrace();
 	}
-
 }
 
 public void markIntersectionOfQueries(String queryNumber1,String queryNumber2, String intersectionNumber){
@@ -1331,13 +1406,21 @@ public void queryGraph(String queryString){
 //		as.computeCloseness2Centrality();
 //		as.computeHarmonicCentrality();
 //		as.computeLouvainCommunities();
-//		as.computeLabelPropagationCommunities(1);
+//		as.computeLouvainCommunities2();
+//		as.computeLabelPropagationCommunities("lp1", 1);
+//		as.computeLabelPropagationCommunities2("lp2", 1);
+//		as.computeLabelPropagationCommunities("lp1", 2);
 //		as.computeLabelPropagationCommunities2("lp2", 2);
-//		as.computeLabelPropagationCommunities2("lp3", 3);
+//		as.computeLabelPropagationCommunities("lp1", 3);
+//		as.computeLabelPropagationCommunities2("lp2", 3);
+//		as.computeLabelPropagationCommunities("lp1", 4);
+//		as.computeLabelPropagationCommunities2("lp2", 4);
 //		as.computeUnionFind("union_cluster");
+//		as.computeUnionFind("union2_cluster");
 //		as.computeSCC("scc_cluster");
-//		as.computeDistanceMetaData();
-//		as.computeCentralityMetaData();
+//		as.computeSCC2("scc2_cluster");
+		as.computeDistanceMetaData();
+		as.computeCentralityMetaData();
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		
@@ -1348,6 +1431,7 @@ public void queryGraph(String queryString){
 			System.out.println("average pagerank: "+bs.average);
 			System.out.println("max pagerank: "+bs.max);
 			System.out.println("min pagerank: "+bs.min);
+			System.out.println("stdev pagerank: "+bs.stdev);
 			
 			convertDrugResistancesToMatrix(hm,"union_cluster",al.get(i));		
 			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
@@ -1357,16 +1441,46 @@ public void queryGraph(String queryString){
 		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
 		
 		for (int i =0;i<al2.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
-			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
+			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
 			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
 			System.out.println("average pagerank: "+bs2.average);
 			System.out.println("max pagerank: "+bs2.max);
 			System.out.println("min pagerank: "+bs2.min);
+			System.out.println("stdev pagerank: "+bs2.stdev);
 			
-			convertDrugResistancesToMatrix(hm,"louvain",al2.get(i));		
+			convertDrugResistancesToMatrix(hm2,"louvain",al2.get(i));		
 			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",al2.get(i));	
-		}		
+		}
+		
+		
+		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 5);
+		
+		for (int i =0;i<al3.size();i++) {		
+			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
+			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			System.out.println("average pagerank: "+bs3.average);
+			System.out.println("max pagerank: "+bs3.max);
+			System.out.println("min pagerank: "+bs3.min);
+			System.out.println("stdev pagerank: "+bs3.stdev);
+			
+			convertDrugResistancesToMatrix(hm3,"lp23",al3.get(i));		
+			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",al3.get(i));	
+		}
+		
+		try {
+			FileWriter fw = new FileWriter("nazmi.txt");
+			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			StringBuilder sb = resistanceAndCentralityMatrix(as.sortCentralPatients("pagerank"), centralities);
+			
+			fw.write(sb.toString(),0,sb.toString().length());		
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
 
@@ -1374,6 +1488,7 @@ class DrugResistancePrevalance {
 	String drug;
 	String clusterType;
 	String clusterID;
+	ArrayList<Node> patients;;
 	int noOfResistantPatients;
 }
 
@@ -1381,11 +1496,13 @@ class BasicStatistics {
 	double max;
 	double min;
 	double average;
+	double stdev;
 	
-	public BasicStatistics(double max,double min, double average) {
+	public BasicStatistics(double max,double min, double average, double stdev) {
 		// TODO Auto-generated constructor stub
 		this.max = max;
 		this.min = min;
 		this.average = average;
+		this.stdev = stdev;
 	}
 }
