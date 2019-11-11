@@ -350,6 +350,7 @@ public class DiseaseCluster {
 			e.printStackTrace();
 		}
 	}
+	
 	// Sadece bu sürümünde weight olabiliyormuş?
 	public void computeClosenessCentrality() {
 			
@@ -358,7 +359,7 @@ public class DiseaseCluster {
 			tx.run("CALL algo.closeness(\n" + 
 					"  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
 					"  'MATCH (p1:Patient)-[:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target',\n" + 
-					"  {graph:'cypher', write: true, writeProperty:'closeness',weightProperty: 'weight',defaultValue:0.0}\n" + 
+					"  {graph:'cypher', write: true, writeProperty:'closeness',weightProperty: 'weight', defaultValue:0.0}\n" + 
 					");");
 			System.out.println("Closeness Centrality Values are computed for all Nodes");   
 			tx.success(); tx.close();
@@ -702,7 +703,8 @@ public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster
 			}
 			 
 		}
-		sb.delete(sb.length()-2, sb.length());
+		if(totalDrugResistances.size()>0)
+			sb.delete(sb.length()-2, sb.length());
 		System.out.println("TOTAL DRUG RESISTANCES");
 		System.err.println(sb);
 		System.out.println();
@@ -956,22 +958,55 @@ public static BasicStatistics basicCentralityStatisticsWithinACommunity(String c
 	return new BasicStatistics(max,min,average,stdev/community.size());
 }
 
-public static StringBuilder resistanceAndCentralityMatrix(ArrayList<Node> patients, String[] centralities) {
+public static StringBuilder buildNodeInformationMatrix(ArrayList<Node> patients, String[] nodeProperties) {
 	StringBuilder sb = new StringBuilder();
+	int count_drs = 0;
+	
+	sb.append("Isolate_ID").append(",").append("drug_resistances").append(",").append("noof_resistances").append(",").append("mutations").append(",").append("noof_mutations").append(",");
+	
+	for (int i = 0;i<nodeProperties.length;i++) {
+		sb.append(nodeProperties[i]).append(",");
+	}
+		sb.delete(sb.length()-1, sb.length());
+		sb.append("\n");
+	
 	for  (Node node : patients) {
+		
+		sb.append(node.get("Isolate_ID")).append(",");
+		
 		List<Object> patient_drs = node.get("drug_resistance").asList();
 		List<Object> drssplitted = new ArrayList<Object>();
+		count_drs = 0;
 		for (Object drs: patient_drs) {	
 			String[] sarray = ((String) drs).split("_");
 			for (int m = 0;m<sarray.length;m++)
-				if(!drssplitted.contains(sarray[m])&&drssplitted.add(sarray[m]))
-					sb.append(sarray[m]).append("-");
+				if(!drssplitted.contains(sarray[m]))
+						if(drssplitted.add(sarray[m])) {
+							sb.append(sarray[m]).append("-");
+							count_drs++;
+						}
+							
 		}
-		sb.delete(sb.length()-1, sb.length());
-		sb.append(",");
+		if(count_drs>0)
+			sb.delete(sb.length()-1, sb.length());
+		else
+			sb.append("none");
+		sb.append(",").append(count_drs).append(",");
 		
-		for (int i = 0;i<centralities.length;i++) {
-			sb.append(node.get(centralities[i])).append(",");
+		List<String> patient_mutations = concatanateItemsWithSameIndex(node.get("pos").asList(), node.get("ref").asList(),node.get("alt").asList());
+		
+		for (String mutation : patient_mutations) {
+			sb.append(mutation).append("-");
+		}
+		if(patient_mutations.size()>0)
+			sb.delete(sb.length()-1, sb.length());
+		else
+			sb.append("none");
+		
+		sb.append(",").append(patient_mutations.size()).append(",");
+		
+		for (int i = 0;i<nodeProperties.length;i++) {
+			sb.append(node.get(nodeProperties[i])).append(",");
 		}
 		sb.delete(sb.length()-1, sb.length());
 		sb.append("\n");
@@ -1472,7 +1507,7 @@ public void queryGraph(String queryString){
 		try {
 			FileWriter fw = new FileWriter("nazmi.txt");
 			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-			StringBuilder sb = resistanceAndCentralityMatrix(as.sortCentralPatients("pagerank"), centralities);
+			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank"), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
