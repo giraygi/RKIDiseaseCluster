@@ -120,7 +120,7 @@ public class DiseaseCluster {
 					to = distanceInfo[1];
 					
 				
-				tx.run("match (n:Patient {Isolate_ID: '"+from+"'}), (m:Patient {Isolate_ID: '"+to+"'}) create (n)-[:TRANSMITS {distance: "+Double.parseDouble(distanceInfo[2])+",weight: "+weight+"}]->(m) ");
+				tx.run("match (n:Patient {Isolate_ID: '"+from+"'}), (m:Patient {Isolate_ID: '"+to+"'}) create (n)-[:transmissions {distance: "+Double.parseDouble(distanceInfo[2])+",weight: "+weight+"}]->(m) ");
 
 			}
 			System.out.println("Distances are created.");	
@@ -152,19 +152,19 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			StatementResult result;
-			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return max(t.distance)");
+			result = tx.run( "match (p:Patient)-[t:transmissions]->(n:Patient) return max(t.distance)");
 			maxDistance = Double.parseDouble(result.single().get("max(t.distance)").toString());
 			System.out.println("Maximum Distance: "+maxDistance);
 			
-			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return avg(t.distance)");
+			result = tx.run( "match (p:Patient)-[t:transmissions]->(n:Patient) return avg(t.distance)");
 			averageDistance = Double.parseDouble(result.single().get("avg(t.distance)").toString());
 			System.out.println("Average Distance: "+averageDistance);
 			
-			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return min(t.distance)");
+			result = tx.run( "match (p:Patient)-[t:transmissions]->(n:Patient) return min(t.distance)");
 			minDistance = Double.parseDouble(result.single().get("min(t.distance)").toString());
 			System.out.println("Minimum Distance: "+minDistance);
 			
-			result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return count(t)");
+			result = tx.run( "match (p:Patient)-[t:transmissions]->(n:Patient) return count(t)");
 			numberOfSimilarityLinks = Integer.parseInt(result.single().get("count(t.similarity)").toString());
 			System.out.println("Number of Similarity Links: "+numberOfSimilarityLinks);
 			
@@ -183,7 +183,7 @@ public class DiseaseCluster {
 			StatementResult result;	
 			
 			for (int i = 0;i<md.noofPercentileSteps;i++) {	
-				result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")");
+				result = tx.run( "match (p:Patient)-[t:transmissions]->(n:Patient) return percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")");
 				md.distance[i] = Double.parseDouble(result.single().get("percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")").toString());
 				System.out.println(i+". Similarity "+md.distance[i] );
 			}
@@ -271,9 +271,9 @@ public class DiseaseCluster {
 		boolean error = false;
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
-			tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient) with (n),count(n) as connections set n.power2 = connections");
-			tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient)-[i2:TRANSMITS]-(o:Patient)-[i3:TRANSMITS]-(n) with (n),count(n) as connections set n.power3 = connections");
-			tx.run("match (a:Patient)-[r1:TRANSMITS]-(b:Patient)-[r2:TRANSMITS]-(c:Patient)-[r3:TRANSMITS]-(a:Patient),(c:Patient)-[r4:TRANSMITS]-(d:Patient)-[r5:TRANSMITS]-(a:Patient),(d:Patient)-[r6:TRANSMITS]-(b:Patient) with (a),count(a) as connections set a.power4 = connections");
+			tx.run("match (n:Patient)-[i:transmissions]-(m:Patient) with (n),count(n) as connections set n.power2 = connections");
+			tx.run("match (n:Patient)-[i:transmissions]-(m:Patient)-[i2:transmissions]-(o:Patient)-[i3:transmissions]-(n) with (n),count(n) as connections set n.power3 = connections");
+			tx.run("match (a:Patient)-[r1:transmissions]-(b:Patient)-[r2:transmissions]-(c:Patient)-[r3:transmissions]-(a:Patient),(c:Patient)-[r4:transmissions]-(d:Patient)-[r5:transmissions]-(a:Patient),(d:Patient)-[r6:transmissions]-(b:Patient) with (a),count(a) as connections set a.power4 = connections");
 			System.out.println("Powers are computed for all Nodes");      
 			tx.success(); tx.close();
 		} catch (Exception e){
@@ -288,7 +288,7 @@ public class DiseaseCluster {
 	public void computePageRank(int iterations, double dampingFactor) {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
-			tx.run("CALL algo.pageRank('Patient', 'TRANSMITS',\n" + 
+			tx.run("CALL algo.pageRank('Patient', 'transmissions',\n" + 
 					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank', weightProperty: 'weight',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Page Rank Values are computed for all Nodes"); 
@@ -301,7 +301,7 @@ public class DiseaseCluster {
 	public void computeEigenVector(int iterations, double dampingFactor){
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
-			tx.run("CALL algo.eigenvector('Patient', 'TRANSMITS',\n" + 
+			tx.run("CALL algo.eigenvector('Patient', 'transmissions',\n" + 
 					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector', weightProperty: 'weight',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Eigen Vector Values are computed for all Nodes"); 
@@ -314,7 +314,7 @@ public class DiseaseCluster {
 	public void computeArticleRank(int iterations, double dampingFactor){
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
-			tx.run("CALL algo.articleRank('Patient', 'TRANSMITS',\n" + 
+			tx.run("CALL algo.articleRank('Patient', 'transmissions',\n" + 
 					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank', weightProperty: 'weight',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Article Rank Values are computed for all Nodes"); 
@@ -327,7 +327,7 @@ public class DiseaseCluster {
 	public void computeDegreeCentrality(int iterations, double dampingFactor){
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
-			tx.run("CALL algo.degree('Patient', 'TRANSMITS',\n" + 
+			tx.run("CALL algo.degree('Patient', 'transmissions',\n" + 
 					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree', weightProperty: 'weight',defaultValue:0.0})\n" + 
 					"YIELD nodes, loadMillis, computeMillis, writeMillis, write, writeProperty");
 		     System.out.println("Degree Centrality Values are computed for all Nodes"); 
@@ -342,7 +342,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			
-			tx.run("CALL algo.betweenness('Patient','TRANSMITS', {direction:'both',write:true, writeProperty:'betweenness',weightProperty:'weight',defaultValue:0.0})\n" + 
+			tx.run("CALL algo.betweenness('Patient','transmissions', {direction:'both',write:true, writeProperty:'betweenness',weightProperty:'weight',defaultValue:0.0})\n" + 
 					"YIELD nodes, minCentrality, maxCentrality, sumCentrality, loadMillis, computeMillis, writeMillis;");
 			System.out.println("Betweenness Centrality Values are computed for all Nodes");  
 			tx.success(); tx.close();
@@ -358,7 +358,7 @@ public class DiseaseCluster {
 		{
 			tx.run("CALL algo.closeness(\n" + 
 					"  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
-					"  'MATCH (p1:Patient)-[:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target',\n" + 
+					"  'MATCH (p1:Patient)-[:transmissions]-(p2:Patient) RETURN id(p1) as source, id(p2) as target',\n" + 
 					"  {graph:'cypher', write: true, writeProperty:'closeness',weightProperty: 'weight', defaultValue:0.0}\n" + 
 					");");
 			System.out.println("Closeness Centrality Values are computed for all Nodes");   
@@ -373,7 +373,7 @@ public class DiseaseCluster {
 		
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{
-		tx.run("CALL algo.closeness('Patient', 'TRANSMITS', {direction:'both',write:true,writeProperty:'closeness2',weightProperty:'weight',defaultValue:0.0})\n" + 
+		tx.run("CALL algo.closeness('Patient', 'transmissions', {direction:'both',write:true,writeProperty:'closeness2',weightProperty:'weight',defaultValue:0.0})\n" + 
 				"	YIELD nodes,loadMillis, computeMillis, writeMillis;");
 		System.out.println("Closeness3 Centrality Values are computed");  
 		tx.success(); tx.close();
@@ -386,7 +386,7 @@ public class DiseaseCluster {
 		
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{
-		tx.run("CALL algo.closeness.harmonic('Patient', 'TRANSMITS', {write:true,writeProperty:'harmonic',weightProperty:'weight',defaultValue:0.0})\n" + 
+		tx.run("CALL algo.closeness.harmonic('Patient', 'transmissions', {write:true,writeProperty:'harmonic',weightProperty:'weight',defaultValue:0.0})\n" + 
 				"	YIELD nodes,loadMillis, computeMillis, writeMillis;");
 		System.out.println("Harmonic Centrality Values are computed");  
 		tx.success(); tx.close();
@@ -401,7 +401,7 @@ public class DiseaseCluster {
 		{
 			tx.run("CALL algo.louvain(\n" + 
 					"			  'Patient',\n" + 
-					"			  'TRANSMITS',\n" + 
+					"			  'transmissions',\n" + 
 					"			  {weightProperty:'weight', defaultValue:0.0, graph:'huge',write:true,writeProperty:'louvain'})");
 			System.out.println("Louvain Communities are computed");  
 			tx.success(); tx.close();
@@ -416,7 +416,7 @@ public void computeLouvainCommunities2() {
 	{
 		tx.run("CALL algo.louvain(\n" + 
 				"			  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
-				"			  'MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient)\n" + 
+				"			  'MATCH (p1:Patient)-[f:transmissions]-(p2:Patient)\n" + 
 				"			   RETURN id(p1) as source, id(p2) as target, f.weight as weight',\n" + 
 				"			  {weightProperty:'weight', defaultValue:0.0, graph:'cypher',write:true,writeProperty:'louvain2'})");
 		System.out.println("Louvain Communities 2 are computed");  
@@ -430,7 +430,7 @@ public void computeLabelPropagationCommunities(String propertyName,int iteration
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		tx.run("CALL algo.labelPropagation('Patient', 'TRANSMITS','BOTH',\n" + 
+		tx.run("CALL algo.labelPropagation('Patient', 'transmissions','BOTH',\n" + 
 				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"'', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
 		System.out.println("Label Propagation Communities are computed");  
@@ -445,7 +445,7 @@ public void computeLabelPropagationCommunities2(String propertyName,int iteratio
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		tx.run("CALL algo.labelPropagation('MATCH (p:Patient) RETURN id(p) as id', 'MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target','BOTH',\n" + 
+		tx.run("CALL algo.labelPropagation('MATCH (p:Patient) RETURN id(p) as id', 'MATCH (p1:Patient)-[f:transmissions]-(p2:Patient) RETURN id(p1) as source, id(p2) as target','BOTH',\n" + 
 				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"', graph:'cypher', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
 		System.out.println("Label Propagation Communities 2 are computed");  
@@ -462,7 +462,7 @@ public int computeUnionFind(String unionName) {
 	int count = 0;
 	try ( org.neo4j.driver.v1.Transaction computeUF = clccs.beginTransaction() )
     {
-		computeUF.run("CALL algo.unionFind('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
+		computeUF.run("CALL algo.unionFind('Patient','transmissions', {weightProperty:'weight', defaultValue:0.0, write: true, writeProperty:'"+unionName+"'});");
 		result = computeUF.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
 		computeUF.success();
@@ -479,7 +479,7 @@ public int computeUnionFind2(String unionName) {
 	int count = 0;
 	try ( org.neo4j.driver.v1.Transaction computeUF = clccs.beginTransaction() )
     {
-		computeUF.run("CALL algo.unionFind('MATCH (p:Patient) RETURN id(p) as id','MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target', {weightProperty:'weight', defaultValue:0.0, graph:'cypher', write: true, writeProperty:'"+unionName+"'});");
+		computeUF.run("CALL algo.unionFind('MATCH (p:Patient) RETURN id(p) as id','MATCH (p1:Patient)-[f:transmissions]-(p2:Patient) RETURN id(p1) as source, id(p2) as target', {weightProperty:'weight', defaultValue:0.0, graph:'cypher', write: true, writeProperty:'"+unionName+"'});");
 		result = computeUF.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
 		computeUF.success();
@@ -496,7 +496,7 @@ public int computeSCC(String unionName) {
 	int count = 0;
 	try ( org.neo4j.driver.v1.Transaction computeSCC = clccs.beginTransaction() )
     {
-		computeSCC.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, graph:'huge', write: true, writeProperty:'"+unionName+"'});");
+		computeSCC.run("CALL algo.scc('Patient','transmissions', {weightProperty:'weight', defaultValue:0.0, graph:'huge', write: true, writeProperty:'"+unionName+"'});");
 		result = computeSCC.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
 		computeSCC.success();
@@ -513,7 +513,7 @@ public int computeSCC2(String unionName) {
 	int count = 0;
 	try ( org.neo4j.driver.v1.Transaction computeSCC = clccs.beginTransaction() )
     {
-		computeSCC.run("CALL algo.scc('MATCH (p:Patient) RETURN id(p) as id','MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient) RETURN id(p1) as source, id(p2) as target', {weightProperty:'weight', defaultValue:0.0, graph:'cypher', write: true, writeProperty:'"+unionName+"'});");
+		computeSCC.run("CALL algo.scc('MATCH (p:Patient) RETURN id(p) as id','MATCH (p1:Patient)-[f:transmissions]-(p2:Patient) RETURN id(p1) as source, id(p2) as target', {weightProperty:'weight', defaultValue:0.0, graph:'cypher', write: true, writeProperty:'"+unionName+"'});");
 		result = computeSCC.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
 		computeSCC.success();
@@ -532,7 +532,7 @@ public ArrayList<ArrayList<Entity>> transmissionBetweenCountries(double levensht
 			
 			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 			{	
-				result = tx.run("match (n:Patient)-[t:TRANSMITS]->(m:Patient) where apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" return n,m,t order by t.distance desc");
+				result = tx.run("match (n:Patient)-[t:transmissions]->(m:Patient) where apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" return n,m,t order by t.distance desc");
 
 				while(result.hasNext()){
 					Record row = result.next();
@@ -564,10 +564,10 @@ public ArrayList<ArrayList<Entity>> transmissionBetweenCountries(double levensht
 			}
 		return records;	
 			// ALmanya içeren 3 lüler
-			// match (o:Patient)-[t2:TRANSMITS]-(n:Patient)-[t1:TRANSMITS]-(m:Patient) where (n.Isolation_Country = 'Germany' or m.Isolation_Country = 'Germany' or o.Isolation_Country = 'Germany') and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < 0.4 and apoc.text.levenshteinSimilarity(n.Isolation_Country,o.Isolation_Country) < 0.4 return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
-			// match (o:Patient)-[t2:TRANSMITS]-(n:Patient)-[t1:TRANSMITS]-(m:Patient) where (n.Isolation_Country CONTAINS 'Germany' or m.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> m.Isolation_Country and n.Isolation_Country <> o.Isolation_Country return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
-			// match (o:Patient)-[q:TRANSMITS]-(n:Patient)-[p:TRANSMITS]-(m:Patient) where (n.Isolation_Country CONTAINS 'Germany' or m.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> m.Isolation_Country and n.Isolation_Country <> o.Isolation_Country return o,q,n,p,m
-			// match (o:Patient)-[q:TRANSMITS]-(n:Patient) where (n.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> o.Isolation_Country return o,q,n
+			// match (o:Patient)-[t2:transmissions]-(n:Patient)-[t1:transmissions]-(m:Patient) where (n.Isolation_Country = 'Germany' or m.Isolation_Country = 'Germany' or o.Isolation_Country = 'Germany') and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < 0.4 and apoc.text.levenshteinSimilarity(n.Isolation_Country,o.Isolation_Country) < 0.4 return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
+			// match (o:Patient)-[t2:transmissions]-(n:Patient)-[t1:transmissions]-(m:Patient) where (n.Isolation_Country CONTAINS 'Germany' or m.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> m.Isolation_Country and n.Isolation_Country <> o.Isolation_Country return o.Isolation_Country,t2.distance,n.Isolation_Country,t1.distance,m.Isolation_Country order by t1.distance+t2.distance
+			// match (o:Patient)-[q:transmissions]-(n:Patient)-[p:transmissions]-(m:Patient) where (n.Isolation_Country CONTAINS 'Germany' or m.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> m.Isolation_Country and n.Isolation_Country <> o.Isolation_Country return o,q,n,p,m
+			// match (o:Patient)-[q:transmissions]-(n:Patient) where (n.Isolation_Country CONTAINS 'Germany' or o.Isolation_Country CONTAINS 'Germany') and n.Isolation_Country <> o.Isolation_Country return o,q,n
 }
 
 public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, double levenshteinSimilarity) {
@@ -578,7 +578,7 @@ public ArrayList<ArrayList<Entity>> cliquesIncludingACountry(String country, dou
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		result = tx.run("match (o:Patient)-[t1:TRANSMITS]-(p:Patient)-[t2:TRANSMITS]-(q:Patient)-[t3:TRANSMITS]-(o) where apoc.text.levenshteinSimilarity(o.Isolation_Country,"+country+") > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity(p.Isolation_Country,"+country+") > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity(q.Isolation_Country,"+country+") > "+levenshteinSimilarity+" return o,t1,p,t2,q,t3 order by t1.distance+t2.distance+t3.distance");
+		result = tx.run("match (o:Patient)-[t1:transmissions]-(p:Patient)-[t2:transmissions]-(q:Patient)-[t3:transmissions]-(o) where apoc.text.levenshteinSimilarity(o.Isolation_Country,"+country+") > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity(p.Isolation_Country,"+country+") > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity(q.Isolation_Country,"+country+") > "+levenshteinSimilarity+" return o,t1,p,t2,q,t3 order by t1.distance+t2.distance+t3.distance");
 
 		while(result.hasNext()){
 			Record row = result.next();
@@ -1033,7 +1033,7 @@ public static StringBuilder buildNodeInformationMatrix(ArrayList<Node> patients,
 		
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
 	    {
-			tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient) delete r");
+			tx.run("match (n:Patient)-[r:transmissions]->(m:Patient) delete r");
 			System.out.println("Previous transmissions are deleted.");
 			tx.success(); tx.close();
 	    } catch (Exception e){
@@ -1047,9 +1047,9 @@ public void removeIdenticalTransmissions(boolean removeOlder){
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
     {
 		if(removeOlder)
-		tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient)<-[k:TRANSMITS]-(n:Patient) where r.Isolate_ID = k.Isolate_ID and r.isolate_name = k.isolate_name and id(r) < id(k) delete r");
+		tx.run("match (n:Patient)-[r:transmissions]->(m:Patient)<-[k:transmissions]-(n:Patient) where r.Isolate_ID = k.Isolate_ID and r.isolate_name = k.isolate_name and id(r) < id(k) delete r");
 		else
-		tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient)<-[k:TRANSMITS]-(n:Patient) where r.Isolate_ID = k.Isolate_ID and r.isolate_name = k.isolate_name and id(r) >= id(k) delete r");
+		tx.run("match (n:Patient)-[r:transmissions]->(m:Patient)<-[k:transmissions]-(n:Patient) where r.Isolate_ID = k.Isolate_ID and r.isolate_name = k.isolate_name and id(r) >= id(k) delete r");
 		tx.success(); tx.close();
     } catch (Exception e){
     	  e.printStackTrace();
@@ -1066,7 +1066,7 @@ public int countEdgesBelowDistance(double distance){
 	StatementResult result;
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction()  )
 	{
-		result = tx.run( "match (n:Patient)-[r:TRANSMITS]->(m:Patient) where r.distance <="+distance+" return count(r)");
+		result = tx.run( "match (n:Patient)-[r:transmissions]->(m:Patient) where r.distance <="+distance+" return count(r)");
 		count = Integer.parseInt(result.single().get("count(r)").toString());
 		//result.close();
 		tx.success(); tx.close();
@@ -1083,7 +1083,7 @@ public ArrayList<PowerNode> findCentralNodes2( int limit){
 	ArrayList<PowerNode> nodes = new ArrayList<PowerNode>();
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
  {
-		result = tx.run("match (n:Patient)-[t:TRANSMITS]-(m:Patient) return (n),count(m) as connections order by connections desc limit "+limit+"");
+		result = tx.run("match (n:Patient)-[t:transmissions]-(m:Patient) return (n),count(m) as connections order by connections desc limit "+limit+"");
 		Record record;
 		while(result.hasNext()){
 			record = result.next();
@@ -1102,7 +1102,7 @@ public ArrayList<PowerNode> findCentralNodes3(int limit){
 	ArrayList<PowerNode> nodes = new ArrayList<PowerNode>();
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
  {
-		result = tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient)-[i2:TRANSMITS]-(o:Patient)-[i3:TRANSMITS]-(n) return (n),count(i2) as connections order by connections desc limit "+limit+"");
+		result = tx.run("match (n:Patient)-[i:transmissions]-(m:Patient)-[i2:transmissions]-(o:Patient)-[i3:transmissions]-(n) return (n),count(i2) as connections order by connections desc limit "+limit+"");
 		Record record;
 		while(result.hasNext()){
 			record = result.next();
@@ -1121,7 +1121,7 @@ public ArrayList<PowerNode> findCentralNodes4( int limit){
 	ArrayList<PowerNode> nodes = new ArrayList<PowerNode>();
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
  {
-		result = tx.run("match (a:Patient)-[r1:TRANSMITS]-(b:Patient)-[r2:TRANSMITS]-(c:Patient)-[r3:TRANSMITS]-(a:Patient),(c:Patient)-[r4:TRANSMITS]-(d:Patient)-[r5:TRANSMITS]-(a:Patient),(d:Patient)-[r6:TRANSMITS]-(b:Patient) return a,count(a) as connections order by connections desc limit "+limit+"");
+		result = tx.run("match (a:Patient)-[r1:transmissions]-(b:Patient)-[r2:transmissions]-(c:Patient)-[r3:transmissions]-(a:Patient),(c:Patient)-[r4:transmissions]-(d:Patient)-[r5:transmissions]-(a:Patient),(d:Patient)-[r6:transmissions]-(b:Patient) return a,count(a) as connections order by connections desc limit "+limit+"");
 		Record record;
 		while(result.hasNext()){
 			record = result.next();
@@ -1265,7 +1265,7 @@ public void unmarkAllConservedStructureQueries() {
 		Session unMarkSession = DiseaseCluster.driver.session();
 		try{
 			unMarkSession.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.markedQuery = []");
-			unMarkSession.run("MATCH ()-[r:TRANSMITS]->() WHERE EXISTS(r.markedQuery) SET r.markedQuery = []");
+			unMarkSession.run("MATCH ()-[r:transmissions]->() WHERE EXISTS(r.markedQuery) SET r.markedQuery = []");
 		} catch(Exception e){
 			System.err.println("Unmark all nodes::: "+e.getMessage());
 			unmarkAllConservedStructureQueries() ;
@@ -1327,7 +1327,7 @@ public void saveOldMarkedQueriesToFile(String fileName) {
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))){
 			
 			for (int i = 1;i<11;i++) {
-				result = womqtd.run("match ()-[a:TRANSMITS]-() where a.alignmentNumber = '"+i+"' return distinct a.markedQuery,a.alignmentIndex");
+				result = womqtd.run("match ()-[a:transmissions]-() where a.alignmentNumber = '"+i+"' return distinct a.markedQuery,a.alignmentIndex");
 				while(result.hasNext()){
 					record = result.next();
 					bw.write("AlignmentIndex:"+record.get(1).asString()+" ");
@@ -1363,10 +1363,10 @@ public SubGraph convertMarkToSubGraph(String markNumber){
 	}
 	
 	record = null; result = null;
-	result = tx.run("MATCH ()-[n:TRANSMITS]-() WHERE ANY(x IN n.markedQuery WHERE x = '"+markNumber+"') return distinct (n)");
+	result = tx.run("MATCH ()-[n:transmissions]-() WHERE ANY(x IN n.markedQuery WHERE x = '"+markNumber+"') return distinct (n)");
 	while(result.hasNext()){
 		record = result.next();
-		sg.similarity.add(record.get(0).asRelationship());
+		sg.transmissions.add(record.get(0).asRelationship());
 	}
 	
 	tx.success(); tx.close();
@@ -1424,6 +1424,56 @@ public void queryGraph(String queryString){
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+}
+
+public int shortestPathOfANodeToACountry(Long Isolate_ID,String country) {
+	return 0;
+}
+
+// diğer ülkelerdeki hastalardan hedef ülkeye ulaşabilecek en merkezi olanı
+
+public Node mostCentralPatientThatCanAccessTargetCountry() {
+	return null;
+}
+
+public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
+	StatementResult result;
+	SubGraph sg = new SubGraph();
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{
+	tx.run( "CALL algo.spanningTree('Patient','transmissions','distance',"+nodeID+",{write:true,writeProperty:'minspan"+nodeID+"'})\n" + 
+			"YIELD loadMillis, computeMillis, writeMillis, effectiveNodeCount" );   
+	result = tx.run("match (p)-[r:minspan"+nodeID+"]-(q)-[t:TRANSMITS]-(p) return p,q,t");
+	
+	while(result.hasNext()){
+		Record row = result.next();
+		for ( Entry<String,Object> column : row.asMap().entrySet() ){
+			if(column.getValue()!=null)
+				switch (column.getKey()) {
+				case "p":
+					sg.patients.add(row.get( column.getKey() ).asNode());
+					break;
+				case "q":
+					sg.patients.add(row.get( column.getKey() ).asNode());
+					break;
+				case "t":
+					sg.transmissions.add(row.get( column.getKey() ).asRelationship());
+					break;
+				default:
+					System.out.println("Unexpected column"+column.getKey());
+					break;
+				}
+			}
+		}
+	if(removeEdge)
+		tx.run( "match ()-[r:minspan"+nodeID+"]->() delete r");
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return sg;
 }
 
 	public static void main(String[] args) {
@@ -1516,6 +1566,13 @@ public void queryGraph(String queryString){
 			e.printStackTrace();
 		}
 		
+		ArrayList<Node> alpagerank = as.sortCentralPatients("eigenvector");
+		for (int t =0;t<alpagerank.size();t++) {
+			long l = alpagerank.get(t).id();
+			SubGraph sg = as.minimumSpanningTreeOfANode(l,true);
+			System.out.println("no of transmissions"+sg.transmissions.size()+" - "+"no of patients"+sg.patients.size());
+		}
+			
 	}
 }
 

@@ -21,7 +21,7 @@ public class SubGraph implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	Set<Node> patients = new HashSet<Node>();
-	Set<Relationship> similarity = new HashSet<Relationship>();
+	Set<Relationship> transmissions = new HashSet<Relationship>();
 	FileWriter fw;
 	BufferedWriter bw;
 	Session  session;
@@ -52,7 +52,7 @@ public class SubGraph implements Serializable {
 			result = tx.run("()-[s:TRANSMITS]-() where ANY(x IN s.markedQuery WHERE x = '"+markedQuery+"') return s");
 			while(result.hasNext()) {
 				Record row = result.next();
-				 similarity.add(row.get(0).asRelationship());
+				 transmissions.add(row.get(0).asRelationship());
 			}
 			
 			tx.success();
@@ -64,13 +64,13 @@ public class SubGraph implements Serializable {
 	
 	public SubGraph intersection(SubGraph s){
 		s.patients.retainAll(this.patients);
-		s.similarity.retainAll(this.similarity);
+		s.transmissions.retainAll(this.transmissions);
 		return s;
 	}
 	
 	public SubGraph union (SubGraph s){
 		s.patients.addAll(this.patients);
-		s.similarity.addAll(this.similarity);
+		s.transmissions.addAll(this.transmissions);
 		return s;
 	}
 	// Parametre olan alt �izgenin farkl� elemanlar�n� d�nd�r�r
@@ -85,8 +85,8 @@ public class SubGraph implements Serializable {
 //			s.aligns.removeIf((Relationship r)->r.startNodeId() == relationship.startNodeId());
 //		}
 		
-		for (Relationship relationship : this.similarity) {
-			s.similarity.removeIf((Relationship r)->r.id() == relationship.id());
+		for (Relationship relationship : this.transmissions) {
+			s.transmissions.removeIf((Relationship r)->r.id() == relationship.id());
 		}
 		
 		s.type = "Difference of "+s.type+" from "+this.type;
@@ -104,7 +104,7 @@ public class SubGraph implements Serializable {
 		}
 		builder.append("\n");
 		builder.append(" *** similarities= ");
-		for (Relationship r : this.similarity) {
+		for (Relationship r : this.transmissions) {
 		    builder.append(r.toString().replaceAll("\n", "")+" ");
 		}
 		builder.append("\n");
@@ -123,7 +123,7 @@ public class SubGraph implements Serializable {
 			for (Node n : this.patients) {	
 				tx.run( "start n=node("+n.id()+") where not ANY(x IN n.markedQuery WHERE x = '"+queryNumber+"') set n.markedQuery = n.markedQuery + '"+queryNumber+"' return (n)" );
 			}
-			for (Relationship r : this.similarity) {
+			for (Relationship r : this.transmissions) {
 				tx.run( "start r=rel("+r.id()+") where not ANY(x IN r.markedQuery WHERE x = '"+queryNumber+"') set r.markedQuery = r.markedQuery + '"+queryNumber+"' return(r)" );
 			}	
 			
@@ -144,7 +144,7 @@ public class SubGraph implements Serializable {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction(); BufferedWriter bw = new BufferedWriter(new FileWriter(fileName)) )
 		{
 		
-		for (Relationship r : this.similarity) {
+		for (Relationship r : this.transmissions) {
 			result = tx.run("match (s:Patient)-[:TRANSMITS]->(e:Patient) where ID(s)="+r.startNodeId()+" and ID(e)="+r.endNodeId()+" return s.Isolate_ID,e.Isolate_ID");
 				Record record = result.single();
 				bw.write(record.get("s.Isolate_ID").asString()+" "+record.get("e.Isolate_ID").asString());
