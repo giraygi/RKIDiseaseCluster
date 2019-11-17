@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.neo4j.driver.v1.AuthTokens;
 import org.neo4j.driver.v1.Driver;
@@ -185,7 +187,7 @@ public class DiseaseCluster {
 			for (int i = 0;i<md.noofPercentileSteps;i++) {	
 				result = tx.run( "match (p:Patient)-[t:TRANSMITS]->(n:Patient) return percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")");
 				md.distance[i] = Double.parseDouble(result.single().get("percentileCont(t.distance,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Similarity "+md.distance[i] );
+//				System.out.println(i+". Similarity "+md.distance[i] );
 			}
 			
 			tx.success(); tx.close();
@@ -203,20 +205,20 @@ public class DiseaseCluster {
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.power2,"+(i+1)/md.noofPercentileSteps+")");
 				md.Power2[i] = Double.parseDouble(result.single().get("percentileCont(p.power2,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Power2: "+md.Power2[i] );
+//				System.out.println(i+". Power2: "+md.Power2[i] );
 			}
 			
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.power3,"+(i+1)/md.noofPercentileSteps+")");
 				md.Power3[i] = Double.parseDouble(result.single().get("percentileCont(p.power3,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Power3: "+md.Power3[i] );
+//				System.out.println(i+". Power3: "+md.Power3[i] );
 			}
 			
 			
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.power4,"+(i+1)/md.noofPercentileSteps+")");
 				md.Power4[i] = Double.parseDouble(result.single().get("percentileCont(p.power4,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Power4: "+md.Power4[i] );
+//				System.out.println(i+". Power4: "+md.Power4[i] );
 			}
 			
 			tx.success(); tx.close();
@@ -234,25 +236,25 @@ public class DiseaseCluster {
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.pagerank,"+(i+1)/md.noofPercentileSteps+")");
 				md.Pagerank[i] = Double.parseDouble(result.single().get("percentileCont(p.pagerank,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Pagerank: "+md.Pagerank[i] );
+//				System.out.println(i+". Pagerank: "+md.Pagerank[i] );
 			}
 			
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.betweenness,"+(i+1)/md.noofPercentileSteps+")");
 				md.Betweenness[i] = Double.parseDouble(result.single().get("percentileCont(p.betweenness,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Betweenness: "+md.Betweenness[i] );
+//				System.out.println(i+". Betweenness: "+md.Betweenness[i] );
 			}
 			
 			
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.closeness,"+(i+1)/md.noofPercentileSteps+")");
 				md.Closeness[i] = Double.parseDouble(result.single().get("percentileCont(p.closeness,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Closeness: "+md.Closeness[i] );
+//				System.out.println(i+". Closeness: "+md.Closeness[i] );
 			}
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
 				result = tx.run( "match (p:Patient) return percentileCont(p.harmonic,"+(i+1)/md.noofPercentileSteps+")");
 				md.Harmonic[i] = Double.parseDouble(result.single().get("percentileCont(p.harmonic,"+(i+1)/md.noofPercentileSteps+")").toString());
-				System.out.println(i+". Harmonic: "+md.Harmonic[i] );
+//				System.out.println(i+". Harmonic: "+md.Harmonic[i] );
 			}
 			
 			tx.success(); tx.close();
@@ -658,9 +660,62 @@ public HashMap<String,ArrayList<Node>> computesharedMutationsWithinACluster(Stri
 	} catch (Exception e){
 		e.printStackTrace();
 	}
+	return records;	
+}
+// tek metoda indirgemek için long[] de yapilabilir
+public HashMap<String,ArrayList<Node>> computesharedMutationsWithinAClusterArray(String communityType,long[] communityIDs){
+		
+	StatementResult result;	
+	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
+	StringBuilder sb = new StringBuilder();
+	sb.append("where ");
+	for(int i= 0;i<communityIDs.length;i++) {
+		sb.append("o.").append(communityType).append(" = ").append(communityIDs[i]);
+		if(i<communityIDs.length-1)
+			sb.append(" OR ");
+	}
+
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{		
+		System.out.println("match (o:Patient) "+sb+" return o.pos,o.ref,o.alt,o");
+		result = tx.run("match (o:Patient) "+sb+" return o.pos,o.ref,o.alt,o");
+		int count = 0;
+		while(result.hasNext()){
+			count++;
+			Record row = result.next();
+			List<Object> plist = row.get(0).asList();
+			List<Object> rlist = row.get(1).asList();
+			List<Object> alist = row.get(2).asList();
+			for (int p = 0;p<plist.size();p++) {
+				String key = plist.get(p)+(String) rlist.get(p)+(String) alist.get(p);
 	
-	return records;
-	
+					if(!records.containsKey(key))
+						records.put(key, new ArrayList<Node>(Arrays.asList(row.get(3).asNode())));
+					else
+						{
+							ArrayList<Node> al = records.get(key);
+							al.add(row.get(3).asNode());
+							records.put(key,al);
+						}		
+			}
+			}
+		System.err.println("count: "+count);
+//		sb.setLength(0);
+//		for(int i= 0;i<communityIDs.length;i++)
+//			sb.append(communityIDs[i]).append("-");
+//		
+//		System.out.println("Mutations in "+communityType+" and communityIDs "+sb);
+//		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
+//			 System.out.println("Key = " + entry.getKey() + 
+//                     ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
+//		}
+//		System.out.println("");
+           
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	return records;	
 }
 
 public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster(String communityType,long communityID) {
@@ -687,27 +742,67 @@ public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinACluster
 					
 			}
 			}
-		
-		ArrayList<String> totalDrugResistances = new ArrayList<String>();
-		StringBuilder sb = new StringBuilder();
-		
-		System.out.println("Drug Resistances in "+communityType+" and communityID "+communityID);
-		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
-			 System.out.println("Key = " + entry.getKey() + 
-                     ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
-			 
-			if (!totalDrugResistances.contains(entry.getKey())) {
-				totalDrugResistances.add(entry.getKey());
-				sb.append(entry.getKey());
-				sb.append(", ");
+//		ArrayList<String> totalDrugResistances = new ArrayList<String>();
+//		StringBuilder sb = new StringBuilder();
+//		
+//		System.out.println("Drug Resistances in "+communityType+" and communityID "+communityID);
+//		for (Map.Entry<String,ArrayList<Node>> entry : records.entrySet())  {
+//			 System.out.println("Key = " + entry.getKey() + 
+//                     ", with "+ entry.getValue().size() + " occurences in "+removeDuplicates(entry.getValue()).size()+" nodes"); 
+//			 
+//			if (!totalDrugResistances.contains(entry.getKey())) {
+//				totalDrugResistances.add(entry.getKey());
+//				sb.append(entry.getKey());
+//				sb.append(", ");
+//			}
+//			 
+//		}
+//		if(totalDrugResistances.size()>0)
+//			sb.delete(sb.length()-2, sb.length());
+//		System.out.println("TOTAL DRUG RESISTANCES");
+//		System.err.println(sb);
+//		System.out.println();
+           
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return records;
+}
+
+public HashMap<String,ArrayList<Node>> computeSharedDrugResistanceWithinAClusterArray(String communityType,long[] communityIDs) {
+	StatementResult result;	
+	HashMap<String,ArrayList<Node>> records = new HashMap<String,ArrayList<Node>>();
+	
+	StringBuilder sb = new StringBuilder();
+	sb.append("where ");
+	for(int i= 0;i<communityIDs.length;i++) {
+		sb.append("o.").append(communityType).append(" = ").append(communityIDs[i]);
+		if(i<communityIDs.length-1)
+			sb.append(" OR ");
+	}
+
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) "+sb+" return o.drug_resistance,o");
+		while(result.hasNext()){
+			Record row = result.next();
+			for (Object key : row.get(0).asList()) {
+				String[] keys = ((String) key).split("_");
+				for (int i = 0;i<keys.length;i++) {
+					if(!records.containsKey(keys[i]))
+						records.put(keys[i], new ArrayList<Node>(Arrays.asList(row.get(1).asNode())));
+					else
+						{
+							ArrayList<Node> al = records.get(keys[i]);
+							al.add(row.get(1).asNode());
+							records.put(keys[i],al);
+						}
+				}
+					
 			}
-			 
-		}
-		if(totalDrugResistances.size()>0)
-			sb.delete(sb.length()-2, sb.length());
-		System.out.println("TOTAL DRUG RESISTANCES");
-		System.err.println(sb);
-		System.out.println();
+			}
            
 		tx.success(); tx.close();
 	} catch (Exception e){
@@ -758,12 +853,10 @@ public static ArrayList<Node> detectAllPatientsWithinACluster(HashMap<String,Arr
 	
 	ArrayList<Node> patients = new ArrayList<Node>();
 	for (Map.Entry<String,ArrayList<Node>> entry : clusterName.entrySet())  {
-		
-		for (Node patient : removeDuplicates(entry.getValue()))
+		for (Node patient : entry.getValue())
 			if (!patients.contains(patient)) {
 			patients.add(patient);
 		}	
-		 
 	}	
 	return patients;
 }
@@ -831,13 +924,28 @@ public static boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayLis
 	return drm;
 }
 
-public static boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clusterName,String clusterType, Long cluster_ID){
+public boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clusterName,String clusterType, long[] cluster_IDs, String sorter, boolean desc){
 	
 	final Object[] totalMutations = detectAllKeyEntitiesWithinAHashMap(clusterName).toArray();
-	final Object[] patients = detectAllPatientsWithinACluster(clusterName).toArray();
+	// The line below does not retrieve patients unmapped to a key.
+	//	final Object[] patients = detectAllPatientsWithinACluster(clusterName).toArray();	
+	final Object[] patients  = sortCentralPatientsWithinACommunityArray(sorter,clusterType,cluster_IDs,desc).toArray();
+	
 	boolean[][] drm = null;
+	System.err.println(patients.length);
+	System.err.println(totalMutations.length);
+	
+	StringBuilder sbl = new StringBuilder();
+	for (int i = 0;i<cluster_IDs.length;i++) {
+		sbl.append(cluster_IDs[i]);
+		if(i<cluster_IDs.length-1)
+			sbl.append("_");
+		
+	}
+	
 	try {
-		FileWriter fw = new FileWriter("mutations_"+clusterType+"_"+cluster_ID+".txt");
+		System.err.println("mutations_"+clusterType+"_"+sbl+".txt");
+		FileWriter fw = new FileWriter("mutations_"+clusterType+"_"+sbl+".txt");
 		StringBuilder sb = new StringBuilder();
 		
 		for (int k = 0;k<totalMutations.length;k++) {
@@ -854,7 +962,7 @@ public static boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node
 		for (int i = 0; i<patients.length;i++)  {	
 			for (int j = 0;j<totalMutations.length;j++) {
 				
-				System.err.println(totalMutations[j]);
+//				System.err.println(totalMutations[j]);
 				
 				if(( concatanateItemsWithSameIndex(( (Node) patients[i]).get("pos").asList(),( (Node) patients[i]).get("ref").asList(),( (Node) patients[i]).get("alt").asList()).contains(totalMutations[j])))
 					drm[i][j] = true;
@@ -872,7 +980,6 @@ public static boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node
 					System.out.println("There is a vibe in the force");			
 			} 
 		}
-		
 		fw.write(sb.toString(),0,sb.toString().length());		
 		fw.close();
 		
@@ -895,13 +1002,17 @@ public static List<String> concatanateItemsWithSameIndex(List<Object> pos, List<
 	return listOfMergedItems;	
 }
 
-public ArrayList<Node> sortCentralPatients(String centralityType) {
+public ArrayList<Node> sortCentralPatients(String centralityType, boolean desc) {
 	StatementResult result;	
 	ArrayList<Node> records = new ArrayList<Node>();
 	
+	String orderby = "";
+	if(desc)
+		orderby = " desc";
+	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		result = tx.run("match (o:Patient) return o order by o."+centralityType+" desc");
+		result = tx.run("match (o:Patient) return o order by o."+centralityType+orderby);
 
 		while(result.hasNext()){
 			Record row = result.next();
@@ -916,20 +1027,60 @@ public ArrayList<Node> sortCentralPatients(String centralityType) {
 	return records;
 }
 
-public ArrayList<Node> sortCentralPatientsWithinACommunity(String centralityType,String communityType,String communityID) {
+public ArrayList<Node> sortCentralPatientsWithinACommunity(String centralityType,String communityType,String communityID,boolean desc) {
 	StatementResult result;	
 	ArrayList<Node> records = new ArrayList<Node>();
 	
+	String orderby = "";
+	if(desc)
+		orderby = " desc";
+	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		result = tx.run("match (o:Patient) where o."+communityType+" = "+communityID+" return o order by o."+centralityType+" desc");
+		result = tx.run("match (o:Patient) where o."+communityType+" = "+communityID+" return o order by o."+centralityType+orderby);
 
 		while(result.hasNext()){
 			Record row = result.next();
 			records.add(row.get(0).asNode());
 			}
 		
-		System.out.println("Paients are sorted with respect to "+centralityType+" in "+communityType+" type communities with "+communityID+" ");  
+		System.out.println("Patients are sorted with respect to "+centralityType+" in "+communityType+" type communities with "+communityID+" ");  
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	return records;
+}
+
+public ArrayList<Node> sortCentralPatientsWithinACommunityArray(String centralityType,String communityType,long[] communityIDs, boolean desc) {
+	StatementResult result;	
+	ArrayList<Node> records = new ArrayList<Node>();
+	
+	StringBuilder sb = new StringBuilder();
+	StringBuilder sb2 = new StringBuilder();
+	sb.append("where ");
+	for(int i= 0;i<communityIDs.length;i++) {
+		sb.append("o.").append(communityType).append(" = ").append(communityIDs[i]);
+		sb2.append(communityIDs[i]);
+		if(i<communityIDs.length-1) {
+			sb.append(" OR ");
+			sb2.append(" - ");
+		}	
+	}
+	String orderby = "";
+	if(desc)
+		orderby = " desc";
+	
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+	{	
+		result = tx.run("match (o:Patient) "+sb+" return o order by o."+centralityType+orderby);
+
+		while(result.hasNext()){
+			Record row = result.next();
+			records.add(row.get(0).asNode());
+			}
+		
+		System.out.println("Patients are sorted with respect to "+centralityType+" in "+communityType+" type communities with "+sb2+" ");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -1392,7 +1543,7 @@ public ArrayList<Long> detectCommunityIDs(String communityType,long treshold) {
 			Record row = result.next();
 			if(row.get(1).asLong()>activeTreshold) {
 				records.add(row.get(0).asLong());
-				System.out.println("Community ID: "+row.get(0).asLong());
+//				System.out.println("Community ID: "+row.get(0).asLong());
 			}
 			
 			}
@@ -1430,6 +1581,7 @@ public void queryGraph(String queryString){
 public ArrayList<Node> shortestPathNodesLeadingToACountry(String country,double levenshteinSimilarity) {
 	StatementResult result;
 	ArrayList<Node> al = new ArrayList<Node>();
+
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
 		
 		result = tx.run("CALL algo.allShortestPaths.stream('distance',{nodeQuery:'Loc',defaultValue:1.0,graph:'huge'})\n" + 
@@ -1470,6 +1622,66 @@ public ArrayList<Node> shortestPathNodesLeadingToACountry(String country,double 
 	} catch (Exception e){
 		e.printStackTrace();
 	}
+	return al;
+}
+
+public ArrayList<ShortestPathNodePair> shortestPathNodePairsLeadingToACountry(String country,double levenshteinSimilarity) {
+	StatementResult result;
+	ArrayList<ShortestPathNodePair> al = new ArrayList<ShortestPathNodePair>();
+
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
+		
+		result = tx.run("CALL algo.allShortestPaths.stream('distance',{nodeQuery:'Loc',defaultValue:1.0,graph:'huge'})\n" + 
+				"YIELD sourceNodeId, targetNodeId, distance where distance > 0.0\n" + 
+				"with sourceNodeId, targetNodeId, distance match (n:Patient) where ID(n) = sourceNodeId " +
+				"with n,targetNodeId,distance match (m:Patient) where ID(m) = targetNodeId and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" and (apoc.text.levenshteinSimilarity(n.Isolation_Country,'"+country+"') > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity('"+country+"',m.Isolation_Country) > "+levenshteinSimilarity+") " +
+				"return n,m,distance order by distance asc");
+		int count = 0;
+		while(result.hasNext()){
+			Record row = result.next();
+			ShortestPathNodePair spnp = new ShortestPathNodePair();
+			for ( Entry<String,Object> column : row.asMap().entrySet() ){
+				if(column.getValue()!=null)
+					switch (column.getKey()) {
+					case "n":
+						spnp.setNode1(row.get( column.getKey() ).asNode());
+						break;
+					case "m":
+						spnp.setNode2(row.get( column.getKey() ).asNode());
+						break;
+					case "distance":
+						spnp.setDistance(row.get( column.getKey() ).asDouble());;
+						break;
+					default:
+						System.out.println("Unexpected column"+column.getKey());
+						break;	
+					}
+				}
+			al.add(spnp);
+			count++;
+			System.out.println();
+			}
+		System.err.println("count: "+count);
+	tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	try {
+		FileWriter fw = new FileWriter("ShortestPathsTo"+country+".txt");
+		
+		for (int i = 0;i<al.size();i++) {
+			fw.append(al.get(i).node1.get("Isolation_Country").asString()).append("!").append(Double.toString(al.get(i).distance)).append("!").append(al.get(i).node2.get("Isolation_Country").asString());	
+			if(i<al.size()-1)
+				fw.append("\n");
+		}
+		fw.close();
+		
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 	return al;
 }
 
@@ -1554,67 +1766,71 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		
-		for (int i =0;i<al.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
-			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
-			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-			System.out.println("average pagerank: "+bs.average);
-			System.out.println("max pagerank: "+bs.max);
-			System.out.println("min pagerank: "+bs.min);
-			System.out.println("stdev pagerank: "+bs.stdev);
-			
-			convertDrugResistancesToMatrix(hm,"union_cluster",al.get(i));		
-			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
-		}
+		long[] x= {al.get(0),al.get(1)};
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",x),"union_cluster",x,"pagerank",true);
 		
-		
-		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
-		
-		for (int i =0;i<al2.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
-			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
-			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-			System.out.println("average pagerank: "+bs2.average);
-			System.out.println("max pagerank: "+bs2.max);
-			System.out.println("min pagerank: "+bs2.min);
-			System.out.println("stdev pagerank: "+bs2.stdev);
-			
-			convertDrugResistancesToMatrix(hm2,"louvain",al2.get(i));		
-			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",al2.get(i));	
-		}
-		
-		
-		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 5);
-		
-		for (int i =0;i<al3.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
-			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
-			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-			System.out.println("average pagerank: "+bs3.average);
-			System.out.println("max pagerank: "+bs3.max);
-			System.out.println("min pagerank: "+bs3.min);
-			System.out.println("stdev pagerank: "+bs3.stdev);
-			
-			convertDrugResistancesToMatrix(hm3,"lp23",al3.get(i));		
-			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",al3.get(i));	
-		}
-		
-		try {
-			FileWriter fw = new FileWriter("nazmi.txt");
-			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank"), centralities);
-			
-			fw.write(sb.toString(),0,sb.toString().length());		
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+//		for (int i =0;i<al.size();i++) {		
+//			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
+//			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
+//			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+//			System.out.println("average pagerank: "+bs.average);
+//			System.out.println("max pagerank: "+bs.max);
+//			System.out.println("min pagerank: "+bs.min);
+//			System.out.println("stdev pagerank: "+bs.stdev);
+//			
+//			convertDrugResistancesToMatrix(hm,"union_cluster",al.get(i));		
+//			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
+//		}
+//		
+//		
+//		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
+//		
+//		for (int i =0;i<al2.size();i++) {		
+//			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
+//			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
+//			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+//			System.out.println("average pagerank: "+bs2.average);
+//			System.out.println("max pagerank: "+bs2.max);
+//			System.out.println("min pagerank: "+bs2.min);
+//			System.out.println("stdev pagerank: "+bs2.stdev);
+//			
+//			convertDrugResistancesToMatrix(hm2,"louvain",al2.get(i));		
+//			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",al2.get(i));	
+//		}
+//		
+//		
+//		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 5);
+//		
+//		for (int i =0;i<al3.size();i++) {		
+//			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
+//			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
+//			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+//			System.out.println("average pagerank: "+bs3.average);
+//			System.out.println("max pagerank: "+bs3.max);
+//			System.out.println("min pagerank: "+bs3.min);
+//			System.out.println("stdev pagerank: "+bs3.stdev);
+//			
+//			convertDrugResistancesToMatrix(hm3,"lp23",al3.get(i));		
+//			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",al3.get(i));	
+//		}
+//		
+//		try {
+//			FileWriter fw = new FileWriter("nazmi.txt");
+//			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+//			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank"), centralities);
+//			
+//			fw.write(sb.toString(),0,sb.toString().length());		
+//			fw.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 		try {
 			FileWriter fw = new FileWriter("faruk.txt");
-			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			String[] centralities = {"Isolation_Country","pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
 			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4), centralities);
+			as.shortestPathNodePairsLeadingToACountry("Germany",0.4);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
@@ -1623,11 +1839,24 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
 			e.printStackTrace();
 		}
 		
-		ArrayList<Node> alpagerank = as.sortCentralPatients("closeness");
+		ArrayList<Node> alpagerank = as.sortCentralPatients("closeness",true);
 		for (int t =0;t<alpagerank.size();t++) {
+			
+			System.out.println("Country of Patient: "+alpagerank.get(t).get("Isolation_Country").asString());
 			long l = alpagerank.get(t).id();
 			SubGraph sg = as.minimumSpanningTreeOfANode(l,true);
-			System.out.println("no of transmissions"+sg.transmissions.size()+" - "+"no of patients"+sg.patients.size());
+			Set<String> countries = new HashSet<String>();
+			for (Node node: sg.patients) {
+				countries.add(node.get("Isolation_Country").asString());	
+			}
+			StringBuilder cntrs = new StringBuilder();
+			cntrs.append("Countries of Neighbours: ");
+			for (String country : countries) {
+				cntrs.append(country).append(", ");
+			}
+			cntrs.delete(cntrs.length()-2, cntrs.length());
+			System.out.println(cntrs);
+//			System.out.println("no of transmissions"+sg.transmissions.size()+" - "+"no of patients"+sg.patients.size());
 		}	
 	}
 }
