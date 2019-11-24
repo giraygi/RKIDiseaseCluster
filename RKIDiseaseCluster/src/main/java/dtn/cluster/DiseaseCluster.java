@@ -433,7 +433,7 @@ public void computeLabelPropagationCommunities(String propertyName,int iteration
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
 		tx.run("CALL algo.labelPropagation('Patient', 'TRANSMITS','BOTH',\n" + 
-				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"'', write:true})\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
 		System.out.println("Label Propagation Communities are computed");  
 		tx.success(); tx.close();
@@ -499,6 +499,7 @@ public int computeSCC(String unionName) {
 	try ( org.neo4j.driver.v1.Transaction computeSCC = clccs.beginTransaction() )
     {
 		computeSCC.run("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, graph:'huge', write: true, writeProperty:'"+unionName+"'});");
+		System.out.println("CALL algo.scc('Patient','TRANSMITS', {weightProperty:'weight', defaultValue:0.0, graph:'huge', write: true, writeProperty:'"+unionName+"'});");
 		result = computeSCC.run("match (n:Patient)  where n."+unionName+" is not null with distinct(n."+unionName+") as clusterid, count(n) as clustersize return clustersize order by clustersize desc limit 1");
 		count = Integer.parseInt(result.single().get("clustersize").toString());	
 		computeSCC.success();
@@ -946,6 +947,8 @@ public boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clus
 	try {
 		System.err.println("mutations_"+clusterType+"_"+sbl+".txt");
 		FileWriter fw = new FileWriter("mutations_"+clusterType+"_"+sbl+".txt");
+		FileWriter fwl = new FileWriter("mutations_"+clusterType+"_"+sbl+"_labels.txt");
+		ArrayList<String> clids = new ArrayList<String>();
 		StringBuilder sb = new StringBuilder();
 		
 		for (int k = 0;k<totalMutations.length;k++) {
@@ -960,10 +963,10 @@ public boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clus
 		drm = new boolean[patients.length][totalMutations.length];
 		
 		for (int i = 0; i<patients.length;i++)  {	
+			if(!clids.contains(String.valueOf(( (Node) patients[i]).get(clusterType).asInt())))
+				clids.add(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()));
 			for (int j = 0;j<totalMutations.length;j++) {
-				
-//				System.err.println(totalMutations[j]);
-				
+//				System.err.println(totalMutations[j]);		
 				if(( concatanateItemsWithSameIndex(( (Node) patients[i]).get("pos").asList(),( (Node) patients[i]).get("ref").asList(),( (Node) patients[i]).get("alt").asList()).contains(totalMutations[j])))
 					drm[i][j] = true;
 				if(drm[i][j])
@@ -979,9 +982,12 @@ public boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clus
 				else
 					System.out.println("There is a vibe in the force");			
 			} 
+			fwl.append(String.valueOf(clids.indexOf(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))+1)).append(",");
+			fwl.append(String.valueOf(( (Node) patients[i]).get(clusterType).asInt())).append("\n");				
 		}
 		fw.write(sb.toString(),0,sb.toString().length());		
 		fw.close();
+		fwl.close();
 		
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -1207,6 +1213,17 @@ public void removeIdenticalTransmissions(boolean removeOlder){
       }
 }
 
+public void changeLabelOfUnconnectedNodes() {
+	System.out.println("changeLabelOfUnconnectedNodes");
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+    {
+		tx.run("match (n) where not (n)-[]-() remove n:Patient set n:SinglePatient");
+		tx.success(); tx.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      }
+}
+
 
 /**
  * Bir ağda düğümler arası uzaklığın belirli bir sayıdan küçük olduğu tüm kenarların sayısı
@@ -1370,7 +1387,7 @@ public void unmarkConservedStructureQuery(int markedQuery) {
 		Session unMarkSession = DiseaseCluster.driver.session();
 		try{
 			unMarkSession.run("MATCH (n) WHERE EXISTS(n.markedQuery) SET n.markedQuery = FILTER(x IN n.markedQuery WHERE x <> '"+markedQuery+"')");
-			unMarkSession.run("MATCH ()-[r:ALIGNS]->() WHERE EXISTS(r.markedQuery) SET r.markedQuery = FILTER(x IN r.markedQuery WHERE x <> '"+markedQuery+"')");
+			unMarkSession.run("MATCH ()-[r:TRANSMITS]->() WHERE EXISTS(r.markedQuery) SET r.markedQuery = FILTER(x IN r.markedQuery WHERE x <> '"+markedQuery+"')");
 		} catch(Exception e){
 			System.err.println("Unmark all nodes::: "+e.getMessage());
 			unmarkConservedStructureQuery(markedQuery) ;
@@ -1630,7 +1647,7 @@ public ArrayList<ShortestPathNodePair> shortestPathNodePairsLeadingToACountry(St
 	ArrayList<ShortestPathNodePair> al = new ArrayList<ShortestPathNodePair>();
 
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-		
+
 		result = tx.run("CALL algo.allShortestPaths.stream('distance',{nodeQuery:'Loc',defaultValue:1.0,graph:'huge'})\n" + 
 				"YIELD sourceNodeId, targetNodeId, distance where distance > 0.0\n" + 
 				"with sourceNodeId, targetNodeId, distance match (n:Patient) where ID(n) = sourceNodeId " +
@@ -1736,38 +1753,46 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
 	public static void main(String[] args) {
 		databaseAddress = args[2];	
 		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20);	
-//		as.deleteAllNodesRelationships();
-//		as.createGraph(args[0], args[1],args[2]);
-//		as.computePowers();
-//		as.computePageRank(20, 0.85);
-//		as.computeEigenVector(20, 0.85);
-//		as.computeArticleRank(20, 0.85);
-//		as.computeDegreeCentrality(20, 0.85);
-//		as.computeBetweennessCentrality();
-//		as.computeClosenessCentrality();
-//		as.computeCloseness2Centrality();
-//		as.computeHarmonicCentrality();
-//		as.computeLouvainCommunities();
-//		as.computeLouvainCommunities2();
-//		as.computeLabelPropagationCommunities("lp1", 1);
-//		as.computeLabelPropagationCommunities2("lp2", 1);
-//		as.computeLabelPropagationCommunities("lp1", 2);
-//		as.computeLabelPropagationCommunities2("lp2", 2);
-//		as.computeLabelPropagationCommunities("lp1", 3);
-//		as.computeLabelPropagationCommunities2("lp2", 3);
-//		as.computeLabelPropagationCommunities("lp1", 4);
-//		as.computeLabelPropagationCommunities2("lp2", 4);
-//		as.computeUnionFind("union_cluster");
-//		as.computeUnionFind("union2_cluster");
-//		as.computeSCC("scc_cluster");
-//		as.computeSCC2("scc2_cluster");
+		as.deleteAllNodesRelationships();
+		as.createGraph(args[0], args[1],args[2]);
+		as.changeLabelOfUnconnectedNodes();
+		as.computePowers();
+		as.computePageRank(20, 0.85);
+		as.computeEigenVector(20, 0.85);
+		as.computeArticleRank(20, 0.85);
+		as.computeDegreeCentrality(20, 0.85);
+		as.computeBetweennessCentrality();
+		as.computeClosenessCentrality();
+		as.computeCloseness2Centrality();
+		as.computeHarmonicCentrality();
+		as.computeLouvainCommunities();
+		as.computeLouvainCommunities2();
+		as.computeLabelPropagationCommunities("lp1", 1);
+		as.computeLabelPropagationCommunities2("lp2", 1);
+		as.computeLabelPropagationCommunities("lp1", 2);
+		as.computeLabelPropagationCommunities2("lp2", 2);
+		as.computeLabelPropagationCommunities("lp1", 3);
+		as.computeLabelPropagationCommunities2("lp2", 3);
+		as.computeLabelPropagationCommunities("lp1", 4);
+		as.computeLabelPropagationCommunities2("lp2", 4);
+		as.computeLabelPropagationCommunities("lp1", 5);
+		as.computeLabelPropagationCommunities2("lp2", 5);
+		as.computeLabelPropagationCommunities("lp1", 6);
+		as.computeLabelPropagationCommunities2("lp2", 6);
+		as.computeUnionFind("union_cluster");
+		as.computeUnionFind("union2_cluster");
+		as.computeSCC("scc_cluster");
+		as.computeSCC2("scc2_cluster");
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
-		
-		long[] x= {al.get(0),al.get(1)};
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",x),"union_cluster",x,"pagerank",true);
+		long[] single1= {al.get(0)};
+		long[] single2= {al.get(1)};
+		long[] merged= {al.get(0),al.get(1)};
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single1),"union_cluster",single1,"pagerank",true);
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single2),"union_cluster",single2,"pagerank",true);
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",merged),"union_cluster",merged,"pagerank",true);
 		
 //		for (int i =0;i<al.size();i++) {		
 //			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
@@ -1814,18 +1839,30 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
 //			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",al3.get(i));	
 //		}
 //		
-//		try {
-//			FileWriter fw = new FileWriter("nazmi.txt");
-//			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-//			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank"), centralities);
-//			
-//			fw.write(sb.toString(),0,sb.toString().length());		
-//			fw.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
+		try {
+			FileWriter fw = new FileWriter("nusret.txt");
+			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4","louvain2","lp21","lp22","lp23","lp24","lp25","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
+			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank",true), centralities);
+			
+			fw.write(sb.toString(),0,sb.toString().length());		
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			FileWriter fw = new FileWriter("nusret2.txt");
+			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank","lp24","93",true), centralities);
+			
+			fw.write(sb.toString(),0,sb.toString().length());		
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("deneme");
 		try {
 			FileWriter fw = new FileWriter("faruk.txt");
 			String[] centralities = {"Isolation_Country","pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
@@ -1845,6 +1882,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
 			System.out.println("Country of Patient: "+alpagerank.get(t).get("Isolation_Country").asString());
 			long l = alpagerank.get(t).id();
 			SubGraph sg = as.minimumSpanningTreeOfANode(l,true);
+			System.out.println("Size of MST: "+sg.patients.size());
 			Set<String> countries = new HashSet<String>();
 			for (Node node: sg.patients) {
 				countries.add(node.get("Isolation_Country").asString());	
