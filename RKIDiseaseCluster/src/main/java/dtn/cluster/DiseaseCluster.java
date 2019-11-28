@@ -92,7 +92,7 @@ public class DiseaseCluster {
 			{ 
 				isolateInfo = line.split(";");
 				System.out.println(isolateInfo[0]);
-				tx.run("CREATE (a:Patient {Isolate_ID: '"+isolateInfo[0]+"', Previous_Cluster_ID: "+isolateInfo[1]+", BioProject: '"+isolateInfo[3]+"', BioSample: '"+isolateInfo[4]+"', Sequencing_Institution: '"+isolateInfo[5]+"', Sample_Name: '"+isolateInfo[6]+"', Isolation_Date: '"+isolateInfo[7]+"', Isolation_Country: '"+isolateInfo[8]+"', Host_Age: '"+isolateInfo[9]+"', host_anti_retroviral_status: '"+isolateInfo[10]+"', host_hiv_status: '"+isolateInfo[11]+"', host_hiv_status_diagnosis_postmortem: '"+isolateInfo[12]+"', host_location_sampled: '"+isolateInfo[13]+"', patient_gender: '"+isolateInfo[14]+"', host_subject: '"+isolateInfo[15]+"', isolate_name: '"+isolateInfo[16]+"', strain: '"+isolateInfo[17]+"', power2: 0, power3: 0, power4: 0, pos:[],ref:[],alt:[],drug_resistance:[],multidrug_resistance:'NA'})");
+				tx.run("CREATE (a:Patient {Isolate_ID: '"+isolateInfo[0]+"', Previous_Cluster_ID: "+isolateInfo[1]+", BioProject: '"+isolateInfo[3]+"', BioSample: '"+isolateInfo[4]+"', Sequencing_Institution: '"+isolateInfo[5]+"', Sample_Name: '"+isolateInfo[6]+"', Isolation_Date: '"+isolateInfo[7]+"', Isolation_Country: '"+isolateInfo[8]+"', Host_Age: '"+isolateInfo[9]+"', host_anti_retroviral_status: '"+isolateInfo[10]+"', host_hiv_status: '"+isolateInfo[11]+"', host_hiv_status_diagnosis_postmortem: '"+isolateInfo[12]+"', host_location_sampled: '"+isolateInfo[13]+"', patient_gender: '"+isolateInfo[14]+"', host_subject: '"+isolateInfo[15]+"', isolate_name: '"+isolateInfo[16]+"', strain: '"+isolateInfo[17]+"', power2: 0, power3: 0, power4: 0, pos:[],ref:[],alt:[],drug_resistance:[],mutation_identifier:[],multidrug_resistance:'NA'})");
 			}
 			fr = new FileReader(distances);
 			br =  new BufferedReader(fr); 
@@ -137,16 +137,44 @@ public class DiseaseCluster {
 			{ 
 				resistanceInfo = line.split(",");
 				System.out.println(resistanceInfo[0]+" - "+resistanceInfo[5]);
-				tx.run("MATCH (n:Patient {Isolate_ID: '"+resistanceInfo[0]+"'}) SET n.pos = n.pos +  "+resistanceInfo[1]+",n.ref = n.ref + '"+resistanceInfo[2]+"',n.alt = n.alt + '"+resistanceInfo[3]+"', n.drug_resistance = n.drug_resistance + '"+resistanceInfo[4]+"',n.multidrug_resistance = '"+resistanceInfo[5]+"' return (n)");
+				tx.run("MATCH (n:Patient {Isolate_ID: '"+resistanceInfo[0].split("_")[0]+"'}) SET n.pos = n.pos +  "+resistanceInfo[1]+",n.ref = n.ref + '"+resistanceInfo[2]+"',n.alt = n.alt + '"+resistanceInfo[3]+"', n.drug_resistance = n.drug_resistance + '"+resistanceInfo[4]+"',n.mutation_identifier = n.mutation_identifier + '"+resistanceInfo[1]+resistanceInfo[3]+"',n.multidrug_resistance = '"+resistanceInfo[5]+"' return (n)");
 			}
 			
 			System.out.println("Resistances are created.");	
 			
+			tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.mutation_difference = LENGTH(n.pos)+LENGTH(m.pos)-LENGTH(FILTER(x in n.mutation_identifier WHERE x in m.mutation_identifier))");
+			
+			System.out.println("Mutation differences are created.");	
+			
 			tx.success(); tx.close();
 		} catch (Exception e) {
-			System.out.println("Could not create isolates, distances and resistances");
+			System.out.println("Could not create isolates, distances, resistances and mutation differences");
 			e.printStackTrace();
 		} 
+		
+	}
+	
+	public void computeDifferenceOfMutations() {
+		
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run( "match (n)-[t:TRANSMITS]-(m) where not (n)-[t:TRANSMITS]->(m) and LENGTH(n.pos)+LENGTH(m.pos)-LENGTH(FILTER(x in n.mutation_identifier WHERE x in m.mutation_identifier)) <= 5 and ID(n)>ID(m) return n.Isolate_ID,m.Isolate_ID, LENGTH(n.pos)+LENGTH(m.pos)-LENGTH(FILTER(x in n.mutation_identifier WHERE x in m.mutation_identifier)) as diff");
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			System.err.println("Could not create mutation differences::: "+e.getMessage());
+		}
+		
+	}
+	
+	public void addInteractionsForLowDifferences(int differenceTreshold) {
+		
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+			tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.mutation_difference = LENGTH(n.pos)+LENGTH(m.pos)-LENGTH(FILTER(x in n.mutation_identifier WHERE x in m.mutation_identifier))");
+			tx.success(); tx.close();
+		} catch (Exception e) {
+			System.err.println("Could not create mutation differences::: "+e.getMessage());
+		}
 		
 	}
 	
@@ -1237,6 +1265,21 @@ public int countEdgesBelowDistance(double distance){
 		result = tx.run( "match (n:Patient)-[r:TRANSMITS]->(m:Patient) where r.distance <="+distance+" return count(r)");
 		count = Integer.parseInt(result.single().get("count(r)").toString());
 		//result.close();
+		tx.success(); tx.close();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+	return count;
+}
+
+public int countEdgesInACluster(long clusterid, String clusterType, double distance) {
+	int count = 0;
+	StatementResult result;
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction()  )
+	{
+		result = tx.run( "match (n:Patient)-[r:TRANSMITS]->(m:Patient) where r.distance <="+distance+" and n."+clusterType+" = "+clusterid+" and m."+clusterType+" = "+clusterid+" return count(r)");
+		count = Integer.parseInt(result.single().get("count(r)").toString());
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
