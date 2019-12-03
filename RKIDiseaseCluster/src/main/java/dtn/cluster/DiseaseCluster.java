@@ -408,7 +408,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.pageRank('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Page Rank Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -421,7 +421,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.eigenvector('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Eigen Vector Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -434,7 +434,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.articleRank('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Article Rank Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -447,7 +447,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.degree('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, loadMillis, computeMillis, writeMillis, write, writeProperty");
 		     System.out.println("Degree Centrality Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -1758,7 +1758,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 //		
 		try {
 			FileWriter fw = new FileWriter("nusret.txt");
-			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4","louvain2","lp21","lp22","lp23","lp24","lp25","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
+			String[] centralities = {"pagerank20*0.85","eigenvector20*0.85","articlerank20*0.85","degree20*0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4","louvain2","lp21","lp22","lp23","lp24","lp25","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
 			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank",true), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
@@ -1770,7 +1770,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		
 		try {
 			FileWriter fw = new FileWriter("nusret2.txt");
-			String[] centralities = {"pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			String[] centralities = {"pagerank20*0.85","eigenvector20*0.85","articlerank20*0.85","degree20*0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
 			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank","lp24","151",true), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
@@ -1782,7 +1782,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		System.out.println("deneme");
 		try {
 			FileWriter fw = new FileWriter("faruk.txt");
-			String[] centralities = {"Isolation_Country","pagerank","eigenvector","articlerank","degree","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			String[] centralities = {"Isolation_Country","pagerank20*0.85","eigenvector20*0.85","articlerank20*0.85","degree20*0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
 			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4,"distance"), centralities);
 			System.out.println(sb);
 			as.shortestPathNodePairsLeadingToACountry("Germany",0.4,"distance");
