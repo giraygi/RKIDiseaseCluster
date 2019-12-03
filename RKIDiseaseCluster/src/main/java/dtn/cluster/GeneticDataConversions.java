@@ -81,8 +81,8 @@ public class GeneticDataConversions {
 	}
 	
 	public static void main(String[] args) {
-		convertDistanceMatrixToGeneticDistancesFile("rkiall_sramdr_pairwise_rel_fract.txt","acaba.txt",30);
-		convertVCFToMutationData("/media/giray/Windows/Nextcloud/transmission networks/christine data/vcfs","vcf","vcfInfo.txt");
+		convertDistanceMatrixToGeneticDistancesFile("rkiall_sramdr_pairwise_rel_fract.txt","distances40.txt",40);
+//		convertVCFToMutationData("/media/giray/Windows/Nextcloud/transmission networks/christine data/vcfs","vcf","vcfInfo.txt");
 	}
 
 }

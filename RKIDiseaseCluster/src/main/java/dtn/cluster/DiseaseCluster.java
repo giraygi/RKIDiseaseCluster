@@ -232,6 +232,26 @@ public class DiseaseCluster {
 				System.err.println("computeFullMutationDifferences2 transaction Exception");
 			} 
 		}
+		// Distance ve Weight ilişkisi incelenecek
+		public void computeWeightForMutationDifferences() {
+			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightmd = case t.mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.pos)+LENGTH(m.pos)-t.mutation_difference))/t.mutation_difference end");	
+				tx.success(); tx.close();
+		}
+		catch(Exception e) {
+			System.err.println("computeWeightForMutationDifferences transaction Exception");
+		} 
+		}
+		
+		public void computeWeightForFullMutationDifferences() {
+			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightfullmd = case t.mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-t.full_mutation_difference))/t.full_mutation_difference end");	
+				tx.success(); tx.close();
+		}
+		catch(Exception e) {
+			System.err.println("computeWeightForFullMutationDifferences transaction Exception");
+		}
+		}
 	
 	public void computeMetaData() {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
@@ -358,15 +378,29 @@ public class DiseaseCluster {
 		{
 			tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient) with (n),count(n) as connections set n.power2 = connections");
 			tx.run("match (n:Patient)-[i:TRANSMITS]-(m:Patient)-[i2:TRANSMITS]-(o:Patient)-[i3:TRANSMITS]-(n) with (n),count(n) as connections set n.power3 = connections");
-			tx.run("match (a:Patient)-[r1:TRANSMITS]-(b:Patient)-[r2:TRANSMITS]-(c:Patient)-[r3:TRANSMITS]-(a:Patient),(c:Patient)-[r4:TRANSMITS]-(d:Patient)-[r5:TRANSMITS]-(a:Patient),(d:Patient)-[r6:TRANSMITS]-(b:Patient) with (a),count(a) as connections set a.power4 = connections");
-			System.out.println("Powers are computed for all Nodes");      
+			System.out.println("Powers 2 and 3 are computed for all Nodes");      
 			tx.success(); tx.close();
 		} catch (Exception e){
 			error = true;
 			e.printStackTrace();
 		} finally {
 			if(!error)
-				System.out.println("Powers are computed for all Nodes"); 
+				System.out.println("Powers 2 and 3 are computed for all Nodes"); 
+		}
+		
+		error = false;
+		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+		{
+
+			tx.run("match (a:Patient)-[r1:TRANSMITS]-(b:Patient)-[r2:TRANSMITS]-(c:Patient)-[r3:TRANSMITS]-(a:Patient),(c:Patient)-[r4:TRANSMITS]-(d:Patient)-[r5:TRANSMITS]-(a:Patient),(d:Patient)-[r6:TRANSMITS]-(b:Patient) with (a),count(a) as connections set a.power4 = connections");
+			System.out.println("Powers 4 are computed for all Nodes");      
+			tx.success(); tx.close();
+		} catch (Exception e){
+			error = true;
+			e.printStackTrace();
+		} finally {
+			if(!error)
+				System.out.println("Powers 4 are computed for all Nodes"); 
 		}
 	}
 	
@@ -1526,7 +1560,7 @@ public ArrayList<ShortestPathNodePair> shortestPathNodePairsLeadingToACountry(St
 
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
 
-		result = tx.run("CALL algo.allShortestPaths.stream('distance',{nodeQuery:'Loc',defaultValue:1.0,graph:'huge'})\n" + 
+		result = tx.run("CALL algo.allShortestPaths.stream('distance',{nodeQuery:'Patient',defaultValue:1.0,graph:'huge'})\n" + 
 				"YIELD sourceNodeId, targetNodeId, distance where distance > 0.0\n" + 
 				"with sourceNodeId, targetNodeId, distance match (n:Patient) where ID(n) = sourceNodeId " +
 				"with n,targetNodeId,distance match (m:Patient) where ID(m) = targetNodeId and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" and (apoc.text.levenshteinSimilarity(n.Isolation_Country,'"+country+"') > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity('"+country+"',m.Isolation_Country) > "+levenshteinSimilarity+") " +
@@ -1634,38 +1668,41 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge) {
 //		as.deleteAllNodesRelationships();
 //		as.createGraph(args[0], args[1],args[2]);
 //		as.computeFullMutations(args[3]);
-		as.changeLabelOfUnconnectedNodes();
-		as.computeFullMutationDifferences();
-
-		as.computePowers();
-		as.computePageRank(20, 0.85);
-		as.computeEigenVector(20, 0.85);
-		as.computeArticleRank(20, 0.85);
-		as.computeDegreeCentrality(20, 0.85);
-		as.computeBetweennessCentrality();
-		as.computeClosenessCentrality();
-		as.computeCloseness2Centrality();
-		as.computeHarmonicCentrality();
-//		as.computeLouvainCommunities();
-		as.computeLouvainCommunities2();
-		as.computeLabelPropagationCommunities("lp1", 1);
-		as.computeLabelPropagationCommunities2("lp2", 1);
-		as.computeLabelPropagationCommunities("lp1", 2);
-		as.computeLabelPropagationCommunities2("lp2", 2);
-		as.computeLabelPropagationCommunities("lp1", 3);
-		as.computeLabelPropagationCommunities2("lp2", 3);
-		as.computeLabelPropagationCommunities("lp1", 4);
-		as.computeLabelPropagationCommunities2("lp2", 4);
-		as.computeLabelPropagationCommunities("lp1", 5);
-		as.computeLabelPropagationCommunities2("lp2", 5);
-		as.computeLabelPropagationCommunities("lp1", 6);
-		as.computeLabelPropagationCommunities2("lp2", 6);
-		as.computeUnionFind("union_cluster");
-		as.computeUnionFind("union2_cluster");
-//		as.computeSCC("scc_cluster");
-		as.computeSCC2("scc2_cluster");
+//		as.changeLabelOfUnconnectedNodes();
+//		as.computeFullMutationDifferences();
+//
+//		as.computePowers();
+//		as.computePageRank(20, 0.85);
+//		as.computeEigenVector(20, 0.85);
+//		as.computeArticleRank(20, 0.85);
+//		as.computeDegreeCentrality(20, 0.85);
+//		as.computeBetweennessCentrality();
+//		as.computeClosenessCentrality();
+//		as.computeCloseness2Centrality();
+//		as.computeHarmonicCentrality();
+////		as.computeLouvainCommunities();
+//		as.computeLouvainCommunities2();
+//		as.computeLabelPropagationCommunities("lp1", 1);
+//		as.computeLabelPropagationCommunities2("lp2", 1);
+//		as.computeLabelPropagationCommunities("lp1", 2);
+//		as.computeLabelPropagationCommunities2("lp2", 2);
+//		as.computeLabelPropagationCommunities("lp1", 3);
+//		as.computeLabelPropagationCommunities2("lp2", 3);
+//		as.computeLabelPropagationCommunities("lp1", 4);
+//		as.computeLabelPropagationCommunities2("lp2", 4);
+//		as.computeLabelPropagationCommunities("lp1", 5);
+//		as.computeLabelPropagationCommunities2("lp2", 5);
+//		as.computeLabelPropagationCommunities("lp1", 6);
+//		as.computeLabelPropagationCommunities2("lp2", 6);
+//		as.computeUnionFind("union_cluster");
+//		as.computeUnionFind("union2_cluster");
+////		as.computeSCC("scc_cluster");
+//		as.computeSCC2("scc2_cluster");
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();
+		System.err.println("kamil");
+		as.computeWeightForMutationDifferences();
+		as.computeWeightForFullMutationDifferences();
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
 		long[] single1= {al.get(0)};
