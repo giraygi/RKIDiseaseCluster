@@ -245,7 +245,7 @@ public class DiseaseCluster {
 		
 		public void computeWeightForFullMutationDifferences() {
 			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightfullmd = case t.mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-t.full_mutation_difference))/t.full_mutation_difference end");	
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightfullmd = case t.full_mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-t.full_mutation_difference))/t.full_mutation_difference end");	
 				tx.success(); tx.close();
 		}
 		catch(Exception e) {
@@ -408,7 +408,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.pageRank('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank"+iterations+"d"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Page Rank Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -421,7 +421,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.eigenvector('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector"+iterations+"d"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Eigen Vector Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -434,7 +434,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.articleRank('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank"+iterations+"d"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Article Rank Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -447,7 +447,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.degree('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree"+iterations+"*"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree"+iterations+"d"+dampingFactor+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, loadMillis, computeMillis, writeMillis, write, writeProperty");
 		     System.out.println("Degree Centrality Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -536,8 +536,8 @@ public void computeLouvainCommunities2(String weightProperty) {
 		tx.run("CALL algo.louvain(\n" + 
 				"			  'MATCH (p:Patient) RETURN id(p) as id',\n" + 
 				"			  'MATCH (p1:Patient)-[f:TRANSMITS]-(p2:Patient)\n" + 
-				"			   RETURN id(p1) as source, id(p2) as target, f.weight as weight',\n" + 
-				"			  {weightProperty:'"+weightProperty+"', defaultValue:0.0, graph:'cypher',write:true,writeProperty:'louvain2'})");
+				"			   RETURN id(p1) as source, id(p2) as target, f."+weightProperty+" as weight',\n" + 
+				"			  {weightProperty:'weight', defaultValue:0.0, graph:'cypher',write:true,writeProperty:'louvain2'})");
 		System.out.println("Louvain Communities 2 are computed");  
 		tx.success(); tx.close();
 	} catch (Exception e){
@@ -1135,7 +1135,6 @@ public static List<String> concatanateItemsWithSameIndex(List<Object> pos, List<
 	
 	for (int i = 0;i<pos.size();i++) {
 		listOfMergedItems.add(String.valueOf(pos.get(i))+(String)ref.get(i)+(String)alt.get(i));
-//		System.out.println("adding::: "+(String)pos.get(i)+(String)ref.get(i)+(String)alt.get(i));
 	}	
 	return listOfMergedItems;	
 }
@@ -1345,6 +1344,19 @@ public void removeIdenticalTransmissions(boolean removeOlder){
       }
 }
 
+public void removeProperties(String[] properties) {
+	System.out.println("removeProperties");
+	
+	for (int i = 0;i<properties.length;i++)
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
+    {
+		tx.run("match (n)-[t:TRANSMITS]->(m) remove t."+properties[i]+" return t");
+		tx.success(); tx.close();
+    } catch (Exception e){
+    	  e.printStackTrace();
+      }
+}
+
 public void changeLabelOfUnconnectedNodes() {
 	System.out.println("changeLabelOfUnconnectedNodes");
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
@@ -1512,11 +1524,6 @@ public ArrayList<Node> shortestPathNodesLeadingToACountry(String country,double 
 				"with sourceNodeId, targetNodeId, distance match (n:Patient) where ID(n) = sourceNodeId " +
 				"with n,targetNodeId,distance match (m:Patient) where ID(m) = targetNodeId and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" and (apoc.text.levenshteinSimilarity(n.Isolation_Country,'"+country+"') > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity('"+country+"',m.Isolation_Country) > "+levenshteinSimilarity+") " +
 				"return n,m,distance order by distance asc");
-		System.out.println("CALL algo.allShortestPaths.stream('"+distanceProperty+"',{nodeQuery:'Patient',defaultValue:1.0,graph:'huge'})\n" + 
-				"YIELD sourceNodeId, targetNodeId, distance where distance > 0.0\n" + 
-				"with sourceNodeId, targetNodeId, distance match (n:Patient) where ID(n) = sourceNodeId " +
-				"with n,targetNodeId,distance match (m:Patient) where ID(m) = targetNodeId and apoc.text.levenshteinSimilarity(n.Isolation_Country,m.Isolation_Country) < "+levenshteinSimilarity+" and (apoc.text.levenshteinSimilarity(n.Isolation_Country,'"+country+"') > "+levenshteinSimilarity+" or apoc.text.levenshteinSimilarity('"+country+"',m.Isolation_Country) > "+levenshteinSimilarity+") " +
-				"return n,m,distance order by distance asc");
 	int count = 0;	
 		while(result.hasNext()){
 			Record row = result.next();
@@ -1589,7 +1596,7 @@ public ArrayList<ShortestPathNodePair> shortestPathNodePairsLeadingToACountry(St
 			count++;
 			System.out.println();
 			}
-		System.err.println("count: "+count);
+		System.err.println(" shortest path count: "+count);
 	tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -1669,34 +1676,43 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 //		as.computeFullMutations(args[3]);
 //		as.changeLabelOfUnconnectedNodes();
 //		as.computeFullMutationDifferences();
-//
 //		as.computePowers();
-		as.computePageRank(20, 0.85,"weight");
-		as.computeEigenVector(20, 0.85,"weight");
-		as.computeArticleRank(20, 0.85,"weight");
-		as.computeDegreeCentrality(20, 0.85,"weight");
-		as.computeBetweennessCentrality("weight");
-		as.computeClosenessCentrality("weight");
-		as.computeCloseness2Centrality("weight");
-		as.computeHarmonicCentrality("weight");
-//		as.computeLouvainCommunities("weight");
-		as.computeLouvainCommunities2("weight");
-		as.computeLabelPropagationCommunities("lp1", 1,"weight");
-		as.computeLabelPropagationCommunities2("lp2", 1,"weight");
-		as.computeLabelPropagationCommunities("lp1", 2,"weight");
-		as.computeLabelPropagationCommunities2("lp2", 2,"weight");
-		as.computeLabelPropagationCommunities("lp1", 3,"weight");
-		as.computeLabelPropagationCommunities2("lp2", 3,"weight");
-		as.computeLabelPropagationCommunities("lp1", 4,"weight");
-		as.computeLabelPropagationCommunities2("lp2", 4,"weight");
-		as.computeLabelPropagationCommunities("lp1", 5,"weight");
-		as.computeLabelPropagationCommunities2("lp2", 5,"weight");
-		as.computeLabelPropagationCommunities("lp1", 6,"weight");
-		as.computeLabelPropagationCommunities2("lp2", 6,"weight");
-		as.computeUnionFind("union_cluster","weight");
-		as.computeUnionFind("union2_cluster","weight");
-//		as.computeSCC("scc_cluster","weight");
-		as.computeSCC2("scc2_cluster","weight");
+		as.computeWeightForMutationDifferences();
+		as.computeWeightForFullMutationDifferences();
+		String[] properties = {"eigenvector","degree20","eigenvector","degree","eigenvector","degree"};
+		as.removeProperties(properties);
+		String weightProperty = "weightfullmd";
+		String distanceProperty = "full_mutation_difference";
+		as.computePageRank(20, 0.85,weightProperty);
+		as.computeEigenVector(20, 0.85,weightProperty);
+		as.computeArticleRank(20, 0.85,weightProperty);
+		as.computeDegreeCentrality(20, 0.85,weightProperty);
+		as.computePageRank(20, 0.75,weightProperty);
+		as.computeArticleRank(20, 0.75,weightProperty);
+		as.computePageRank(20, 0.95,weightProperty);
+		as.computeArticleRank(20, 0.95,weightProperty);
+		as.computeBetweennessCentrality(weightProperty);
+		as.computeClosenessCentrality(weightProperty);
+		as.computeCloseness2Centrality(weightProperty);
+		as.computeHarmonicCentrality(weightProperty);
+//		as.computeLouvainCommunities(weightProperty);
+		as.computeLouvainCommunities2(weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 1,weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 1,weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 2,weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 2,weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 3,weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 3,weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 4,weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 4,weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 5,weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 5,weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 6,weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 6,weightProperty);
+		as.computeUnionFind("union_cluster",weightProperty);
+		as.computeUnionFind("union2_cluster",weightProperty);
+//		as.computeSCC("scc_cluster",weightProperty);
+		as.computeSCC2("scc2_cluster",weightProperty);
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();
 		System.err.println("kamil");
@@ -1715,10 +1731,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 //			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
 //			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
 //			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-//			System.out.println("average pagerank: "+bs.average);
-//			System.out.println("max pagerank: "+bs.max);
-//			System.out.println("min pagerank: "+bs.min);
-//			System.out.println("stdev pagerank: "+bs.stdev);
+//			System.out.println(bs);
 //			
 //			convertDrugResistancesToMatrix(hm,"union_cluster",al.get(i));		
 //			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
@@ -1731,10 +1744,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 //			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
 //			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
 //			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-//			System.out.println("average pagerank: "+bs2.average);
-//			System.out.println("max pagerank: "+bs2.max);
-//			System.out.println("min pagerank: "+bs2.min);
-//			System.out.println("stdev pagerank: "+bs2.stdev);
+//			System.out.println(bs2);
 //			
 //			convertDrugResistancesToMatrix(hm2,"louvain",al2.get(i));		
 //			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",al2.get(i));	
@@ -1747,18 +1757,16 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 //			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
 //			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
 //			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-//			System.out.println("average pagerank: "+bs3.average);
-//			System.out.println("max pagerank: "+bs3.max);
-//			System.out.println("min pagerank: "+bs3.min);
-//			System.out.println("stdev pagerank: "+bs3.stdev);
+//			System.out.println(bs3);
 //			
 //			convertDrugResistancesToMatrix(hm3,"lp23",al3.get(i));		
 //			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",al3.get(i));	
 //		}
 //		
+		
 		try {
 			FileWriter fw = new FileWriter("nusret.txt");
-			String[] centralities = {"pagerank20*0.85","eigenvector20*0.85","articlerank20*0.85","degree20*0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4","louvain2","lp21","lp22","lp23","lp24","lp25","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
+			String[] centralities = {"pagerank20d0.75","articlerank20d0.75","pagerank20d0.85","articlerank20d0.85","pagerank20d0.95","articlerank20d0.95","eigenvector20d0.85","degree20d0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4","louvain2","lp21","lp22","lp23","lp24","lp25","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
 			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank",true), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
@@ -1770,7 +1778,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		
 		try {
 			FileWriter fw = new FileWriter("nusret2.txt");
-			String[] centralities = {"pagerank20*0.85","eigenvector20*0.85","articlerank20*0.85","degree20*0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			String[] centralities = {"pagerank20d0.75","articlerank20d0.75","pagerank20d0.85","articlerank20d0.85","pagerank20d0.95","articlerank20d0.95","eigenvector20d0.85","degree20d0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
 			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank","lp24","151",true), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
@@ -1782,10 +1790,10 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		System.out.println("deneme");
 		try {
 			FileWriter fw = new FileWriter("faruk.txt");
-			String[] centralities = {"Isolation_Country","pagerank20*0.85","eigenvector20*0.85","articlerank20*0.85","degree20*0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4,"distance"), centralities);
-			System.out.println(sb);
-			as.shortestPathNodePairsLeadingToACountry("Germany",0.4,"distance");
+			String[] centralities = {"Isolation_Country","pagerank20d0.75","articlerank20d0.75","pagerank20d0.85","articlerank20d0.85","pagerank20d0.95","articlerank20d0.95","eigenvector20d0.85","degree20d0.85","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4,distanceProperty), centralities);
+//			System.out.println(sb);
+			as.shortestPathNodePairsLeadingToACountry("Germany",0.4,distanceProperty);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
@@ -1799,7 +1807,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			
 			long l = alpagerank.get(t).id();
 			System.out.println("Country of Patient: "+alpagerank.get(t).get("Isolation_Country").asString()+" - "+l);
-			SubGraph sg = as.minimumSpanningTreeOfANode(l,true,"distance");
+			SubGraph sg = as.minimumSpanningTreeOfANode(l,true,distanceProperty);
 			System.out.println("Size of MST: "+sg.patients.size());
 			Set<String> countries = new HashSet<String>();
 			for (Node node: sg.patients) {
@@ -1838,4 +1846,10 @@ class BasicStatistics {
 		this.average = average;
 		this.stdev = stdev;
 	}
+
+	@Override
+	public String toString() {
+		return "BasicStatistics [max=" + max + ", min=" + min + ", average=" + average + ", stdev=" + stdev + "]";
+	}
+	
 }

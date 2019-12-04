@@ -16,7 +16,7 @@ public class UnitTest2 {
 		as.computeCentralityMetaData();
 		
 		
-		int noofRecords = as.shortestPathNodePairsLeadingToACountry("Germany",0.4).size();
+		int noofRecords = as.shortestPathNodePairsLeadingToACountry("Germany",0.4,"distance").size();
 		
 		assertEquals(782,noofRecords);
 //		fail("Not yet implemented");
