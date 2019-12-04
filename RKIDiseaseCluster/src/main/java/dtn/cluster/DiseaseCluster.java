@@ -408,7 +408,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.pageRank('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank"+iterations+"d"+Double.toString(dampingFactor).replaceAll(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'pagerank"+iterations+"d"+Double.toString(dampingFactor).replace(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Page Rank Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -421,7 +421,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.eigenvector('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector"+iterations+"d"+Double.toString(dampingFactor).replaceAll(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'eigenvector"+iterations+"d"+Double.toString(dampingFactor).replace(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Eigen Vector Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -434,7 +434,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.articleRank('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank"+iterations+"d"+Double.toString(dampingFactor).replaceAll(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'articlerank"+iterations+"d"+Double.toString(dampingFactor).replace(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty");
 		     System.out.println("Article Rank Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -447,7 +447,7 @@ public class DiseaseCluster {
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 		{
 			tx.run("CALL algo.degree('Patient', 'TRANSMITS',\n" + 
-					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree"+iterations+"d"+Double.toString(dampingFactor).replaceAll(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
+					"  {direction:'BOTH', iterations:"+iterations+", dampingFactor:"+dampingFactor+", write: true,writeProperty:'degree"+iterations+"d"+Double.toString(dampingFactor).replace(".","")+"', weightProperty: '"+weightProperty+"',defaultValue:0.0})\n" + 
 					"YIELD nodes, loadMillis, computeMillis, writeMillis, write, writeProperty");
 		     System.out.println("Degree Centrality Values are computed for all Nodes"); 
 			tx.success(); tx.close();
@@ -1723,9 +1723,9 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		long[] single1= {al.get(0)};
 		long[] single2= {al.get(1)};
 		long[] merged= {al.get(0),al.get(1)};
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single1),"union_cluster",single1,"pagerank",true);
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single2),"union_cluster",single2,"pagerank",true);
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",merged),"union_cluster",merged,"pagerank",true);
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single1),"union_cluster",single1,"pagerank20d085",true);
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single2),"union_cluster",single2,"pagerank20d085",true);
+		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",merged),"union_cluster",merged,"pagerank20d085",true);
 		
 //		for (int i =0;i<al.size();i++) {		
 //			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
@@ -1778,8 +1778,8 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		
 		try {
 			FileWriter fw = new FileWriter("nusret2.txt");
-			String[] centralities = {"pagerank20d0.75","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank20d075","lp24","151",true), centralities);
+			String[] centralities = {"pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank20d075","lp24",String.valueOf(as.detectCommunityIDs("lp24", 5).get(0)),true), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
