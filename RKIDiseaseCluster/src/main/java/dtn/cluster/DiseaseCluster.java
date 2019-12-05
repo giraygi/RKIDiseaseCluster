@@ -1727,42 +1727,42 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single2),"union_cluster",single2,"pagerank20d085",true);
 		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",merged),"union_cluster",merged,"pagerank20d085",true);
 		
-//		for (int i =0;i<al.size();i++) {		
-//			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
-//			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
-//			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-//			System.out.println(bs);
-//			
-//			convertDrugResistancesToMatrix(hm,"union_cluster",al.get(i));		
-//			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",al.get(i));	
-//		}
-//		
-//		
-//		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
-//		
-//		for (int i =0;i<al2.size();i++) {		
-//			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
-//			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
-//			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-//			System.out.println(bs2);
-//			
-//			convertDrugResistancesToMatrix(hm2,"louvain",al2.get(i));		
-//			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",al2.get(i));	
-//		}
-//		
-//		
-//		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 5);
-//		
-//		for (int i =0;i<al3.size();i++) {		
-//			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
-//			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
-//			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
-//			System.out.println(bs3);
-//			
-//			convertDrugResistancesToMatrix(hm3,"lp23",al3.get(i));		
-//			convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",al3.get(i));	
-//		}
-//		
+		for (int i =0;i<al.size();i++) {		
+			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
+			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			System.out.println(bs);
+			long[] temp = {al.get(i)};
+			as.convertDrugResistancesToMatrix(hm,"union_cluster",temp,"pagerank20d085",true);		
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",temp,"pagerank20d085",true);	
+		}
+		
+		
+		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
+		
+		for (int i =0;i<al2.size();i++) {		
+			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
+			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			System.out.println(bs2);
+			long[] temp = {al2.get(i)};
+			as.convertDrugResistancesToMatrix(hm2,"louvain",temp,"pagerank20d085",true);		
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",temp,"pagerank20d085",true);	
+		}
+		
+		
+		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 5);
+		
+		for (int i =0;i<al3.size();i++) {		
+			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
+			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			System.out.println(bs3);
+			long[] temp = {al3.get(i)};
+			as.convertDrugResistancesToMatrix(hm3,"lp23",temp,"pagerank20d085",true);		
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",temp,"pagerank20d085",true);	
+		}
+		
 		
 		try {
 			FileWriter fw = new FileWriter("nusret.txt");
@@ -1829,8 +1829,22 @@ class DrugResistancePrevalance {
 	String drug;
 	String clusterType;
 	String clusterID;
-	ArrayList<Node> patients;;
-	int noOfResistantPatients;
+	ArrayList<Node> patients;
+	
+	public DrugResistancePrevalance(String drug, String clusterType, String clusterID, ArrayList<Node> patients) {
+		super();
+		this.drug = drug;
+		this.clusterType = clusterType;
+		this.clusterID = clusterID;
+		this.patients = patients;
+	}
+
+	@Override
+	public String toString() {
+		return "DrugResistancePrevalance [drug=" + drug + ", clusterType=" + clusterType + ", clusterID=" + clusterID
+				+ ", patients=" + patients + "]";
+	}
+
 }
 
 class BasicStatistics {
