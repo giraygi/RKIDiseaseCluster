@@ -10,7 +10,7 @@ public class UnitTest1 {
 	public void testComputesharedMutationsWithinAClusterArray() {
 		
 		DiseaseCluster.databaseAddress = "resistance_data_SRA_RKI.csv";	
-		final DiseaseCluster as = new DiseaseCluster(1,"resistance_data_SRA_RKI.csv",100,20);	
+		final DiseaseCluster as = new DiseaseCluster(1,"resistance_data_SRA_RKI.csv",100,20,"weight","distance");	
 		
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();

@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -44,16 +45,18 @@ public class DiseaseCluster {
 	double minDistance = 0.0;
 	int numberOfSimilarityLinks = 0;
 	int numberOfCloserLinks = 0;
-	int numberOfNodePairsWithBothSimilarityAndCommonAnnotations = 0;
-	int noofAligners;
+	String weightProperty;
+	String distanceProperty;
 	MetaData md;
 	
 	
 	
-	public DiseaseCluster(int noofAligners, String args, int toleranceLimitForUnimprovedAligners,int toleranceCycleForUnimprovedAligners){
-		this.noofAligners = noofAligners;
+	
+	public DiseaseCluster(int noofAligners, String args, int toleranceLimitForUnimprovedAligners,int toleranceCycleForUnimprovedAligners, String weightProperty, String distanceProperty){
 		this.init(args);
 		md  = new MetaData(20);
+		this.weightProperty = weightProperty;
+		this.distanceProperty = distanceProperty;
 	}
 	
 	public void init(String args){
@@ -1357,6 +1360,19 @@ public void removeProperties(String[] properties) {
       }
 }
 
+
+public void assignPropertyNameToAnother(String assignedPropertyName, String finalPropertyName) {
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
+		tx.run( "match (n)-[t:TRANSMITS]->(m) SET t."+assignedPropertyName+" = t."+finalPropertyName);	
+		tx.run( "match (n) SET n."+assignedPropertyName+" = n."+finalPropertyName);	
+		tx.success(); tx.close();
+}
+catch(Exception e) {
+	e.printStackTrace();
+	System.err.println("assignPropertyToAnother Exception");
+}
+}
+
 public void changeLabelOfUnconnectedNodes() {
 	System.out.println("changeLabelOfUnconnectedNodes");
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
@@ -1670,104 +1686,110 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 
 	public static void main(String[] args) {
 		databaseAddress = args[2];	
-		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20);	
+		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20,"weightfullmd","full_mutation_difference");	
 //		as.deleteAllNodesRelationships();
 //		as.createGraph(args[0], args[1],args[2]);
 //		as.computeFullMutations(args[3]);
 //		as.changeLabelOfUnconnectedNodes();
 //		as.computeFullMutationDifferences();
 //		as.computePowers();
-		as.computeWeightForMutationDifferences();
-		as.computeWeightForFullMutationDifferences();
 		String[] properties = {"pagerank","eigenvector","articlerank","degree"};
 		as.removeProperties(properties);
-		String weightProperty = "weightfullmd";
-		String distanceProperty = "full_mutation_difference";
-		as.computePageRank(20, 0.85,weightProperty);
-		as.computeEigenVector(20, 0.85,weightProperty);
-		as.computeArticleRank(20, 0.85,weightProperty);
-		as.computeDegreeCentrality(20, 0.85,weightProperty);
-		as.computePageRank(20, 0.75,weightProperty);
-		as.computeArticleRank(20, 0.75,weightProperty);
-		as.computePageRank(20, 0.95,weightProperty);
-		as.computeArticleRank(20, 0.95,weightProperty);
-		as.computeBetweennessCentrality(weightProperty);
-		as.computeClosenessCentrality(weightProperty);
-		as.computeCloseness2Centrality(weightProperty);
-		as.computeHarmonicCentrality(weightProperty);
-		as.computeLouvainCommunities(weightProperty);
-		as.computeLouvainCommunities2(weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 1,weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 1,weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 2,weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 2,weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 3,weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 3,weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 4,weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 4,weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 5,weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 5,weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 6,weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 6,weightProperty);
-		as.computeUnionFind("union_cluster",weightProperty);
-		as.computeUnionFind("union2_cluster",weightProperty);
+		as.computeWeightForMutationDifferences();
+		as.computeWeightForFullMutationDifferences();
+		
+		as.assignPropertyNameToAnother("distance", "full_mutation_difference");
+		as.assignPropertyNameToAnother("weight", "weightfullmd");
+
+		as.computePageRank(20, 0.85,as.weightProperty);
+		as.computeEigenVector(20, 0.85,as.weightProperty);
+		as.computeArticleRank(20, 0.85,as.weightProperty);
+		as.computeDegreeCentrality(20, 0.85,as.weightProperty);
+		as.computePageRank(20, 0.75,as.weightProperty);
+		as.computeArticleRank(20, 0.75,as.weightProperty);
+		as.computePageRank(20, 0.95,as.weightProperty);
+		as.computeArticleRank(20, 0.95,as.weightProperty);
+		as.computeBetweennessCentrality(as.weightProperty);
+		as.computeClosenessCentrality(as.weightProperty);
+		as.computeCloseness2Centrality(as.weightProperty);
+		as.computeHarmonicCentrality(as.weightProperty);
+		as.computeLouvainCommunities(as.weightProperty);
+		as.computeLouvainCommunities2(as.weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 1,as.weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 1,as.weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 2,as.weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 2,as.weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 3,as.weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 3,as.weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 4,as.weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 4,as.weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 5,as.weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 5,as.weightProperty);
+		as.computeLabelPropagationCommunities("lp1", 6,as.weightProperty);
+		as.computeLabelPropagationCommunities2("lp2", 6,as.weightProperty);
+		as.computeUnionFind("union_cluster",as.weightProperty);
+		as.computeUnionFind("union2_cluster",as.weightProperty);
 //		as.computeSCC("scc_cluster",weightProperty);
-		as.computeSCC2("scc2_cluster",weightProperty);
+		as.computeSCC2("scc2_cluster",as.weightProperty);
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();
 		System.err.println("kamil");
 		as.computeWeightForMutationDifferences();
 		as.computeWeightForFullMutationDifferences();
 		
-		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
-		long[] single1= {al.get(0)};
-		long[] single2= {al.get(1)};
-		long[] merged= {al.get(0),al.get(1)};
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single1),"union_cluster",single1,"pagerank20d085",true);
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single2),"union_cluster",single2,"pagerank20d085",true);
-		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",merged),"union_cluster",merged,"pagerank20d085",true);
+		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 30);
+//		long[] single1= {al.get(0)};
+//		long[] single2= {al.get(1)};
+//		long[] merged= {al.get(0),al.get(1)};
+//		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single1),"union_cluster",single1,"pagerank20d085",true);
+//		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",single2),"union_cluster",single2,"pagerank20d085",true);
+//		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",merged),"union_cluster",merged,"pagerank20d085",true);
 		
-		for (int i =0;i<al.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinACluster("union_cluster", al.get(i));
+		for (int i =0;i<al.size();i++)
+			for (int j =0;j<al.size();j++) if(i>j){	
+				long[] temp = {al.get(i),al.get(j)};
+			HashMap<String,ArrayList<Node>> hm = as.computeSharedDrugResistanceWithinAClusterArray("union_cluster", temp);
 			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm);
-			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			BasicStatistics bs = basicCentralityStatisticsWithinACommunity("pagerank20d085",patients);
 			System.out.println(bs);
-			long[] temp = {al.get(i)};
+			
 			as.convertDrugResistancesToMatrix(hm,"union_cluster",temp,"pagerank20d085",true);		
-			as.convertMutationsToMatrix(as.computesharedMutationsWithinACluster("union_cluster", al.get(i)),"union_cluster",temp,"pagerank20d085",true);	
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster", temp),"union_cluster",temp,"pagerank20d085",true);	
 		}
+	
+		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 30);
 		
-		
-		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 5);
-		
-		for (int i =0;i<al2.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinACluster("louvain", al2.get(i));
+		for (int i =0;i<al2.size();i++) 
+			for (int j =0;j<al2.size();j++) if(i>j){	
+				long[] temp = {al2.get(i),al2.get(j)};
+			HashMap<String,ArrayList<Node>> hm2 = as.computeSharedDrugResistanceWithinAClusterArray("louvain", temp);
 			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm2);
-			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			BasicStatistics bs2 = basicCentralityStatisticsWithinACommunity("pagerank20d085",patients);
 			System.out.println(bs2);
-			long[] temp = {al2.get(i)};
+			
 			as.convertDrugResistancesToMatrix(hm2,"louvain",temp,"pagerank20d085",true);		
-			as.convertMutationsToMatrix(as.computesharedMutationsWithinACluster("louvain", al2.get(i)),"louvain",temp,"pagerank20d085",true);	
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("louvain", temp),"louvain",temp,"pagerank20d085",true);	
 		}
 		
+//		
+		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 30);
 		
-		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 5);
-		
-		for (int i =0;i<al3.size();i++) {		
-			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinACluster("lp23", al3.get(i));
+		for (int i =0;i<al3.size();i++) 
+			for (int j =0;j<al2.size();j++) if(i>j){	
+				long[] temp = {al3.get(i),al3.get(j)};
+			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinAClusterArray("lp23", temp);
 			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
-			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank",patients);
+			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank20d085",patients);
 			System.out.println(bs3);
-			long[] temp = {al3.get(i)};
+			
 			as.convertDrugResistancesToMatrix(hm3,"lp23",temp,"pagerank20d085",true);		
-			as.convertMutationsToMatrix(as.computesharedMutationsWithinACluster("lp23", al3.get(i)),"lp23",temp,"pagerank20d085",true);	
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("lp23", temp),"lp23",temp,"pagerank20d085",true);	
 		}
-		
-		
+
 		try {
-			FileWriter fw = new FileWriter("nusret.txt");
+			FileWriter fw = new FileWriter("centralities.txt");
 			String[] centralities = {"pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4","louvain2","lp21","lp22","lp23","lp24","lp25","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
-			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank20d075",true), centralities);
+			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank20d085",true), centralities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
@@ -1775,25 +1797,25 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try {
-			FileWriter fw = new FileWriter("nusret2.txt");
-			String[] centralities = {"pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank20d075","lp24",String.valueOf(as.detectCommunityIDs("lp24", 5).get(0)),true), centralities);
-			
-			fw.write(sb.toString(),0,sb.toString().length());		
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		
+//		try {
+//			FileWriter fw = new FileWriter("nusret2.txt");
+//			String[] centralities = {"pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+//			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithinACommunity("pagerank20d085","lp24",String.valueOf(as.detectCommunityIDs("lp24", 5).get(0)),true), centralities);
+//			
+//			fw.write(sb.toString(),0,sb.toString().length());		
+//			fw.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		System.out.println("deneme");
+		
+		
 		try {
-			FileWriter fw = new FileWriter("faruk.txt");
-			String[] centralities = {"Isolation_Country","pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
-			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4,distanceProperty), centralities);
-//			System.out.println(sb);
-			as.shortestPathNodePairsLeadingToACountry("Germany",0.4,distanceProperty);
+			FileWriter fw = new FileWriter("communities.txt");
+			String[] communities = {"louvain","louvain2","lp11","lp21","lp12","lp22","lp13","lp23","lp14","lp24","lp15","lp25","lp16","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
+			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatients("pagerank20d085",true), communities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
@@ -1802,26 +1824,56 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			e.printStackTrace();
 		}
 		
-		ArrayList<Node> alpagerank = as.sortCentralPatients("pagerank20d075",true);
-		for (int t =0;t<alpagerank.size();t++) {
+		try {
+			FileWriter fw = new FileWriter("ForeignNodesReachingToGermany.txt");
+			String[] centralities = {"Isolation_Country","pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
+			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4,as.distanceProperty), centralities);
+//			System.out.println(sb);
+			as.shortestPathNodePairsLeadingToACountry("Germany",0.4,as.distanceProperty);
 			
-			long l = alpagerank.get(t).id();
-			System.out.println("Country of Patient: "+alpagerank.get(t).get("Isolation_Country").asString()+" - "+l);
-			SubGraph sg = as.minimumSpanningTreeOfANode(l,true,distanceProperty);
-			System.out.println("Size of MST: "+sg.patients.size());
-			Set<String> countries = new HashSet<String>();
-			for (Node node: sg.patients) {
-				countries.add(node.get("Isolation_Country").asString());	
+			fw.write(sb.toString(),0,sb.toString().length());		
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<Node> alpagerank = as.sortCentralPatients("pagerank20d085",true);
+		FileWriter fw;
+		try {
+			fw = new FileWriter("MinimumSpanningTrees.txt");
+			for (int t =0;t<alpagerank.size();t++) {
+				
+				long l = alpagerank.get(t).id();
+				fw.append("Country of Patient: "+alpagerank.get(t).get("Isolation_Country").asString()+" - "+alpagerank.get(t).get("Isolate_ID").asString()+" - "+l); fw.append("\n");
+				System.out.println("Country of Patient: "+alpagerank.get(t).get("Isolation_Country").asString()+" - "+alpagerank.get(t).get("Isolate_ID").asString()+" - "+l);
+				SubGraph sg = as.minimumSpanningTreeOfANode(l,true,as.distanceProperty);
+//				fw.append("Size of MST: "+sg.patients.size()); fw.append("\n");
+//				System.out.println("Size of MST: "+sg.patients.size());
+				Set<String> countries = new HashSet<String>();
+				List<String> countriesOccurences = new ArrayList<String>();
+				for (Node node: sg.patients) {
+					countries.add(node.get("Isolation_Country").asString());	
+					countriesOccurences.add(node.get("Isolation_Country").asString());
+				}
+				StringBuilder cntrs = new StringBuilder();
+				cntrs.append("Countries of Neighbours: ");
+				for (String country : countries) {
+					cntrs.append(country).append(": ").append(Collections.frequency(countriesOccurences, country)).append(", ");
+				}
+				cntrs.delete(cntrs.length()-2, cntrs.length());
+				System.out.println(cntrs);
+				fw.append(cntrs);	fw.append("\n");
+				fw.append("no of transmissions: "+sg.transmissions.size()+" - "+"no of patients: "+sg.patients.size());  fw.append("\n");
+				System.out.println("no of transmissions: "+sg.transmissions.size()+" - "+"no of patients: "+sg.patients.size());
+				fw.append("\n");
 			}
-			StringBuilder cntrs = new StringBuilder();
-			cntrs.append("Countries of Neighbours: ");
-			for (String country : countries) {
-				cntrs.append(country).append(", ");
-			}
-			cntrs.delete(cntrs.length()-2, cntrs.length());
-			System.out.println(cntrs);
-//			System.out.println("no of transmissions"+sg.transmissions.size()+" - "+"no of patients"+sg.patients.size());
-		}	
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
 
