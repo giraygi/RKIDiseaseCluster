@@ -1045,8 +1045,8 @@ public boolean[][] convertDrugResistancesToMatrix(HashMap<String,ArrayList<Node>
 				else
 					System.out.println("There is a vibe in the force");
 			} 
-			fwl.append(String.valueOf(clids.indexOf(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))+1)).append(",");
-			fwl.append(String.valueOf(( (Node) patients[i]).get(clusterType).asInt())).append("\n");		
+			fwl.append(String.valueOf(clids.indexOf(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))+1));
+			fwl/*.append(",").append(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))*/.append("\n");		
 		}
 		
 		fw.write(sb.toString(),0,sb.toString().length());		
@@ -1117,8 +1117,8 @@ public boolean[][] convertMutationsToMatrix(HashMap<String,ArrayList<Node>> clus
 				else
 					System.out.println("There is a vibe in the force");			
 			} 
-			fwl.append(String.valueOf(clids.indexOf(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))+1)).append(",");
-			fwl.append(String.valueOf(( (Node) patients[i]).get(clusterType).asInt())).append("\n");				
+			fwl.append(String.valueOf(clids.indexOf(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))+1));
+			fwl/*.append(",").append(String.valueOf(( (Node) patients[i]).get(clusterType).asInt()))*/.append("\n");				
 		}
 		fw.write(sb.toString(),0,sb.toString().length());		
 		fw.close();
@@ -1772,18 +1772,32 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		}
 		
 //		
-		ArrayList<Long> al3 = as.detectCommunityIDs("lp23", 30);
+		ArrayList<Long> al3 = as.detectCommunityIDs("lp26", 30);
 		
 		for (int i =0;i<al3.size();i++) 
-			for (int j =0;j<al2.size();j++) if(i>j){	
+			for (int j =0;j<al3.size();j++) if(i>j){	
 				long[] temp = {al3.get(i),al3.get(j)};
-			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinAClusterArray("lp23", temp);
+			HashMap<String,ArrayList<Node>> hm3 = as.computeSharedDrugResistanceWithinAClusterArray("lp26", temp);
 			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm3);
 			BasicStatistics bs3 = basicCentralityStatisticsWithinACommunity("pagerank20d085",patients);
 			System.out.println(bs3);
 			
-			as.convertDrugResistancesToMatrix(hm3,"lp23",temp,"pagerank20d085",true);		
-			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("lp23", temp),"lp23",temp,"pagerank20d085",true);	
+			as.convertDrugResistancesToMatrix(hm3,"lp26",temp,"pagerank20d085",true);		
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("lp26", temp),"lp26",temp,"pagerank20d085",true);	
+		}
+		
+		ArrayList<Long> al4 = as.detectCommunityIDs("lp16", 30);
+		
+		for (int i =0;i<al4.size();i++) 
+			for (int j =0;j<al4.size();j++) if(i>j){	
+				long[] temp = {al4.get(i),al4.get(j)};
+			HashMap<String,ArrayList<Node>> hm4 = as.computeSharedDrugResistanceWithinAClusterArray("lp16", temp);
+			ArrayList<Node> patients = detectAllPatientsWithinACluster(hm4);
+			BasicStatistics bs4 = basicCentralityStatisticsWithinACommunity("pagerank20d085",patients);
+			System.out.println(bs4);
+			
+			as.convertDrugResistancesToMatrix(hm4,"lp16",temp,"pagerank20d085",true);		
+			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("lp16", temp),"lp16",temp,"pagerank20d085",true);	
 		}
 
 		try {
