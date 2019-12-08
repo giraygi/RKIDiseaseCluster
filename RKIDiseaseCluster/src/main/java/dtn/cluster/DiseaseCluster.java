@@ -238,7 +238,8 @@ public class DiseaseCluster {
 		// Distance ve Weight ilişkisi incelenecek
 		public void computeWeightForMutationDifferences() {
 			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightmd = case t.mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.pos)+LENGTH(m.pos)-t.mutation_difference))/t.mutation_difference end");	
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightmd1 = case t.mutation_difference when 0 then 1.0 else toFloat(1)/toFloat(t.mutation_difference) end");
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightmd2 = case t.mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.pos)+LENGTH(m.pos)-t.mutation_difference))/t.mutation_difference end");	
 				tx.success(); tx.close();
 		}
 		catch(Exception e) {
@@ -248,7 +249,8 @@ public class DiseaseCluster {
 		
 		public void computeWeightForFullMutationDifferences() {
 			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightfullmd = case t.full_mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-t.full_mutation_difference))/t.full_mutation_difference end");	
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightfullmd1 = case t.full_mutation_difference when 0 then 1.0 else toFloat(1)/toFloat(t.full_mutation_difference) end");
+				tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.weightfullmd2 = case t.full_mutation_difference when 0 then 1.0 else toFloat((LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-t.full_mutation_difference))/t.full_mutation_difference end");	
 				tx.success(); tx.close();
 		}
 		catch(Exception e) {
@@ -1361,10 +1363,10 @@ public void removeProperties(String[] properties) {
 }
 
 
-public void assignPropertyNameToAnother(String assignedPropertyName, String finalPropertyName) {
+public void assignPropertyNameToAnother(String finalPropertyName, String assignedPropertyName) {
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-		tx.run( "match (n)-[t:TRANSMITS]->(m) SET t."+assignedPropertyName+" = t."+finalPropertyName);	
-		tx.run( "match (n) SET n."+assignedPropertyName+" = n."+finalPropertyName);	
+		tx.run( "match (n)-[t:TRANSMITS]->(m) SET t."+finalPropertyName+" = t."+assignedPropertyName);	
+		tx.run( "match (n) SET n."+finalPropertyName+" = n."+assignedPropertyName);	
 		tx.success(); tx.close();
 }
 catch(Exception e) {
@@ -1686,7 +1688,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 
 	public static void main(String[] args) {
 		databaseAddress = args[2];	
-		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20,"weightfullmd","full_mutation_difference");	
+		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20,"weightmd1","mutation_difference");	
 //		as.deleteAllNodesRelationships();
 //		as.createGraph(args[0], args[1],args[2]);
 //		as.computeFullMutations(args[3]);
@@ -1698,8 +1700,8 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		as.computeWeightForMutationDifferences();
 		as.computeWeightForFullMutationDifferences();
 		
-		as.assignPropertyNameToAnother("distance", "full_mutation_difference");
-		as.assignPropertyNameToAnother("weight", "weightfullmd");
+//		as.assignPropertyNameToAnother("distance", "full_mutation_difference");
+//		as.assignPropertyNameToAnother("weight", "weightfullmd1");
 
 		as.computePageRank(20, 0.85,as.weightProperty);
 		as.computeEigenVector(20, 0.85,as.weightProperty);
