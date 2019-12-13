@@ -14,7 +14,7 @@ public class UnitTest1 {
 		
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();
-		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5);
+		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 5,0);
 		long[] x= {al.get(0),al.get(1)};
 		as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster",x),"union_cluster",x,"pagerank",true);
 //		fail("Not yet implemented");
