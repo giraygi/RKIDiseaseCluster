@@ -176,8 +176,8 @@ public class GeneticDataConversions {
 			}  catch (IOException e) {
 				e.printStackTrace();
 			}
-		convertDistanceMatrixToGeneticDistancesFile("rkiall_sramdr_pairwise_rel_fract.txt","distances40reduced.txt",excludedVCFs,40);
-		convertVCFToMutationData("/media/giray/Windows/vcfs","vcf","vcfInforeduced.txt");
+		convertDistanceMatrixToGeneticDistancesFile("rkiall_sramdr_pairwise_rel_fract.txt","distances30reduced.txt",excludedVCFs,30);
+//		convertVCFToMutationData("/media/giray/Windows/vcfs","vcf","vcfInforeduced.txt");
 //		printSimilarFiles("/media/giray/Windows/Nextcloud/transmission networks/christine data/vcfs2", "vcf");
 //		printExtraFilesFromVCFDirectory("isolates.txt", "/media/giray/Windows/vcfs");
 	

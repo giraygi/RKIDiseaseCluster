@@ -110,14 +110,18 @@ public class DiseaseCluster {
 				if (distanceInfo[0].charAt(0) == 'X') {		
 					from = distanceInfo[0].substring(1, distanceInfo[0].split("_")[0].length()).replace('.', '-');
 					System.out.println(from);
-				} else
+				} else if (Character.isDigit(distanceInfo[0].charAt(0)))
+					from = distanceInfo[0].split("_")[0];
+				else
 					from = distanceInfo[0];
 				
 				
 				if (distanceInfo[1].charAt(0) == 'X') {		
 					to = distanceInfo[1].substring(1, distanceInfo[1].split("_")[0].length()).replace('.', '-');
 					System.out.println(to);
-				} else
+				} else if (Character.isDigit(distanceInfo[1].charAt(0)))
+					to = distanceInfo[1].split("_")[0];
+				else
 					to = distanceInfo[1];
 					
 				
@@ -150,7 +154,7 @@ public class DiseaseCluster {
 			System.out.println("Could not create isolates, distances, resistances and mutation differences");
 			e.printStackTrace();
 		} 
-		
+		System.out.println("Creating the Graph is completed.");
 	}
 	
 	public void computeDifferenceOfMutations() {
@@ -343,8 +347,8 @@ public class DiseaseCluster {
 			StatementResult result;
 			
 			for (int i = 0;i<md.noofPercentileSteps;i++) {
-				result = tx.run( "match (p:Patient) return percentileCont(p.pagerank,"+(i+1)/md.noofPercentileSteps+")");
-				md.Pagerank[i] = Double.parseDouble(result.single().get("percentileCont(p.pagerank,"+(i+1)/md.noofPercentileSteps+")").toString());
+				result = tx.run( "match (p:Patient) return percentileCont(p.pagerank20d085,"+(i+1)/md.noofPercentileSteps+")");
+				md.Pagerank[i] = Double.parseDouble(result.single().get("percentileCont(p.pagerank20d085,"+(i+1)/md.noofPercentileSteps+")").toString());
 //				System.out.println(i+". Pagerank: "+md.Pagerank[i] );
 			}
 			
@@ -1341,12 +1345,12 @@ public static StringBuilder buildNodeInformationMatrix(ArrayList<Node> patients,
 		try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
 	    {
 			tx.run("match (n:Patient)-[r:TRANSMITS]->(m:Patient) where r.distance >= "+treshold+" delete r");
-			System.out.println("Previous transmissions are deleted.");
+			
 			tx.success(); tx.close();
 	    } catch (Exception e){
 	    	  e.printStackTrace();
 	      }
-
+		System.out.println(treshold+" Greater transmissions are deleted.");
 	}
 	
 public void removeIdenticalTransmissions(boolean removeOlder){
@@ -1710,6 +1714,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		as.deleteAllNodesRelationships();
 		as.createGraph(args[0], args[1],args[2]);
 		as.computeFullMutations(args[3]);
+//		as.removeGreaterTransmissions(13);
 		as.changeLabelOfUnconnectedNodes();
 		as.computeFullMutationDifferences();
 		as.computePowers();
@@ -1720,6 +1725,8 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		
 //		as.assignPropertyNameToAnother("distance", "full_mutation_difference");
 //		as.assignPropertyNameToAnother("weight", "weightfullmd1");
+		
+		
 
 		as.computePageRank(20, 0.85,as.weightProperty);
 		as.computeArticleRank(20, 0.85,as.weightProperty);
