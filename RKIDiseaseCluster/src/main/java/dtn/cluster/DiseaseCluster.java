@@ -214,7 +214,7 @@ public class DiseaseCluster {
 				for (Node nodeM : patients) {
 					try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
 						if (nodeN.id()>nodeM.id()) {
-							tx.run( "match (n)-[t:TRANSMITS]-(m) where ID(n) = "+nodeN.id()+" and ID(m) = "+nodeM.id()+" and ID(n)>ID(m) SET t.full_mutation_difference = LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-LENGTH(FILTER(x in n.full_mutation_list WHERE x in m.full_mutation_list)) return t.full_mutation_difference");
+							tx.run( "match (n:Patient)-[t:TRANSMITS]-(m:Patient) where ID(n) = "+nodeN.id()+" and ID(m) = "+nodeM.id()+" and ID(n)>ID(m) SET t.full_mutation_difference = LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-LENGTH(FILTER(x in n.full_mutation_list WHERE x in m.full_mutation_list)) return t.full_mutation_difference");
 							System.err.println(nodeN.id()+" DIST: "+nodeM.id());
 							tx.success(); tx.close();
 						}
@@ -232,7 +232,7 @@ public class DiseaseCluster {
 		
 		public void computeFullMutationDifferences2() {
 			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-					tx.run( "match (n)-[t:TRANSMITS]->(m) SET t.full_mutation_difference = LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-LENGTH(FILTER(x in n.full_mutation_list WHERE x in m.full_mutation_list)) return t.full_mutation_difference");	
+					tx.run( "match (n:Patient)-[t:TRANSMITS]->(m:Patient) SET t.full_mutation_difference = LENGTH(n.full_mutation_list)+LENGTH(m.full_mutation_list)-LENGTH(FILTER(x in n.full_mutation_list WHERE x in m.full_mutation_list)) return t.full_mutation_difference");	
 					tx.success(); tx.close();
 			}
 			catch(Exception e) {
@@ -1711,20 +1711,27 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 	public static void main(String[] args) {
 		databaseAddress = args[2];	
 		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20,"weight","distance");	
-		as.deleteAllNodesRelationships();
-		as.createGraph(args[0], args[1],args[2]);
-		as.computeFullMutations(args[3]);
-//		as.removeGreaterTransmissions(13);
-		as.changeLabelOfUnconnectedNodes();
-		as.computeFullMutationDifferences();
-		as.computePowers();
-		String[] properties = {"pagerank","eigenvector","articlerank","degree"};
-		as.removeProperties(properties);
-		as.computeWeightForMutationDifferences();
-		as.computeWeightForFullMutationDifferences();
+//		as.deleteAllNodesRelationships();
+//		as.createGraph(args[0], args[1],args[2]);
+//		as.computeFullMutations(args[3]);
 		
-//		as.assignPropertyNameToAnother("distance", "full_mutation_difference");
-//		as.assignPropertyNameToAnother("weight", "weightfullmd1");
+		
+		
+		as.removeGreaterTransmissions(13);
+		
+		
+		as.changeLabelOfUnconnectedNodes();
+//		as.computeFullMutationDifferences();
+//		as.computePowers();
+		
+		
+//		String[] properties = {"pagerank","eigenvector","articlerank","degree"};
+//		as.removeProperties(properties);
+//		as.computeWeightForMutationDifferences();
+//		as.computeWeightForFullMutationDifferences();
+		
+//		as.assignPropertyNameToAnother("distance", "mutation_difference");
+//		as.assignPropertyNameToAnother("weight", "weightmd2");
 		
 		
 
@@ -1765,8 +1772,8 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		as.computeDistanceMetaData();
 		as.computeCentralityMetaData();
 		System.err.println("kamil");
-		as.computeWeightForMutationDifferences();
-		as.computeWeightForFullMutationDifferences();
+//		as.computeWeightForMutationDifferences();
+//		as.computeWeightForFullMutationDifferences();
 		
 		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 0,5);
 //		long[] single1= {al.get(0)};
@@ -1868,13 +1875,11 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		try {
 			FileWriter fw = new FileWriter("ForeignNodesReachingToGermany.txt");
 			String[] centralities = {"no_of_full_mutations","Isolation_Country","pagerank20d075","articlerank20d075","pagerank20d085","articlerank20d085","pagerank20d095","articlerank20d095","eigenvector20d085","degree20d085","betweenness","closeness","closeness2","harmonic","power2","power3","power4"};
 			StringBuilder sb = buildNodeInformationMatrix(as.shortestPathNodesLeadingToACountry("Germany",0.4,as.distanceProperty), centralities);
 //			System.out.println(sb);
-			as.shortestPathNodePairsLeadingToACountry("Germany",0.4,as.distanceProperty);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
 			fw.close();
@@ -1882,7 +1887,6 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		ArrayList<Node> alpagerank = as.sortCentralPatients("pagerank20d085",true);
 		FileWriter fw;
 		try {
@@ -1918,6 +1922,8 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		as.shortestPathNodePairsLeadingToACountry("Germany",0.4,as.distanceProperty);
+		System.exit(0);
 
 	}
 }
