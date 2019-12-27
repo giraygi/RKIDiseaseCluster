@@ -10,11 +10,10 @@ public class UnitTest2 {
 	public void testShortestPathNodePairsLeadingToACountry() {
 		
 		DiseaseCluster.databaseAddress = "resistance_data_SRA_RKI.csv";	
-		final DiseaseCluster as = new DiseaseCluster(1,"resistance_data_SRA_RKI.csv",100,20,"weight","distance");	
+		final DiseaseCluster as = new DiseaseCluster(1,"resistance_data_SRA_RKI.csv",100,20,"weight","distance",RelTypes.TRANSMITS.name());	
 		
-		as.computeDistanceMetaData();
+		as.computeMetaData();
 		as.computeCentralityMetaData();
-		
 		
 		int noofRecords = as.shortestPathNodePairsLeadingToACountry("Germany",0.4,"distance").size();
 		

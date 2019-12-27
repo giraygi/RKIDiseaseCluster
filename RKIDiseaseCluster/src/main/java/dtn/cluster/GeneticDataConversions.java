@@ -88,6 +88,36 @@ public class GeneticDataConversions {
 		return count;
 	}
 	
+	public static void generateReducedResistanceFile(String inputResistancesFile,String reducedResistancesFile) {
+		
+		ArrayList<String> excludedVCFs = listExcludedVCFs();
+		
+		try {
+			FileReader fr = new FileReader(inputResistancesFile);
+			BufferedReader br = new BufferedReader(fr); 
+			FileWriter fw = new FileWriter(reducedResistancesFile);
+			String line;
+			boolean toBeRemoved = false;
+			while((line = br.readLine())!=null)
+			{ 
+				toBeRemoved = false; 
+				for (String string : excludedVCFs) {
+					if(string.split("_")[0].equals(line.split(",")[0].split("_")[0]))
+						toBeRemoved = true;
+				}
+				if(!toBeRemoved)
+					fw.append(line).append("\n");
+			}
+			
+			br.close();
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void printSimilarFiles(String inputPath, String extension) {
 		
 		try (Stream<Path> walk = Files.walk(Paths.get(inputPath))) {
@@ -151,7 +181,71 @@ public class GeneticDataConversions {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void generateFullMutationDistances(String isolatesFile, String mutationsFile) {
+		ArrayList<String> isolateIDs = new ArrayList<String>();
+		
+		FileReader fr;
+		BufferedReader br;
+		
+		
+		try {
+			fr = new FileReader(isolatesFile);
+			br = new BufferedReader(fr); 
+			String line;
+			
+			
+			while((line = br.readLine())!=null)
+			{ 
+				isolateIDs.add(line);
+			}
+			
+			br.close();
+			fr.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int[][] mutationDistances = new int[isolateIDs.size()][isolateIDs.size()];
+		
+		
+		
+		try {
+			fr = new FileReader(mutationsFile);
+			br = new BufferedReader(fr); 
+			String line;
+			String mutationInQuestion;
+			String previousMutation = "";
+			ArrayList<String> isolatesSharingParticularMutation = new ArrayList<String>();
+			
+			
+			while((line = br.readLine())!=null)
+			{ 
+				mutationInQuestion = line.split("\t")[1]+line.split("\t")[3];
+				if (previousMutation.equals(mutationInQuestion)) {
+					isolatesSharingParticularMutation.add(line.split("_")[0]);
+				} else {
+					isolatesSharingParticularMutation = new ArrayList<String>();
+				}
+			}
+			
+			br.close();
+			fr.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public static ArrayList<String> listExcludedVCFs(){
 		ArrayList<String> excludedVCFs = new ArrayList<String>();
 		try (Stream<Path> walk = Files.walk(Paths.get("/media/giray/Windows/excludedvcfs"))) {
 			List<String> patientVCFs = walk.map(x -> x.toString())
@@ -176,7 +270,13 @@ public class GeneticDataConversions {
 			}  catch (IOException e) {
 				e.printStackTrace();
 			}
-		convertDistanceMatrixToGeneticDistancesFile("rkiall_sramdr_pairwise_rel_fract.txt","distances30reduced.txt",excludedVCFs,30);
+		return excludedVCFs;
+	}
+	
+	public static void main(String[] args) {
+//		ArrayList<String> excludedVCFs = listExcludedVCFs();
+//		convertDistanceMatrixToGeneticDistancesFile("rkiall_sramdr_pairwise_rel_fract.txt","distances2500reduced.txt",excludedVCFs,2500);
+		generateReducedResistanceFile("resistance_data_SRA_RKI.csv","resistance_data_SRA_RKI_Reduced.csv"); 
 //		convertVCFToMutationData("/media/giray/Windows/vcfs","vcf","vcfInforeduced.txt");
 //		printSimilarFiles("/media/giray/Windows/Nextcloud/transmission networks/christine data/vcfs2", "vcf");
 //		printExtraFilesFromVCFDirectory("isolates.txt", "/media/giray/Windows/vcfs");
