@@ -209,7 +209,7 @@ public class GeneticDataConversions {
 			e.printStackTrace();
 		}
 		
-		int[][] mutationDistances = new int[isolateIDs.size()][isolateIDs.size()];
+//		int[][] mutationDistances = new int[isolateIDs.size()][isolateIDs.size()];
 		
 		
 		

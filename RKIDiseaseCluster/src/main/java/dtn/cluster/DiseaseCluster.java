@@ -717,7 +717,7 @@ public void computeLabelPropagationCommunities(String propertyName,int iteration
 		tx.run("CALL algo.labelPropagation('Patient', '"+globalLabel+"','BOTH',\n" + 
 				"			  {weightProperty:'"+weightProperty+"', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
-		System.out.println("Label Propagation Communities are computed");  
+		System.out.println("Label Propagation Communities 1 are computed with "+iterations+" iterations");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -732,7 +732,7 @@ public void computeLabelPropagationCommunities2(String propertyName,int iteratio
 		tx.run("CALL algo.labelPropagation('MATCH (p:Patient) RETURN id(p) as id', 'MATCH (p1:Patient)-[f:"+globalLabel+"]-(p2:Patient) RETURN id(p1) as source, id(p2) as target','BOTH',\n" + 
 				"			  {weightProperty:'"+weightProperty+"', defaultValue:0.0, iterations:"+iterations+",partitionProperty:'"+propertyName+iterations+"', graph:'cypher', write:true})\n" + 
 				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, partitionProperty;");
-		System.out.println("Label Propagation Communities 2 are computed");  
+		System.out.println("Label Propagation Communities 2 are computed with "+iterations+" iterations");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
@@ -1707,6 +1707,7 @@ public ArrayList<Long> detectCommunityIDs(String communityType,long treshold, in
 		limitSuffix = " limit "+limit;
 	
 	StatementResult result;	
+	StatementResult innerResult;	
 	ArrayList<Long> records = new ArrayList<Long>();
 	
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
@@ -1721,6 +1722,15 @@ public ArrayList<Long> detectCommunityIDs(String communityType,long treshold, in
 				System.out.println(communityType+" - Community ID: "+row.get(0).asLong()+" - Community Size: "+row.get(1).asLong());
 				fw.append(communityType+" - Community ID: "+row.get(0).asLong()+" - Community Size: "+row.get(1).asLong());	
 				fw.append("\n");
+				
+				innerResult = tx.run("match (o:Patient) where o."+communityType+" = "+row.get(0).asLong()+" return o.Isolation_Country,count(o) order by count(o) desc");
+				
+				while(innerResult.hasNext()) {
+					Record innerRow = innerResult.next();
+					fw.append(innerRow.get(0).asString()+": "+innerRow.get(1).asInt()+", ");
+				}
+				fw.append("\n");
+				
 			}
 			
 			}
@@ -1916,7 +1926,8 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		final DiseaseCluster as = new DiseaseCluster(1,args[2],100,20,"weight","distance",	 RelTypes.TRANSMITS.name());
 		as.removeAllInteractionsWithLabel(RelTypes.DIFFERS.name());
 		as.removeAllInteractionsWithLabel(RelTypes.MUTATES.name());
-		as.removeGreaterInteractionsByPercentile(0.02, RelTypes.TRANSMITS.name());
+		as.removeGreaterInteractionsByTresholdValue(13, RelTypes.TRANSMITS.name());
+//		as.removeGreaterInteractionsByPercentile(0.01, RelTypes.TRANSMITS.name());
 //		as.generateAlternativeInteractionsFromFile(args[1], RelTypes.TRANSMITS.name());
 //		
 //		as.globalLabel = RelTypes.MUTATES.name();
@@ -2092,7 +2103,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		
 		try {
 			FileWriter fw = new FileWriter("communities.txt");
-			String[] communities = {"louvain","louvain2","lp11","lp21","lp12","lp22","lp13","lp23","lp14","lp24","lp15","lp25","lp16","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster"};
+			String[] communities = {"louvain","louvain2","lp11","lp21","lp12","lp22","lp13","lp23","lp14","lp24","lp15","lp25","lp16","lp26","union_cluster","union2_cluster","scc_cluster","scc2_cluster","Isolation_Country"};
 			StringBuilder sb = buildNodeInformationMatrix(as.sortCentralPatientsWithLabel("pagerank20d085",true,""), communities);
 			
 			fw.write(sb.toString(),0,sb.toString().length());		
@@ -2154,23 +2165,23 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 	}
 }
 
-class DrugResistancePrevalance {
-	String drug;
+class CommunityCharacteristics{
 	String clusterType;
 	String clusterID;
+	ArrayList<String> drugResistances;
 	ArrayList<Node> patients;
 	
-	public DrugResistancePrevalance(String drug, String clusterType, String clusterID, ArrayList<Node> patients) {
+	public CommunityCharacteristics(ArrayList<String> drugResistances, String clusterType, String clusterID, ArrayList<Node> patients) {
 		super();
-		this.drug = drug;
 		this.clusterType = clusterType;
 		this.clusterID = clusterID;
+		this.drugResistances = drugResistances;
 		this.patients = patients;
 	}
 
 	@Override
 	public String toString() {
-		return "DrugResistancePrevalance [drug=" + drug + ", clusterType=" + clusterType + ", clusterID=" + clusterID
+		return "CommunityCharacteristics [drugResistances=" + drugResistances + ", clusterType=" + clusterType + ", clusterID=" + clusterID
 				+ ", patients=" + patients + "]";
 	}
 
