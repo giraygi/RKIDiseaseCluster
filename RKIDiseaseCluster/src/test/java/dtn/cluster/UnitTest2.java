@@ -10,7 +10,7 @@ public class UnitTest2 {
 	public void testShortestPathNodePairsLeadingToACountry() {
 		
 		DiseaseCluster.databaseAddress = "resistance_data_SRA_RKI.csv";	
-		final DiseaseCluster as = new DiseaseCluster(1,"resistance_data_SRA_RKI.csv",100,20,"weight","distance",RelTypes.TRANSMITS.name());	
+		final DiseaseCluster as = new DiseaseCluster("weight","distance",RelTypes.TRANSMITS.name(),20);	
 		
 		as.computeMetaData();
 		as.computeCentralityMetaData();
