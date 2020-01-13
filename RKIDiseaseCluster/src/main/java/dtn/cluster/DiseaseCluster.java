@@ -709,34 +709,38 @@ public void computeLouvainCommunities2(String weightProperty) {
 	}
 }
 // calismiyor
-public void computeLabelPropagationCommunities(String propertyName,int iterations, String weightProperty) {
-	
+public boolean computeLabelPropagationCommunities(String propertyName,int iterations, String weightProperty) {
+	StatementResult result;
+	boolean didConverge = false;
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		tx.run("CALL algo.labelPropagation('Patient', '"+globalLabel+"',\n" + 
+		result = tx.run("CALL algo.labelPropagation('Patient', '"+globalLabel+"','BOTH',\n" + 
 				"			  {weightProperty:'"+weightProperty+"', defaultValue:0.0, iterations:"+iterations+",direction: 'BOTH',writeProperty:'"+propertyName+iterations+"', write:true})\n" + 
-				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, writeProperty;");
+				"			YIELD nodes, iterations, didConverge, loadMillis, computeMillis, writeMillis, write, writeProperty;");
+		didConverge = Boolean.parseBoolean(result.single().get("didConverge").toString());	
 		System.out.println("Label Propagation Communities 1 are computed with "+iterations+" iterations");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
 	}
-	
+	return didConverge;
 }
 
-public void computeLabelPropagationCommunities2(String propertyName,int iterations, String weightProperty) {
-	
+public boolean computeLabelPropagationCommunities2(String propertyName,int iterations, String weightProperty) {
+	StatementResult result;
+	boolean didConverge = false;
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
 	{	
-		tx.run("CALL algo.labelPropagation('MATCH (p:Patient) RETURN id(p) as id, id(p) AS value', 'MATCH (p1:Patient)-[f:"+globalLabel+"]-(p2:Patient) RETURN id(p1) as source, id(p2) as target, f."+weightProperty+" AS weight','BOTH',\n" + 
+		result = tx.run("CALL algo.labelPropagation('MATCH (p:Patient) RETURN id(p) as id, id(p) AS value', 'MATCH (p1:Patient)-[f:"+globalLabel+"]-(p2:Patient) RETURN id(p1) as source, id(p2) as target, f."+weightProperty+" AS weight','BOTH',\n" + 
 				"			  {weightProperty:'"+weightProperty+"', defaultValue:0.0, iterations:"+iterations+",direction: 'BOTH',writeProperty:'"+propertyName+iterations+"', graph:'cypher', write:true})\n" + 
-				"			YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, write, writeProperty;");
+				"			YIELD nodes, iterations, didConverge, loadMillis, computeMillis, writeMillis, write, writeProperty;");
+		didConverge = Boolean.parseBoolean(result.single().get("didConverge").toString());	
 		System.out.println("Label Propagation Communities 2 are computed with "+iterations+" iterations");  
 		tx.success(); tx.close();
 	} catch (Exception e){
 		e.printStackTrace();
 	}
-	
+	return didConverge;
 }
 
 public int computeUnionFind(String unionName, String weightProperty) {
@@ -1817,7 +1821,7 @@ public ArrayList<ShortestPathNodePair> shortestPathNodePairsLeadingToACountry(St
 	ArrayList<ShortestPathNodePair> al = new ArrayList<ShortestPathNodePair>();
 
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
-
+		FileWriter fw = new FileWriter("ShortestPathsTo"+country+".txt");
 		result = tx.run("CALL algo.allShortestPaths.stream('"+distanceProperty+"',{nodeQuery:'Patient',defaultValue:1.0,graph:'huge'})\n" + 
 				"YIELD sourceNodeId, targetNodeId, distance where distance >= 0.0\n" + 
 				"with sourceNodeId, targetNodeId, distance match (n:Patient) where ID(n) = sourceNodeId " +
@@ -1844,28 +1848,16 @@ public ArrayList<ShortestPathNodePair> shortestPathNodePairsLeadingToACountry(St
 						break;	
 					}
 				}
-			al.add(spnp);
+//			al.add(spnp);
+			fw.append(spnp.node1.get("Isolation_Country").asString()).append("!").append(Double.toString(spnp.distance)).append("!").append(spnp.node2.get("Isolation_Country").asString());
+			fw.append("\n");
 			count++;
 			System.out.println();
 			}
 		System.err.println(" shortest path count: "+count);
-	tx.success(); tx.close();
-	} catch (Exception e){
-		e.printStackTrace();
-	}
-	
-	try {
-		FileWriter fw = new FileWriter("ShortestPathsTo"+country+".txt");
-		
-		for (int i = 0;i<al.size();i++) {
-			fw.append(al.get(i).node1.get("Isolation_Country").asString()).append("!").append(Double.toString(al.get(i).distance)).append("!").append(al.get(i).node2.get("Isolation_Country").asString());	
-			if(i<al.size()-1)
-				fw.append("\n");
-		}
 		fw.close();
-		
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
+		tx.success(); tx.close();
+	} catch (Exception e){
 		e.printStackTrace();
 	}
 	
@@ -1925,7 +1917,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		as.removeAllInteractionsWithLabel(RelTypes.TRANSMITS.name());
 		as.removeAllInteractionsWithLabel(RelTypes.MUTATES.name());
 //		as.removeGreaterInteractionsByTresholdValue(13, RelTypes.TRANSMITS.name());
-//		as.removeGreaterInteractionsByPercentile(0.01, RelTypes.DIFFERS.name());
+		as.removeGreaterInteractionsByPercentile(0.02, RelTypes.DIFFERS.name());
 //		as.generateAlternativeInteractionsFromFile(args[1], RelTypes.TRANSMITS.name());
 //		
 //		as.globalLabel = RelTypes.MUTATES.name();
@@ -1975,18 +1967,30 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		as.computeHarmonicCentrality(as.weightProperty);
 		as.computeLouvainCommunities(as.weightProperty);
 		as.computeLouvainCommunities2(as.weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 1,as.weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 1,as.weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 2,as.weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 2,as.weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 3,as.weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 3,as.weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 4,as.weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 4,as.weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 5,as.weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 5,as.weightProperty);
-		as.computeLabelPropagationCommunities("lp1", 6,as.weightProperty);
-		as.computeLabelPropagationCommunities2("lp2", 6,as.weightProperty);
+		if(as.computeLabelPropagationCommunities("lp1", 1,as.weightProperty))
+			System.out.println("lp11 converged");
+		if(as.computeLabelPropagationCommunities2("lp2", 1,as.weightProperty))
+			System.out.println("lp21 converged");
+		if(as.computeLabelPropagationCommunities("lp1", 2,as.weightProperty))
+			System.out.println("lp12 converged");
+		if(as.computeLabelPropagationCommunities2("lp2", 2,as.weightProperty))
+			System.out.println("lp22 converged");
+		if(as.computeLabelPropagationCommunities("lp1", 3,as.weightProperty))
+			System.out.println("lp13 converged");
+		if(as.computeLabelPropagationCommunities2("lp2", 3,as.weightProperty))
+			System.out.println("lp23 converged");
+		if(as.computeLabelPropagationCommunities("lp1", 4,as.weightProperty))
+			System.out.println("lp14 converged");
+		if(as.computeLabelPropagationCommunities2("lp2", 4,as.weightProperty))
+			System.out.println("lp24 converged");
+		if(as.computeLabelPropagationCommunities("lp1", 5,as.weightProperty))
+			System.out.println("lp15 converged");
+		if(as.computeLabelPropagationCommunities2("lp2", 5,as.weightProperty))
+			System.out.println("lp25 converged");
+		if(as.computeLabelPropagationCommunities("lp1", 6,as.weightProperty))
+			System.out.println("lp16 converged");
+		if(as.computeLabelPropagationCommunities2("lp2", 6,as.weightProperty))
+			System.out.println("lp26 converged");
 		as.computeUnionFind("union_cluster",as.weightProperty);
 		as.computeUnionFind("union2_cluster",as.weightProperty);
 		as.computeSCC("scc_cluster",as.weightProperty);
@@ -1996,7 +2000,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 //		as.computeWeightForMutationDifferences();
 //		as.computeWeightForFullMutationDifferences();
 		
-		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 0,0);
+		ArrayList<Long> al = as.detectCommunityIDs("union_cluster", 0,7);
 //		long[] single1= {al.get(0)};
 //		long[] single2= {al.get(1)};
 //		long[] merged= {al.get(0),al.get(1)};
@@ -2016,7 +2020,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("union_cluster", temp),"union_cluster",temp,"pagerank20d085",true);	
 		}
 	
-		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 0,0);
+		ArrayList<Long> al2 = as.detectCommunityIDs("louvain", 0,7);
 		
 		for (int i =0;i<al2.size();i++) 
 			for (int j =0;j<al2.size();j++) if(i>j){	
@@ -2031,7 +2035,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 		}
 		
 //		
-		ArrayList<Long> al3 = as.detectCommunityIDs("lp26", 0,0);
+		ArrayList<Long> al3 = as.detectCommunityIDs("lp26", 0,7);
 		
 		for (int i =0;i<al3.size();i++) 
 			for (int j =0;j<al3.size();j++) if(i>j){	
@@ -2045,7 +2049,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("lp26", temp),"lp26",temp,"pagerank20d085",true);	
 		}
 		
-		ArrayList<Long> al4 = as.detectCommunityIDs("lp16", 0,0);
+		ArrayList<Long> al4 = as.detectCommunityIDs("lp16", 0,7);
 		
 		for (int i =0;i<al4.size();i++) 
 			for (int j =0;j<al4.size();j++) if(i>j){	
@@ -2059,7 +2063,7 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 			as.convertMutationsToMatrix(as.computesharedMutationsWithinAClusterArray("lp16", temp),"lp16",temp,"pagerank20d085",true);	
 		}
 		
-		ArrayList<Long> al5 = as.detectCommunityIDs("louvain2", 0,0);
+		ArrayList<Long> al5 = as.detectCommunityIDs("louvain2", 0,7);
 		
 		for (int i =0;i<al5.size();i++) 
 			for (int j =0;j<al5.size();j++) if(i>j){	
