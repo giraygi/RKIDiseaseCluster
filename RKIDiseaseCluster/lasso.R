@@ -5,39 +5,41 @@
   
   
   # Load the data and remove NAs
-  # data("PimaIndiansDiabetes2", package = "mlbench")
-  # PimaIndiansDiabetes2 <- na.omit(PimaIndiansDiabetes2)
+  # data("centralities", package = "mlbench")
+  # centralities <- na.omit(centralities)
   
-   PimaIndiansDiabetes2 <- read.table("/home/giray/workspace/RKIDiseaseCluster/yedek/nusretshortpowerless.csv",header=TRUE,sep=",")
+   centralities <- read.table("/home/giray/Desktop/lasso/centralitiesdiffersfull.txt",header=TRUE,sep=",")
+   family <- "gaussian"
+   output <- "noof_mutations"
   # Inspect the data
-  sample_n(PimaIndiansDiabetes2, 3)
+  sample_n(centralities, 3)
   # Split the data into training and test set
   set.seed(123)
-  training.samples <- PimaIndiansDiabetes2$noof_mutations %>% 
+  training.samples <- centralities[,output] %>% 
     createDataPartition(p = 0.8, list = FALSE)
-  train.data  <- PimaIndiansDiabetes2[training.samples, ]
-  test.data <- PimaIndiansDiabetes2[-training.samples, ]
+  train.data  <- centralities[training.samples, ]
+  test.data <- centralities[-training.samples, ]
   
   
   
   # Dumy code categorical predictor variables
   x <- model.matrix(noof_mutations~., train.data)[,-1]
   # Convert the outcome (class) to a numerical variable
-  # y <- ifelse(train.data$noof_mutations == "pos", 1, 0)
-  y <- train.data$noof_mutations 
+  # y <- ifelse(train.data[,output] == "pos", 1, 0)
+  y <- train.data[,output] 
   
   
   
-  glmnet(x, y, family = "gaussian", alpha = 1, lambda = NULL)
+  glmnet(x, y, family = family, alpha = 1, lambda = NULL)
   
   
   
   library(glmnet)
   # Find the best lambda using cross-validation
   set.seed(123) 
-  cv.lasso <- cv.glmnet(x, y, alpha = 1, family = "gaussian")
+  cv.lasso <- cv.glmnet(x, y, alpha = 1, family = family)
   # Fit the final model on the training data
-  model <- glmnet(x, y, alpha = 1, family = "gaussian",
+  model <- glmnet(x, y, alpha = 1, family = family,
                   lambda = cv.lasso$lambda.min)
   # Display regression coefficients
   coef(model)
@@ -45,16 +47,16 @@
   x.test <- model.matrix(noof_mutations ~., test.data)[,-1]
   probabilities <- model %>% predict(newx = x.test)
   # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
-  predicted.classes <- probabilities
+  predicted.classes <- round(probabilities)
   # Model accuracy
-  observed.classes <- test.data$noof_mutations
-  mean(predicted.classes == observed.classes)
+  observed.classes <- test.data[,output]
+  mean(abs(predicted.classes - observed.classes))
   
   
   
   library(glmnet)
   set.seed(123)
-  cv.lasso <- cv.glmnet(x, y, alpha = 1, family = "gaussian")
+  cv.lasso <- cv.glmnet(x, y, alpha = 1, family = family)
   plot(cv.lasso)
   
   
@@ -67,38 +69,38 @@
   coef(cv.lasso, cv.lasso$lambda.1se)
   
   # Final model with lambda.min
-  lasso.model <- glmnet(x, y, alpha = 1, family = "gaussian",
+  lasso.model <- glmnet(x, y, alpha = 1, family = family,
                         lambda = cv.lasso$lambda.min)
   # Make prediction on test data
   x.test <- model.matrix(noof_mutations ~., test.data)[,-1]
   probabilities <- lasso.model %>% predict(newx = x.test)
   # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
-  predicted.classes <- probabilities
+  predicted.classes <- round(probabilities)
   # Model accuracy
-  observed.classes <- test.data$noof_mutations
-  mean(predicted.classes == observed.classes)
+  observed.classes <- test.data[,output]
+  mean(abs(predicted.classes - observed.classes))
   
   # Final model with lambda.1se
-  lasso.model <- glmnet(x, y, alpha = 1, family = "gaussian",
+  lasso.model <- glmnet(x, y, alpha = 1, family = family,
                         lambda = cv.lasso$lambda.1se)
   # Make prediction on test data
   x.test <- model.matrix(noof_mutations ~., test.data)[,-1]
   probabilities <- lasso.model %>% predict(newx = x.test)
   # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
-  predicted.classes <- probabilities
+  predicted.classes <- round(probabilities)
   # Model accuracy rate
-  observed.classes <- test.data$noof_mutations
-  mean(predicted.classes == observed.classes)
+  observed.classes <- test.data[,output]
+  mean(abs(predicted.classes - observed.classes))
   
   
   # Fit the model
-  full.model <- glm(noof_mutations ~., data = train.data, family = gaussian)
+  full.model <- glm(noof_mutations ~., data = train.data, family = family)
   # Make predictions
   probabilities <- full.model %>% predict(test.data, type = "response")
   # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
-  predicted.classes <- probabilities
+  predicted.classes <- round(probabilities)
   # Model accuracy
-  observed.classes <- test.data$noof_mutations
-  mean(predicted.classes == observed.classes)
+  observed.classes <- test.data[,output]
+  mean(abs(predicted.classes - observed.classes))
   
   predicted.and.compared <-cbind(observed.classes,predicted.classes)
