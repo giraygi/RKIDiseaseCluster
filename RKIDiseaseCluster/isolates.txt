@@ -713,6 +713,7 @@ ERR1193662;null;1;PRJEB11460;SAMEA3671330;UNIVERSITY OF BASEL;SAMEA3671330;nan;n
 ERR1193674;null;1;PRJEB11460;SAMEA3671341;UNIVERSITY OF BASEL;SAMEA3671341;nan;null;null;null;null;null;null;null;null;null;null
 ERR1193683;null;1;PRJEB11460;SAMEA3671350;UNIVERSITY OF BASEL;SAMEA3671350;nan;null;null;null;null;null;null;null;null;null;null
 ERR1193724;null;1;PRJEB11460;SAMEA3671386;UNIVERSITY OF BASEL;SAMEA3671386;nan;null;null;null;null;null;null;null;null;null;null
+ERR1193747;null;1;PRJEB11460;SAMEA3671400;UNIVERSITY OF BASEL;SAMEA3671400;nan;null;null;null;null;null;null;null;null;null;null
 ERR1193763;null;1;PRJEB11460;SAMEA3671410;UNIVERSITY OF BASEL;SAMEA3671410;nan;null;null;null;null;null;null;null;null;null;null
 ERR1193781;null;1;PRJEB11460;SAMEA3671428;UNIVERSITY OF BASEL;SAMEA3671428;nan;null;null;null;null;null;null;null;null;null;null
 ERR1193782;null;1;PRJEB11460;SAMEA3671429;UNIVERSITY OF BASEL;SAMEA3671429;nan;null;null;null;null;null;null;null;null;null;null
@@ -771,6 +772,8 @@ ERR1367652;null;1;PRJEB12179;SAMEA3715554;UNIVERSITY OF BASEL;G02131;nan;Switzer
 ERR1367666;null;1;PRJEB12179;SAMEA3715561;UNIVERSITY OF BASEL;G02138;nan;Switzerland;null;null;null;null;null;null;null;null;null
 ERR1413476;null;1;PRJEB13764;SAMEA3986718;BUGS;4,018;2004-01-08 0:00:00;null;null;null;null;null;null;null;null;4,018;null
 ERR1452609;null;1;PRJEB14401;SAMEA4032459;SAMRC CENTRE FOR TUBERCULOSIS RESEARCH;1945;1996;null;null;null;null;null;null;null;null;Mycobacterium tuberculosis;null
+ERR1465792;null;1;PRJEB11449;SAMEA4041351;UNIVERSITY OF BASEL;SAMEA4041349;nan;null;null;null;null;null;null;null;null;null;null
+ERR1465793;null;1;PRJEB11450;SAMEA4041351;UNIVERSITY OF BASEL;SAMEA4041350;nan;null;null;null;null;null;null;null;null;null;null
 ERR1465864;null;1;PRJEB11460;SAMEA4041351;UNIVERSITY OF BASEL;SAMEA4041351;nan;null;null;null;null;null;null;null;null;null;null
 ERR1465875;null;1;PRJEB11460;SAMEA4041362;UNIVERSITY OF BASEL;SAMEA4041362;nan;null;null;null;null;null;null;null;null;null;null
 ERR1465929;null;1;PRJEB11460;SAMEA3715556;UNIVERSITY OF BASEL;SAMEA3715556;nan;null;null;null;null;null;null;null;null;null;null
