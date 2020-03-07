@@ -41,25 +41,39 @@
         }
       }
     }
-
+    
+          
           for (k in 1:(length(mutations)/2)){
+            
+            if(k==1){
+              print(c("icovest","xcindex","pval","pvalnorm"))
+              write.table(t(c("icovest","xcindex","pval","pvalnorm")),file="outputmutations.csv",col.names= FALSE,append = TRUE)
+            }
+            
             if(class(get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1]))=="sigclust"){
-              print(c(get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval))
-              write.table(t(c(get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval)),file="outputmutations.csv",col.names= FALSE,append = TRUE)
+              print(c(get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@pvalnorm))
+              write.table(t(c(get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval,get(strsplit(paste("pvalue",mutations[(k*2)-1],sep='_'),"_labels.txt")[[1]][1])@pvalnorm)),file="outputmutations.csv",col.names= FALSE,append = TRUE)
             }
             else {
               print("error")
-              write.table(t(c("e","e","e")),file="outputmutations.csv",col.names= FALSE,append = TRUE)
+              write.table(t(c("e","e","e","e")),file="outputmutations.csv",col.names= FALSE,append = TRUE)
             }
           }
       print("--------")
+      
           for (l in 1:(length(drugresistances)/2)){
+            
+            if(l==1){
+              print(c("icovest","xcindex","pval","pvalnorm"))
+              write.table(t(c("icovest","xcindex","pval","pvalnorm")),file="outputdrugresistances.csv",col.names= FALSE,append = TRUE)
+            }
+            
             if(class(get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1]))=="sigclust"){
-              print(c(get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval))
-              write.table(t(c(get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval)),file="outputdrugresistances.csv",col.names= FALSE,append = TRUE)
+              print(c(get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@pvalnorm))
+              write.table(t(c(get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@icovest,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@xcindex,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@pval,get(strsplit(paste("pvalue",drugresistances[(l*2)-1],sep='_'),"_labels.txt")[[1]][1])@pvalnorm)),file="outputdrugresistances.csv",col.names= FALSE,append = TRUE)
             }
             else {
               print("error")
-              write.table(t(c("e","e","e")),file="outputdrugresistances.csv",col.names= FALSE,append = TRUE)
+              write.table(t(c("e","e","e","e")),file="outputdrugresistances.csv",col.names= FALSE,append = TRUE)
             }
           }
