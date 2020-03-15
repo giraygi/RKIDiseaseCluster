@@ -23,7 +23,7 @@
     
     
     # Dumy code categorical predictor variables
-    x <- model.matrix(noof_mutations~., train.data)[,-1]
+    x <- model.matrix(as.formula(paste(output, ".", sep="~")), train.data)[,-1]
     # Convert the outcome (class) to a numerical variable
     # y <- ifelse(train.data[,output] == "pos", 1, 0)
     y <- train.data[,output] 
@@ -44,13 +44,15 @@
     # Display regression coefficients
     coef(model)
     # Make predictions on the test data
-    x.test <- model.matrix(noof_mutations ~., test.data)[,-1]
+    x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
     probabilities <- model %>% predict(newx = x.test)
     # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
     predicted.classes <- round(probabilities)
     # Model accuracy
     observed.classes <- test.data[,output]
-    mean(abs(predicted.classes - observed.classes)<=1)
+    mean(abs(predicted.classes - observed.classes)==2)
+    mean(abs(predicted.classes - observed.classes)==1)
+    mean(abs(predicted.classes - observed.classes)==0)
     
     
     
@@ -72,7 +74,7 @@
     lasso.model <- glmnet(x, y, alpha = 1, family = family,
                           lambda = cv.lasso$lambda.min)
     # Make prediction on test data
-    x.test <- model.matrix(noof_mutations ~., test.data)[,-1]
+    x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
     probabilities <- lasso.model %>% predict(newx = x.test)
     # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
     predicted.classes <- round(probabilities)
@@ -86,7 +88,7 @@
     lasso.model <- glmnet(x, y, alpha = 1, family = family,
                           lambda = cv.lasso$lambda.1se)
     # Make prediction on test data
-    x.test <- model.matrix(noof_mutations ~., test.data)[,-1]
+    x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
     probabilities <- lasso.model %>% predict(newx = x.test)
     # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
     predicted.classes <- round(probabilities)
@@ -98,7 +100,7 @@
     
     
     # Fit the model
-    full.model <- glm(noof_mutations ~., data = train.data, family = family)
+    full.model <- glm(as.formula(paste(output, ".", sep="~")), data = train.data, family = family)
     # Make predictions
     probabilities <- full.model %>% predict(test.data, type = "response")
     # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
