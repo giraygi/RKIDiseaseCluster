@@ -9,8 +9,17 @@
      centralities <- read.table("/home/giray/Desktop/lasso/multiple output/centralitiesdiffersfull.csv",header=TRUE,sep=",")
      family <- "gaussian"
      output <- "noof_mutations"
-     centralities$noof_resistances <- NULL
-     centralities$no_of_full_mutations <- NULL
+     if(output!="noof_mutations" && output!="noof_resistances" && output!="no_of_full_mutations"){
+       stop("output parameter should be chosen from noof_mutations/noof_resistances/no_of_full_mutations")
+     } else {
+       if(output!="noof_mutations")
+         centralities$noof_mutations <- NULL
+       if(output!="noof_resistances")
+         centralities$noof_resistances <- NULL
+       if(output!="no_of_full_mutations")
+         centralities$no_of_full_mutations <- NULL
+     }
+    
     # Inspect the data
     sample_n(centralities, 3)
     # Split the data into training and test set
