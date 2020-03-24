@@ -1571,6 +1571,18 @@ catch(Exception e) {
 }
 }
 
+public void addRoundedStringPropertyForNumericProperty(String propertyName, int noOfDigits) {
+	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() ){
+		tx.run( "match (n) SET n."+propertyName+"2StringWith"+noOfDigits+"Digits = toString(round("+Math.pow(10, noOfDigits)+"*n."+propertyName+")/"+Math.pow(10, noOfDigits)+")");
+		tx.run( "match (n)-[t:"+globalLabel+"]->(m) SET t."+propertyName+"2StringWith"+noOfDigits+"Digits = toString(round("+Math.pow(10, noOfDigits)+"*t."+propertyName+")/"+Math.pow(10, noOfDigits)+")");	
+		tx.success(); tx.close();
+}
+catch(Exception e) {
+	e.printStackTrace();
+	System.err.println("addRoundedStringPropertyForNumericProperty Exception");
+}
+}
+
 public void changeLabelOfUnconnectedNodes() {
 	System.out.println("changeLabelOfUnconnectedNodes");
 	try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction())
