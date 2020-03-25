@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <title>Neovis.js Simple Example</title>
+    <title>RKI Disease Cluster Visualization</title>
     <style type="text/css">
         html, body {
             font: 16pt arial;
         }
         #viz {
-            width: 1300px;
+            width: 2600px;
             height: 1300px;
             border: 1px solid lightgray;
             font: 22pt arial;
@@ -46,7 +46,8 @@
 				relationships: {
 					"TRANSMITS": {
 						"thickness": "weight",
-						"caption": false
+                        "caption": "distance2StringWith2Digits"
+						
 					}
 				},
 				initial_cypher: "MATCH (n)-[r:TRANSMITS]->(m) RETURN n,r,m"
@@ -61,28 +62,31 @@
 <div id="viz"></div>
 
 
-Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
+Cypher query: <textarea rows="4" cols=200 id="cypher"></textarea><br>
 <input type="submit" value="Submit" id="reload">
 <input type="submit" value="Stabilize" id="stabilize">
 
 <select id="centrality"  onChange="draw()">
-  <option value="pagerank">Page Rank</option>
+  <option value="pagerank20d085">Page Rank</option>
   <option value="betweenness">Betweenness</option>
   <option value="closeness">Closeness</option>
+<option value="closeness2">Closeness 2</option>
   <option value="harmonic">Harmonic</option>
-  <option value="articlerank">Article Rank</option>
-  <option value="eigenvector">Eigen Vector</option>
-  <option value="degree">Degree Centrality</option>
+  <option value="articlerank20d085">Article Rank</option>
+  <option value="eigenvector20d085">Eigen Vector</option>
+  <option value="degree20d085">Degree Centrality</option>
 </select>
 
 <select id="community" onChange="draw()">
-  <option value="labelpropagation">Label Propagation</option>
-  <option value="lp2">Label Propagation 2</option>
-  <option value="lp3">Label Propagation 3</option>
-  <option value="louvain">Louvain Modularity</option>
+  <option value="lp16">Label Propagation</option>
+  <option value="lp26">Label Propagation 2</option>
+<option value="louvain">Louvain Modularity</option>
+  <option value="louvain2">Louvain Modularity 2</option>
  <option value="union_cluster">Union</option>
- <option value="scc_cluster">SCC</option>
+<option value="union2_cluster">Union 2</option>
+ <option value="scc2_cluster">SCC</option>
 <option value="Previous_Cluster_ID">Previous Cluster ID</option>
+<option value="Sequencing_Institution2Numeric">Sequencing Institution</option>
 
 </select>
 
