@@ -1582,6 +1582,24 @@ catch(Exception e) {
 	System.err.println("addRoundedStringPropertyForNumericProperty Exception");
 }
 }
+// Only for Nodes
+public void addNumericPropertyForStringProperty(String propertyName) {
+	StatementResult result;				
+			try ( org.neo4j.driver.v1.Transaction tx = session.beginTransaction() )
+			{	
+				result = tx.run("match (n:Patient) where n."+propertyName+" <> 'null' return distinct(n."+propertyName+")");
+				int count = 0;
+				while(result.hasNext()){
+					Record record = result.next();
+					tx.run("match (n:Patient) where n."+propertyName+" = '"+record.get(0).asString()+"' set n."+propertyName+"2Numeric = "+count);
+					count++;
+					}
+				tx.success(); tx.close();
+			} catch (Exception e){
+				e.printStackTrace();
+				System.err.println("addNumericPropertyForStringProperty Exception");
+			}	
+}
 
 public void changeLabelOfUnconnectedNodes() {
 	System.out.println("changeLabelOfUnconnectedNodes");
