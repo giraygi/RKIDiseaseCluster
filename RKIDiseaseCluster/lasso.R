@@ -1,14 +1,15 @@
+    
     library(tidyverse)
     library(caret)
     library(glmnet)
       
-    # Load the data and remove NAs
-    # data("centralities", package = "mlbench")
-    # centralities <- na.omit(centralities)
-    
-     centralities <- read.table("/home/giray/Desktop/lasso/multiple output/centralitiesdiffersfull.csv",header=TRUE,sep=",")
-     family <- "gaussian"
-     output <- "noof_mutations"
+     directory.path <- "/home/giray/Nextcloud/transmission networks/data/lasso/multiple output/"
+     csv.files <- list.files(directory.path,pattern = "\\.csv$")
+     file.name <-csv.files[1]
+     centralities <- read.table(paste0(directory.path,file.name,""),header=TRUE,sep=",")
+     family <- switch(1,"gaussian", "binomial", "poisson", "multinomial", "cox","mgaussian")
+     output <- switch(1,"noof_mutations","noof_resistances","no_of_full_mutations") 
+     sink(paste0(directory.path,str_remove(file.name,".csv"),"_",family,"_",output,".out",""))
      if(output!="noof_mutations" && output!="noof_resistances" && output!="no_of_full_mutations"){
        stop("output parameter should be chosen from noof_mutations/noof_resistances/no_of_full_mutations")
      } else {
@@ -63,8 +64,6 @@
     mean(abs(predicted.classes - observed.classes)==1)
     mean(abs(predicted.classes - observed.classes)==0)
     
-    
-    
     library(glmnet)
     set.seed(123)
     cv.lasso <- cv.glmnet(x, y, alpha = 1, family = family)
@@ -107,7 +106,6 @@
     mean(abs(predicted.classes - observed.classes)==1)
     mean(abs(predicted.classes - observed.classes)==0)
     
-    
     # Fit the model
     full.model <- glm(as.formula(paste(output, ".", sep="~")), data = train.data, family = family)
     # Make predictions
@@ -120,6 +118,13 @@
     mean(abs(predicted.classes - observed.classes)==1)
     mean(abs(predicted.classes - observed.classes)==0)
     
+    # coef(full.model)
+    # test değeri F de olabilir. İkinci model parametresi istenen tipte olmadığı için bir karşılaştırma yapmıyor ve tek modelliden farklı bir sonuç üretmiyor.
+    anova(full.model, cv.lasso, test = "Chisq")
+    plot(full.model)
+    
     predicted.and.compared <-cbind(observed.classes,predicted.classes)
     
     summary(full.model)
+    
+    sink()
