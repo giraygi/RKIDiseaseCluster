@@ -9,9 +9,9 @@ for (i in 1:length(csv.files)){
  for (j in 1:2){
    for (k in 1:3){
       
-# i<-1      
+# i<-1
 # j<-1
-# k<-1
+# k<-3
       file.name <-csv.files[i]
       centralities <- read.table(paste0(directory.path,file.name,""),header=TRUE,sep=",")
       family <- switch(j,"gaussian", "poisson","mgaussian","multinomial","binomial","cox")
@@ -70,9 +70,7 @@ for (i in 1:length(csv.files)){
       # Model accuracy
       observed.classes <- test.data[,output]
       print("model accuracy lasso 1.0")
-      print(mean(abs(predicted.classes - observed.classes)==2))
-      print(mean(abs(predicted.classes - observed.classes)==1))
-      print(mean(abs(predicted.classes - observed.classes)==0))
+      print(1-mean(abs(predicted.classes - observed.classes))/mean(observed.classes))
       
       library(glmnet)
       set.seed(123)
@@ -101,9 +99,7 @@ for (i in 1:length(csv.files)){
       print("coefficients of the lasso model")
       print(coef(lasso.model))
       print("model accuracy lasso 1.1")
-      print(mean(abs(predicted.classes - observed.classes)==2))
-      print(mean(abs(predicted.classes - observed.classes)==1))
-      print(mean(abs(predicted.classes - observed.classes)==0))
+      print(1-mean(abs(predicted.classes - observed.classes))/mean(observed.classes))
       
       # Final model with lambda.1se
       lasso2.model <- glmnet(x, y, alpha = 1, family = family,
@@ -118,9 +114,7 @@ for (i in 1:length(csv.files)){
       print("coefficients of the lasso2 model")
       print(coef(lasso2.model))
       print("model accuracy lasso 2")
-      print(mean(abs(predicted.classes - observed.classes)==2))
-      print(mean(abs(predicted.classes - observed.classes)==1))
-      print(mean(abs(predicted.classes - observed.classes)==0))
+      print(1-mean(abs(predicted.classes - observed.classes))/mean(observed.classes))
       
       # Fit the model
       full.model <- glm(as.formula(paste(output, ".", sep="~")), data = train.data, family = family)
@@ -133,9 +127,7 @@ for (i in 1:length(csv.files)){
       print("coefficients of the full model")
       print(coef(full.model))
       print("model accuracy full model")
-      print(mean(abs(predicted.classes - observed.classes)==2))
-      print(mean(abs(predicted.classes - observed.classes)==1))
-      print(mean(abs(predicted.classes - observed.classes)==0))
+      print(1-mean(abs(predicted.classes - observed.classes))/mean(observed.classes))
       
       # test değeri F de olabilir. İkinci model parametresi istenen tipte olmadığı için bir karşılaştırma yapmıyor ve tek modelliden farklı bir sonuç üretmiyor.
       print(anova(full.model, cv.lasso, test = "Chisq"))
@@ -150,8 +142,6 @@ for (i in 1:length(csv.files)){
       
       dev.off()
       
-      
    }
  }
 }
-
