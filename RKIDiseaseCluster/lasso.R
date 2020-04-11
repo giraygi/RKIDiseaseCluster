@@ -64,7 +64,7 @@ for (i in 1:length(csv.files)){
       print(coef(model))
       # Make predictions on the test data
       x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
-      probabilities <- model %>% predict(newx = x.test)
+      probabilities <- model %>% predict(newx = x.test, type = "response")
       # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
       predicted.classes <- round(probabilities)
       # Model accuracy
@@ -91,7 +91,7 @@ for (i in 1:length(csv.files)){
                             lambda = cv.lasso$lambda.min)
       # Make prediction on test data
       x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
-      probabilities <- lasso.model %>% predict(newx = x.test)
+      probabilities <- lasso.model %>% predict(newx = x.test, type = "response")
       # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
       predicted.classes <- round(probabilities)
       # Model accuracy
@@ -106,7 +106,7 @@ for (i in 1:length(csv.files)){
                              lambda = cv.lasso$lambda.1se)
       # Make prediction on test data
       x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
-      probabilities <- lasso2.model %>% predict(newx = x.test)
+      probabilities <- lasso2.model %>% predict(newx = x.test, type = "response")
       # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
       predicted.classes <- round(probabilities)
       # Model accuracy rate
