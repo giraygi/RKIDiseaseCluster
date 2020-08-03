@@ -6,7 +6,7 @@ library("stringr")
 library(dplyr)
 library(MLmetrics)
 
-directory.path <- "/home/giray/glm_final/mo2woarticle/"
+directory.path <- "/home/giray/glm_final/mo1a_fullmutationloglink/"
 csv.files <- list.files(directory.path,pattern = "\\.csv$")
 
 for (i in 1:length(csv.files)){
@@ -55,42 +55,67 @@ for (i in 1:length(csv.files)){
       
       
       
-      # library(glmnet)
-      # # Find the best lambda using cross-validation
-      # set.seed(123) 
-      # cv.lasso <- cv.glmnet(x, y, alpha = 1, family = family)
-      # # Fit the final model on the training data
-      # model <- glmnet(x, y, alpha = 1, family = family,
-      #                 lambda = cv.lasso$lambda.min)
+      library(glmnet)
+      # Find the best lambda using cross-validation
+      set.seed(123)
+      cv.lasso <- cv.glmnet(x, y, alpha = 1, family = family)
+      # Fit the final model on the training data
+      model <- glmnet(x, y, alpha = 1, family = family,
+                      lambda = cv.lasso$lambda.min)
+      print("--------------------------------------")
       # Display regression coefficients
-      # print("coefficients with standard model")
-      # print(coef(model))
-      # # Make predictions on the test data
-      # x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
-      # probabilities <- model %>% predict(newx = x.test, type = "response")
-      # # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
-      # predicted.classes <- round(probabilities)
-      # # Model accuracy
-      # observed.classes <- test.data[,output]
-      # print("vif")
-      # # print(car::vif(model))
-      # print("model accuracy lasso 1.0")
+      print("coefficients with standard model")
+      print(coef(model))
+      # Make predictions on the test data
+      x.test <- model.matrix(as.formula(paste(output, ".", sep="~")), test.data)[,-1]
+      probabilities <- model %>% predict(newx = x.test, type = "response")
+      # predicted.classes <- ifelse(probabilities > 0.5, "pos", "neg")
+      predicted.classes <- round(probabilities)
+      # Model accuracy
+      observed.classes <- test.data[,output]
+      # print("model accuracy based on MAE standard model")
       # print(1-mean(abs(predicted.classes - observed.classes))/mean(observed.classes))
-      # print("accuracy")
-      # print(Accuracy(predicted.classes,observed.classes))
+      # print("model accuracy based on RMSE standard model")
+      # print(1-RMSE(predicted.classes,observed.classes)/mean(observed.classes))
+      # print("MAE")
+      # print(MAE(predicted.classes,observed.classes))
+      # print("MSE")
+      # print(MSE(predicted.classes,observed.classes))
+      # print("RMSE")
+      # print(RMSE(predicted.classes,observed.classes))
       # print("R2 Score")
       # print(R2_Score(predicted.classes,observed.classes))
       # print("RAE")
       # print(RAE(predicted.classes,observed.classes))
-      # print("MSE")
-      # print(MSE(predicted.classes,observed.classes))
-      # print("MAE")
-      # print(MAE(predicted.classes,observed.classes))
+      # print("RRSE")
+      # print(RRSE(predicted.classes,observed.classes))
+      # print("accuracy")
+      # print(Accuracy(predicted.classes,observed.classes))
+      # tLL <- model$nulldev - deviance(model)
+      # k <- model$df
+      # n <- model$nobs
+      # AICc <- -tLL+2*k+2*k*(k+1)/(n-k-1)
+      # print("AICc")
+      # print(AICc)
+      # 
+      # BICc<-log(n)*k - tLL
+      # print("BICc")
+      # print(BICc)
+      # 
+      # AIC <- n*log(MSE(predicted.classes,observed.classes))+2*k
+      # print("AIC MSE")
+      # print(AIC)
+      # 
+      # BIC <- n*log(MSE(predicted.classes,observed.classes))+k*log(n)
+      # print("BIC MSE")
+      # print(BIC)
+      
+       print("--------------------------------------")
       
       library(glmnet)
       set.seed(123)
       
-      if(output!="X")
+      if(output!="no_of_full_mutations")
         cv.lasso <- cv.glmnet(x, y, alpha = 1, family = family)
       else{
         if (family=="gaussian")
@@ -112,7 +137,7 @@ for (i in 1:length(csv.files)){
       print(coef(cv.lasso, cv.lasso$lambda.1se))
       
       # Final model with lambda.min
-      if(output!="X")
+      if(output!="no_of_full_mutations")
         lasso.model <- glmnet(x, y, alpha = 1, family = family,
                               lambda = cv.lasso$lambda.min)
       else{
@@ -180,7 +205,7 @@ for (i in 1:length(csv.files)){
       
       
       # Final model with lambda.1se
-      if(output!="X")
+      if(output!="no_of_full_mutations")
         lasso2.model <- glmnet(x, y, alpha = 1, family = family,
                                lambda = cv.lasso$lambda.1se)
       else{
@@ -244,7 +269,7 @@ for (i in 1:length(csv.files)){
       print("--------------------------------------")
       
       # Fit the model
-      if(output!="X")
+      if(output!="no_of_full_mutations")
         full.model <- glm(as.formula(paste(output, ".", sep="~")), data = train.data, family = family)
       else{
         if (family=="gaussian")
