@@ -6,7 +6,7 @@ library("stringr")
 library(dplyr)
 library(MLmetrics)
 
-directory.path <- "/home/giray/glm_final/mo1a/"
+directory.path <- "/home/giray/glm_final/mo2woarticle/"
 csv.files <- list.files(directory.path,pattern = "\\.csv$")
 
 for (i in 1:length(csv.files)){
@@ -125,7 +125,13 @@ for (i in 1:length(csv.files)){
       print("RMSE")
       print(RMSE(predicted.classes,observed.classes))
       print("R2 Score")
-      print(R2_Score(predicted.classes,observed.classes))
+      r2s <- R2_Score(predicted.classes,observed.classes)
+      print(r2s)
+      sample_size <-length(observed.classes)
+      no_of_coefficients <-sum(as.vector(coef(lasso.model)) != 0) - 1
+      adjusted_r2s<-1-((1-r2s)*(sample_size-1)/(sample_size-no_of_coefficients-1))
+      print("Adjusted R2 Score")
+      print(adjusted_r2s)
       print("RAE")
       print(RAE(predicted.classes,observed.classes))
       print("RRSE")
@@ -190,7 +196,13 @@ for (i in 1:length(csv.files)){
       print("RMSE")
       print(RMSE(predicted.classes,observed.classes))
       print("R2 Score")
-      print(R2_Score(predicted.classes,observed.classes))
+      r2s <- R2_Score(predicted.classes,observed.classes)
+      print(r2s)
+      sample_size <-length(observed.classes)
+      no_of_coefficients <-sum(as.vector(coef(lasso2.model)) != 0) - 1
+      adjusted_r2s<-1-((1-r2s)*(sample_size-1)/(sample_size-no_of_coefficients-1))
+      print("Adjusted R2 Score")
+      print(adjusted_r2s)
       print("RAE")
       print(RAE(predicted.classes,observed.classes))
       print("RRSE")
@@ -250,7 +262,13 @@ for (i in 1:length(csv.files)){
       print("RMSE")
       print(RMSE(predicted.classes,observed.classes))
       print("R2 Score")
-      print(R2_Score(predicted.classes,observed.classes))
+      r2s <- R2_Score(predicted.classes,observed.classes)
+      print(r2s)
+      sample_size <-length(observed.classes)
+      no_of_coefficients <-sum(as.vector(coef(full.model)) != 0) - 1
+      adjusted_r2s<-1-((1-r2s)*(sample_size-1)/(sample_size-no_of_coefficients-1))
+      print("Adjusted R2 Score")
+      print(adjusted_r2s)
       print("RAE")
       print(RAE(predicted.classes,observed.classes))
       print("RRSE")
