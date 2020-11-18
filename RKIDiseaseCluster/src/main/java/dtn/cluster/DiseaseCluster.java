@@ -65,7 +65,7 @@ public class DiseaseCluster {
 		GraphDatabaseService graphDb = new GraphDatabaseFactory()
                 .newEmbeddedDatabase( new File("db") );
 		DiseaseCluster.graphDb = graphDb;
-		driver = GraphDatabase.driver( "bolt://localhost:7688", AuthTokens.basic( "neo4j", "evet" ) );
+		driver = GraphDatabase.driver( "bolt://localhost:7687", AuthTokens.basic( "neo4j", "evet" ) );
 		session = driver.session();
 	}
 	
@@ -1943,11 +1943,11 @@ public SubGraph minimumSpanningTreeOfANode(Long nodeID,boolean removeEdge, Strin
 }
 
 	public static void main(String[] args) {
-		final DiseaseCluster as = new DiseaseCluster("weight","distance",	 RelTypes.DIFFERS.name(),20);
-		as.removeAllInteractionsWithLabel(RelTypes.TRANSMITS.name());
+		final DiseaseCluster as = new DiseaseCluster("weight","distance",	 RelTypes.TRANSMITS.name(),20);
 		as.removeAllInteractionsWithLabel(RelTypes.MUTATES.name());
+		as.removeAllInteractionsWithLabel(RelTypes.DIFFERS.name());
 //		as.removeGreaterInteractionsByTresholdValue(13, RelTypes.TRANSMITS.name());
-		as.removeGreaterInteractionsByPercentile(0.02, RelTypes.DIFFERS.name());
+		as.removeGreaterInteractionsByPercentile(0.95, RelTypes.TRANSMITS.name());
 //		as.generateAlternativeInteractionsFromFile(args[1], RelTypes.TRANSMITS.name());
 //		
 //		as.globalLabel = RelTypes.MUTATES.name();
