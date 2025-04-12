@@ -1,0 +1,17 @@
+MATCH (n) SET n.INH_C = 0 RETURN n;
+MATCH (n) SET n.PAS_C = 0 RETURN n;
+MATCH (n) SET n.CPR_C = 0 RETURN n;
+MATCH (n) SET n.FLQ_C = 0 RETURN n;
+MATCH (n) SET n.RIF_C = 0 RETURN n;
+MATCH (n) SET n.PZA_C = 0 RETURN n;
+MATCH (n) SET n.LZD_C = 0 RETURN n;
+MATCH (n) SET n.ETH_C = 0 RETURN n;
+MATCH (n) SET n.KAN_C = 0 RETURN n;
+MATCH (n) SET n.SM_C = 0 RETURN n;
+MATCH (n) SET n.EMB_C = 0 RETURN n;
+MATCH (n) SET n.AMI_C = 0 RETURN n;
+
+
+
+
+
