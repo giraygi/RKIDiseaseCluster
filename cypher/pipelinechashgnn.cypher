@@ -1,3 +1,44 @@
+
+CALL gds.graph.exists('rki') YIELD exists
+WITH exists
+WHERE exists = true
+CALL gds.graph.drop('rki')
+YIELD graphName
+RETURN 'Graph dropped: ' + graphName AS message;
+
+CALL gds.graph.exists('transmits') YIELD exists
+WITH exists
+WHERE exists = true
+CALL gds.graph.drop('transmits')
+YIELD graphName
+RETURN 'Graph dropped: ' + graphName AS message;
+
+CALL gds.graph.exists('transmits13') YIELD exists
+WITH exists
+WHERE exists = true
+CALL gds.graph.drop('transmits13')YIELD graphName
+RETURN 'Graph dropped: ' + graphName AS message;
+
+CALL gds.beta.pipeline.exists('linkPredictionPipeline') YIELD exists
+WITH exists
+WHERE exists = true
+CALL gds.beta.pipeline.drop('linkPredictionPipeline')
+YIELD pipelineName
+RETURN 'Pipeline dropped: ' + pipelineName AS message;
+
+CALL gds.model.exists('linkPredictionModel') YIELD exists
+WITH exists
+WHERE exists = true
+CALL gds.model.drop('linkPredictionModel')
+YIELD modelName
+RETURN 'Model dropped: ' + modelName AS message;
+
+
+//CALL gds.graph.drop('transmits') YIELD graphName;
+//CALL gds.graph.drop('transmits13') YIELD graphName;
+//CALL gds.beta.pipeline.drop('linkPredictionPipeline');
+//CALL gds.model.drop('linkPredictionModel');
+
 CALL gds.graph.project(
   'rki',
   'Patient',
@@ -34,7 +75,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'INH_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name1, nodePropertySteps AS nps1
@@ -43,7 +84,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'PAS_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name2, nodePropertySteps AS nps2
@@ -52,7 +93,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'CPR_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name3, nodePropertySteps AS nps3
@@ -61,7 +102,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'FLQ_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name4, nodePropertySteps AS nps4
@@ -70,7 +111,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'RIF_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name5, nodePropertySteps AS nps5
@@ -79,7 +120,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'PZA_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name6, nodePropertySteps AS nps6
@@ -88,7 +129,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'LZD_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name7, nodePropertySteps AS nps7
@@ -97,7 +138,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'ETH_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name8, nodePropertySteps AS nps8
@@ -106,7 +147,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'KAN_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name9, nodePropertySteps AS nps9
@@ -115,7 +156,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'SM_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name10, nodePropertySteps AS nps10
@@ -124,7 +165,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'EMB_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name11, nodePropertySteps AS nps11
@@ -133,7 +174,7 @@ CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 
 mutateProperty: 'AMI_C',
 iterations: 100,
 embeddingDensity: 2,
-generateFeatures: {dimension: 12, densityLevel: 2},
+generateFeatures: {dimension: 20, densityLevel: 3},
 randomSeed: 42
 })
 YIELD name AS name12, nodePropertySteps AS nps12
@@ -155,7 +196,7 @@ validationFolds: 3
 YIELD name AS nameSplit, splitConfig
 
 CALL gds.alpha.pipeline.linkPrediction.addMLP('linkPredictionPipeline',
-{hiddenLayerSizes: [6, 3], penalty: 1, patience: 2}) YIELD parameterSpace
+{hiddenLayerSizes: [8, 4], penalty: 1, patience: 2}) YIELD parameterSpace
 
 // Train the pipeline
 CALL gds.beta.pipeline.linkPrediction.train('transmits13', {
@@ -179,14 +220,14 @@ YIELD modelInfo
 CALL gds.beta.pipeline.linkPrediction.predict.stream('transmits13', {
   modelName: 'linkPredictionModel',
   relationshipTypes: ['TRANSMITS'],
-  topN: 5000,
+  topN: 4000,
   threshold: 0.2
 }) YIELD node1, node2, probability
 WITH 
   gds.util.asNode(node1) AS n1, 
   gds.util.asNode(node2) AS n2, 
   probability
-OPTIONAL MATCH (n1)-[t:TRANSMITS]->(n2)
+MATCH (n1)-[t:TRANSMITS]-(n2)
 RETURN 
   n1.Isolate_ID AS patient1,
   SIZE(n1.drug_resistance) AS resistance1,
@@ -208,7 +249,7 @@ RETURN
   SIZE([r IN n2.drug_resistance WHERE NOT r IN n1.drug_resistance])+SIZE([r IN n1.drug_resistance WHERE NOT r IN n2.drug_resistance]) as distance,
   SIZE([r IN n2.full_mutation_list WHERE NOT r IN n1.full_mutation_list])+SIZE([r IN n1.full_mutation_list WHERE NOT r IN n2.full_mutation_list]) as mutdistance,
   1/t.weight AS transmitsScore // <-- include weight of TRANSMITS relationship (if exists)
-ORDER BY jaccardSimilarity DESC, distance DESC, probability DESC, patient1
+ORDER BY jaccardSimilarity DESC, jacSimMut DESC, distance DESC, mutdistance DESC, probability DESC, patient1
 
 
 
