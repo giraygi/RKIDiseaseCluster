@@ -39,18 +39,47 @@ RETURN 'Model dropped: ' + modelName AS message;
 //CALL gds.beta.pipeline.drop('linkPredictionPipeline');
 //CALL gds.model.drop('linkPredictionModel');
 
+// -----------------------------
+// 2) Ensure numeric feature properties exist on all :Patient nodes
+//    (set missing numeric features to 0)
+// -----------------------------
+MATCH (p:Patient)
+SET p.AMI_C = coalesce(p.AMI_C, 0),
+    p.CPR_C = coalesce(p.CPR_C, 0),
+    p.EMB_C = coalesce(p.EMB_C, 0),
+    p.ETH_C = coalesce(p.ETH_C, 0),
+    p.FLQ_C = coalesce(p.FLQ_C, 0),
+    p.INH_C = coalesce(p.INH_C, 0),
+    p.KAN_C = coalesce(p.KAN_C, 0),
+    p.LZD_C = coalesce(p.LZD_C, 0),
+    p.PAS_C = coalesce(p.PAS_C, 0),
+    p.PZA_C = coalesce(p.PZA_C, 0),
+    p.RIF_C = coalesce(p.RIF_C, 0),
+    p.SM_C  = coalesce(p.SM_C, 0)
+RETURN 'Ensured features present on all Patient nodes' AS info;
+
+// -----------------------------
+// 3) Project the main graph 'rki' with the scalar features available
+// -----------------------------
 CALL gds.graph.project(
   'rki',
-  'Patient',
+  {
+    Patient: {
+      properties: [
+        'AMI_C','CPR_C','EMB_C','ETH_C','FLQ_C','INH_C',
+        'KAN_C','LZD_C','PAS_C','PZA_C','RIF_C','SM_C'
+      ]
+    }
+  },
   {
     TRANSMITS: {
+      type: 'TRANSMITS',
       orientation: 'UNDIRECTED',
-      properties: 'weight'
+      properties: ['weight']
     }
   }
 )
-YIELD
-  graphName AS graph, nodeProjection, nodeCount AS nodes, relationshipProjection, relationshipCount AS rel
+YIELD graphName AS graph, nodeProjection, nodeCount AS nodes, relationshipProjection, relationshipCount AS rel
 
 CALL gds.graph.filter(
 'transmits',  // Name of the new graph
@@ -71,119 +100,31 @@ YIELD graphName AS filteredTransmitsGraph, fromGraphName  AS fromGraphName2, nod
 CALL gds.beta.pipeline.linkPrediction.create('linkPredictionPipeline')
 YIELD name AS namePipe
 
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'INH_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
+CALL gds.beta.pipeline.linkPrediction.addNodeProperty(
+  'linkPredictionPipeline',
+  'gds.hashgnn.mutate',
+  {
+    mutateProperty: 'embedding',      // this will be created by the pipeline
+    featureProperties: [
+      'INH_C','PAS_C','CPR_C','FLQ_C','RIF_C',
+      'PZA_C','LZD_C','ETH_C','KAN_C','SM_C','EMB_C','AMI_C'
+    ],
+    iterations: 100,
+    embeddingDensity: 2,
+    binarizeFeatures: {dimension: 128, threshold: 32},
+    heterogeneous: false,
+    randomSeed: 42
+  }
+)
 YIELD name AS name1, nodePropertySteps AS nps1
 
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'PAS_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name2, nodePropertySteps AS nps2
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'CPR_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name3, nodePropertySteps AS nps3
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'FLQ_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name4, nodePropertySteps AS nps4
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'RIF_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name5, nodePropertySteps AS nps5
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'PZA_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name6, nodePropertySteps AS nps6
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'LZD_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name7, nodePropertySteps AS nps7
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'ETH_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name8, nodePropertySteps AS nps8
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'KAN_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name9, nodePropertySteps AS nps9
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'SM_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name10, nodePropertySteps AS nps10
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'EMB_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name11, nodePropertySteps AS nps11
-
-CALL gds.beta.pipeline.linkPrediction.addNodeProperty('linkPredictionPipeline', 'gds.hashgnn.mutate', {
-mutateProperty: 'AMI_C',
-iterations: 100,
-embeddingDensity: 2,
-generateFeatures: {dimension: 20, densityLevel: 3},
-randomSeed: 42
-})
-YIELD name AS name12, nodePropertySteps AS nps12
 
 // Add link features
-CALL gds.beta.pipeline.linkPrediction.addFeature('linkPredictionPipeline', 'cosine', {
-nodeProperties: ['INH_C','PAS_C','CPR_C','FLQ_C','RIF_C','PZA_C','LZD_C','ETH_C','KAN_C','SM_C','EMB_C','AMI_C'],
-graphName: 'transmits13'  // Use the filtered graph
-})
+CALL gds.beta.pipeline.linkPrediction.addFeature(
+  'linkPredictionPipeline', 
+  'cosine', 
+  { nodeProperties: ['embedding'] }
+)
 YIELD name AS nameFeature, featureSteps
 
 // Configure the split
@@ -230,9 +171,11 @@ WITH
 MATCH (n1)-[t:TRANSMITS]-(n2)
 RETURN 
   n1.Isolate_ID AS patient1,
+  n1.Isolation_Country,
   SIZE(n1.drug_resistance) AS resistance1,
   SIZE(n1.full_mutation_list) AS mutation1,
   n2.Isolate_ID AS patient2,
+  n2.Isolation_Country,
   SIZE(n2.drug_resistance) AS resistance2,
   SIZE(n2.full_mutation_list) AS mutation2,
   probability,
