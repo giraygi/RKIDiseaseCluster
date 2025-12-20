@@ -20,5 +20,5 @@ readarray -t PARAMS < <(
 )
 
 #
-../bin/cypher-shell -a neo4j://127.0.0.1:7687 --non-interactive -f ${args[0]}.cypher -u neo4j -p deneme79 "${PARAMS[@]}" --format plain > ${args[1]}.csv
+../bin/cypher-shell -a neo4j://127.0.0.1:7687 --non-interactive -f ${args[0]}.cypher -u neo4j -p neo4j "${PARAMS[@]}" --format plain > ${args[1]}.csv
 
