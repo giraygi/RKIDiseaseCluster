@@ -61,7 +61,8 @@ CALL gds.beta.pipeline.linkPrediction.train('transmits13', {
 pipeline: 'linkPredictionPipeline',
 targetRelationshipType: 'TRANSMITS',
 modelName: 'linkPredictionModel',
-randomSeed: $generalparams.randomSeed
+randomSeed: $generalparams.randomSeed,
+metrics: ['AUCPR']
 })
 YIELD modelInfo
 
@@ -81,8 +82,9 @@ WITH gds.util.asNode(node1) AS n1, gds.util.asNode(node2) AS n2, probability, mo
 MATCH (n1)-[t:TRANSMITS]-(n2)
 
 RETURN 
-  modelInfo.modelSelectionStats.bestParameters AS bestParams,
-  coalesce(modelInfo.modelSelectionStats.validationResults.auc.mean, 0) AS meanAUC, 
+  modelInfo.metrics.AUCPR.test AS auprTest,
+  modelInfo.metrics.AUCPR.validation.avg AS auprValidation,
+  modelInfo.metrics.AUCPR.outerTrain AS auprOuterTrain,
   centralityDistribution.mean AS avgDegree,
   averageClusteringCoefficient AS avgClustering,
   
