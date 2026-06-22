@@ -1,0 +1,21 @@
+{
+  "graphsageparams": {
+    "embeddingDimension": 512,
+    "aggregator": "mean",
+    "epochs": 100,
+    "learningRate": 0.001
+  },
+  "generalparams": {
+    "randomSeed": 42,
+    "topN": 4000,
+    "threshold": 0.2,
+    "hiddenLayerSize1": 16,
+    "hiddenLayerSize2": 8,
+    "penalty": {"range": [0.01, 1.0]},
+    "patience": 3,
+    "negativeSamplingRatio": 1.0,
+    "testFraction": 0.25,
+    "trainFraction": 0.6,
+    "validationFolds": 3
+  }
+}

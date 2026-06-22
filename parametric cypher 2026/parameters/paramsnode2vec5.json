@@ -1,0 +1,20 @@
+{
+  "node2vecparams": {
+    "embeddingDimension": 128,
+    "iterations": 100,
+    "walkLength": 80
+  },
+  "generalparams": {
+    "randomSeed": 42,
+    "topN": 4000,
+    "threshold": 0.2,
+    "hiddenLayerSize1": 8,
+    "hiddenLayerSize2": 4,
+    "penalty": {"range": [0.1, 1.0]},
+    "patience": 2,
+    "negativeSamplingRatio": 4.0,
+    "testFraction": 0.25,
+    "trainFraction": 0.6,
+    "validationFolds": 3
+  }
+}
